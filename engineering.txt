@@ -1,0 +1,20 @@
+04/18/25
+
+To start with our project, we first need to do some restructuring.
+We need new databases. Our user databases in setup.py can stay the same, but we change
+messages to game_history to keep track of games and who played them. For simplicity and keeping track
+of money, we assume accounts cannot be deleted at the moment (if we have time later, we will rework this).
+
+The RAFT procedure for choosing leaders we know works from our unit tests from last time, so we are good on that front!
+However, the ENTIRE chat application needs to be restructured. We have a different structure to our servers now. We have 5 "main"
+backend server that keeps track of game history and player profiles. Then, each lobby is its own server that connects with the backend server leader.
+So, the client no longer connects via the RAFT protocol after connecting to a lobby! It talks ONLY to the lobby. The lobby keeps track of the game logic as well
+and tells the connected players how the game will be played.
+
+These are a LOT of things that we need to change. Let's first start by changing up the grpc and client scheme following login.
+Once a player logs in, they should be brought to the main menu. Then, once connected to the lobby, they work with the lobby.
+
+So, we need 3 total services:
+- Landing: When the client interacts with the backend servers for logging in, checking game history, etc.
+- Poker: When the client is actually playing poker
+- RAFT: finding new leaders

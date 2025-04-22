@@ -1,0 +1,59 @@
+{
+    "servers": {
+        "hosts": [
+            "127.0.0.1",
+            "127.0.0.1",
+            "127.0.0.1",
+            "127.0.0.1",
+            "127.0.0.1"
+        ],
+        "ports": [
+            50000,
+            50001,
+            50002,
+            50003,
+            50004
+        ],
+        "db_paths": [
+            "data/r1/messenger.db",
+            "data/r2/messenger.db",
+            "data/r3/messenger.db",
+            "data/r4/messenger.db",
+            "data/r5/messenger.db"
+        ],
+        "log_paths": [
+            "logs/server_logs/r1.log",
+            "logs/server_logs/r2.log",
+            "logs/server_logs/r3.log",
+            "logs/server_logs/r4.log",
+            "logs/server_logs/r5.log"
+        ]
+    },
+
+    "lobbies": {
+        "lobby_hosts": [
+            "localhost",
+            "localhost",
+            "localhost",
+            "localhost"
+        ],
+        "lobby_ports": [
+            60000,
+            60001,
+            60002,
+            60003
+        ],
+        "lobby_db_paths": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "lobby_log_paths": [
+            "logs/lobby_logs/lobby1.log",
+            "logs/lobby_logs/lobby2.log",
+            "logs/lobby_logs/lobby3.log",
+            "logs/lobby_logs/lobby4.log"
+        ]
+    }
+}

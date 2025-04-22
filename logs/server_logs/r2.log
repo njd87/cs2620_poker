@@ -1,0 +1,573 @@
+2025-03-25 20:08:39 - INFO - [SETUP] Connected to 10.250.77.97:50000 with response: 
+2025-03-25 20:08:39 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.77.97:50002: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.77.97:50002: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-03-25T20:08:39.116494-04:00"}"
+>
+2025-03-25 20:08:39 - INFO - [RAFT] Received VoteRequest: term=-1, candidate_id=0, last_log_index=0, last_log_term=0
+2025-03-25 20:08:40 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.77.97:50002: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.77.97:50002: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-03-25T20:08:40.11947-04:00"}"
+>
+2025-03-25 20:08:41 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.77.97:50002: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:41.124373-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.77.97:50002: Failed to connect to remote host: connect: Connection refused (61)"}"
+>
+2025-03-25 20:08:41 - INFO - [RAFT] Received VoteRequest: term=-1, candidate_id=0, last_log_index=0, last_log_term=0
+2025-03-25 20:08:42 - INFO - [SETUP] Connected to 10.250.77.97:50002 with response: 
+2025-03-25 20:08:42 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:42.134212-04:00"}"
+>
+2025-03-25 20:08:42 - INFO - [RAFT] Received VoteRequest: term=-1, candidate_id=0, last_log_index=0, last_log_term=0
+2025-03-25 20:08:43 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:43.136639-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:44 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:44.145645-04:00"}"
+>
+2025-03-25 20:08:45 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:45.15418-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:46 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:46.164108-04:00"}"
+>
+2025-03-25 20:08:47 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:47.168262-04:00"}"
+>
+2025-03-25 20:08:48 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:48.173557-04:00"}"
+>
+2025-03-25 20:08:48 - INFO - [RAFT] Received VoteRequest: term=-1, candidate_id=0, last_log_index=0, last_log_term=0
+2025-03-25 20:08:49 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:08:49 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:49.181722-04:00"}"
+>
+2025-03-25 20:08:49 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:08:50 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:50.189251-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:51 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:51.196075-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:52 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:52.201878-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:53 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:53.207776-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:54 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:08:54 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:08:54 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:54.211419-04:00"}"
+>
+2025-03-25 20:08:55 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:55.222389-04:00"}"
+>
+2025-03-25 20:08:56 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:08:56.228954-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:08:57 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:57.239793-04:00"}"
+>
+2025-03-25 20:08:58 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:58.24831-04:00"}"
+>
+2025-03-25 20:08:58 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:08:58 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:08:59 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:08:59.252569-04:00"}"
+>
+2025-03-25 20:09:00 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:00.261812-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:01 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:01.269275-04:00"}"
+>
+2025-03-25 20:09:02 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:02.273931-04:00"}"
+>
+2025-03-25 20:09:03 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:03 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:03.279985-04:00"}"
+>
+2025-03-25 20:09:03 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:04 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:04.28525-04:00"}"
+>
+2025-03-25 20:09:05 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:05.293325-04:00"}"
+>
+2025-03-25 20:09:06 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:06.298951-04:00"}"
+>
+2025-03-25 20:09:07 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:07.307024-04:00"}"
+>
+2025-03-25 20:09:07 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:07 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:08 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:08.313962-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:09 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:09.320115-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:10 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:10.326043-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:11 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:11 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:11.330506-04:00"}"
+>
+2025-03-25 20:09:12 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:12.343883-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:12 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:13 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:13.351922-04:00"}"
+>
+2025-03-25 20:09:14 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:14.359168-04:00"}"
+>
+2025-03-25 20:09:15 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:15 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:15.363498-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:16 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:16.3684-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:16 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:17 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:17.37423-04:00"}"
+>
+2025-03-25 20:09:18 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:18 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:18.382525-04:00"}"
+>
+2025-03-25 20:09:19 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:19.388512-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:20 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:20.398441-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:21 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:21 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:21.403576-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:22 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:22.408586-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:22 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:23 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:23.415028-04:00"}"
+>
+2025-03-25 20:09:24 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:24.419919-04:00"}"
+>
+2025-03-25 20:09:25 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:25.431077-04:00"}"
+>
+2025-03-25 20:09:25 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:26 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:26 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:26.439733-04:00"}"
+>
+2025-03-25 20:09:27 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:27.445326-04:00"}"
+>
+2025-03-25 20:09:28 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:28.452227-04:00"}"
+>
+2025-03-25 20:09:29 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:29.46048-04:00"}"
+>
+2025-03-25 20:09:29 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:30 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:30.466496-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:30 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:31 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:31.477964-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:32 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:32.487453-04:00"}"
+>
+2025-03-25 20:09:33 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:33.496193-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:33 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:34 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:34 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:34.504037-04:00"}"
+>
+2025-03-25 20:09:35 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:35.51144-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:36 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:36.516469-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:37 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:37 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:37.52458-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:37 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:38 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:38.532626-04:00"}"
+>
+2025-03-25 20:09:39 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:39.538112-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:40 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:40.542502-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:41 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:41.55056-04:00"}"
+>
+2025-03-25 20:09:41 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:42 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:42.558758-04:00"}"
+>
+2025-03-25 20:09:42 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:43 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:43.566167-04:00"}"
+>
+2025-03-25 20:09:44 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:44.570865-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:45 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:45.576923-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:46 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:46 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:46 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:46.582534-04:00"}"
+>
+2025-03-25 20:09:47 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:47.589443-04:00"}"
+>
+2025-03-25 20:09:48 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:48.594947-04:00"}"
+>
+2025-03-25 20:09:49 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:49.599083-04:00"}"
+>
+2025-03-25 20:09:49 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:50 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:50.603607-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:50 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:51 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:51.6117-04:00"}"
+>
+2025-03-25 20:09:52 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:52.6159-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:52 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:53 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:53.619265-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:54 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:54.624294-04:00"}"
+>
+2025-03-25 20:09:55 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:09:55.632653-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:09:55 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:56 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:56.643672-04:00"}"
+>
+2025-03-25 20:09:57 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:57.651842-04:00"}"
+>
+2025-03-25 20:09:57 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:09:58 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:58.657509-04:00"}"
+>
+2025-03-25 20:09:59 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:09:59.664999-04:00"}"
+>
+2025-03-25 20:10:00 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:00 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:00.673482-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:01 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:01 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:10:01.679112-04:00"}"
+>
+2025-03-25 20:10:02 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:10:02.687019-04:00"}"
+>
+2025-03-25 20:10:03 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:03 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:03.695031-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:04 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:04.702329-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:05 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:05 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:05.710317-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:06 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:06.716522-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:07 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:07 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:07.723901-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:08 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:10:08.732945-04:00"}"
+>
+2025-03-25 20:10:09 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:09.740738-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:09 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:10 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:10.749683-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:11 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:11 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:11.758969-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:12 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:10:12.766856-04:00"}"
+>
+2025-03-25 20:10:13 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:13 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:13.77459-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:14 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:14 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:14.782538-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:15 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:15.789681-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:16 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:16.798839-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:17 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:17.807206-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:17 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:18 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:18 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:10:18.8139-04:00"}"
+>
+2025-03-25 20:10:19 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:19.824498-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:20 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:20.831985-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
+2025-03-25 20:10:21 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T20:10:21.83646-04:00"}"
+>
+2025-03-25 20:10:22 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=3, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:22 - INFO - [RAFT] Received VoteRequest: term=1, candidate_id=4, last_log_index=-1, last_log_term=0
+2025-03-25 20:10:22 - ERROR - [SETUP] Error connecting to <grpc._server._Server object at 0x101865f10>: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T20:10:22.83982-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
+>
