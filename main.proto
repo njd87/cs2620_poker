@@ -1,0 +1,65 @@
+syntax = "proto3";
+package main;
+
+// Define the different types of actions.
+enum Action {
+  UNKNOWN = 0;
+  LOGIN = 1;
+  REGISTER = 2;
+  CHECK_USERNAME = 3;
+  VIEW_HISTORY = 4;
+  LOAD_MONEY = 5;
+  QUEUE = 6;
+  DELETE_ACCOUNT = 7;
+  CONNECT = 8;
+}
+
+enum GameType {
+  NONE = 0;
+  TEXAS = 1;
+  FIVE_HAND = 2;
+}
+
+// Define the structure of a game history entry
+message GameHistoryEntry {
+  int32 game_id = 1;
+  string game_type = 2;
+  string date = 3;
+  int32 money_won = 4;
+}
+
+
+message MainRequest {
+  // FOR CLIENT USE
+
+
+  // Define the action from enum
+  Action action = 1;
+
+  // username + passhash used for creating an deleting accounts
+  string username = 2;
+  string passhash = 3;
+
+  int32 money_to_add = 4;
+  int32 game_type = 5;
+}
+
+message MainResponse {
+  Action action = 1;
+
+  // for client use (success vs failure)
+  bool result = 2;
+
+  // get lobby to join
+  string game_lobby = 3;
+
+  // get game history
+  repeated GameHistoryEntry game_history = 4;
+
+  int32 moolah = 5;
+}
+
+service MainService {
+  // A single bidirectional stream for all main operations
+  rpc Main(stream MainRequest) returns (stream MainResponse);
+}

@@ -15,11 +15,11 @@
             50004
         ],
         "db_paths": [
-            "data/r1/messenger.db",
-            "data/r2/messenger.db",
-            "data/r3/messenger.db",
-            "data/r4/messenger.db",
-            "data/r5/messenger.db"
+            "data/r1/poker.db",
+            "data/r2/poker.db",
+            "data/r3/poker.db",
+            "data/r4/poker.db",
+            "data/r5/poker.db"
         ],
         "log_paths": [
             "logs/server_logs/r1.log",

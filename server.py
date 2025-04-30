@@ -11,8 +11,8 @@ import threading
 import json
 import logging
 
-import chat_pb2_grpc
-import chat_pb2
+import main_pb2_grpc
+import main_pb2
 import raft_pb2_grpc
 import raft_pb2
 import json
@@ -89,15 +89,15 @@ timer = random.randint(1, 5)
 commit = 0
 
 
-class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
+class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
     """
-    ChatServiceServicer class for ChatServiceServicer
+    MainServiceServicer class for MainServiceServicer
 
     This class handles the main chat functionality of the server, sending responses via queues.
-    All log messages in this service begin with [CHAT].
+    All log messages in this service begin with [MAIN].
     """
 
-    def Chat(self, request_iterator, context):
+    def Main(self, request_iterator, context):
         """
         Chat function for ChatServiceServicer, unique to each client.
 
@@ -119,24 +119,19 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
             try:
                 for req in request_iterator:
                     # print size of req in bytes
-                    logging.info(f"[CHAT] Size of request: {sys.getsizeof(req)} bytes")
+                    logging.info(f"[MAIN] Size of request: {sys.getsizeof(req)} bytes")
                     # create a copy of req with different memory
                     log_copy = raft_pb2.LogEntry(
                         action=req.action,
                         username=req.username,
                         passhash=req.passhash,
-                        user2=req.user2,
-                        sender=req.sender,
-                        recipient=req.recipient,
-                        message=req.message,
-                        sent_message=req.sent_message,
-                        n_messages=req.n_messages,
-                        message_id=req.message_id,
+                        money_to_add=req.money_to_add,
+                        game_type=req.game_type,
                         term=current_term,
                     )
                     log.append(log_copy)
 
-                    if req.action == chat_pb2.CHECK_USERNAME:
+                    if req.action == main_pb2.CHECK_USERNAME:
                         # check if username is already in use
                         sqlcon = sqlite3.connect(db_path)
                         sqlcur = sqlcon.cursor()
@@ -149,19 +144,19 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                         # otherwise, send response with success=True
                         if sqlcur.fetchone():
                             client_queue.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.CHECK_USERNAME, result=False
+                                main_pb2.MainResponse(
+                                    action=main_pb2.CHECK_USERNAME, result=False
                                 )
                             )
                         else:
                             client_queue.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.CHECK_USERNAME, result=True
+                                main_pb2.MainResponse(
+                                    action=main_pb2.CHECK_USERNAME, result=True
                                 )
                             )
                         sqlcon.close()
 
-                    elif req.action == chat_pb2.LOGIN:
+                    elif req.action == main_pb2.LOGIN:
                         # check if username and password match
                         sqlcon = sqlite3.connect(db_path)
                         sqlcur = sqlcon.cursor()
@@ -178,23 +173,16 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                         if sqlcur.fetchone():
 
                             sqlcur.execute(
-                                "SELECT COUNT(*) FROM messages WHERE recipient=? AND delivered=0",
+                                "SELECT moolah FROM users WHERE username=?",
                                 (req.username,),
                             )
 
-                            n_undelivered = sqlcur.fetchone()[0]
+                            moolah = sqlcur.fetchone()[0]
 
-                            response = chat_pb2.ChatResponse(
-                                action=chat_pb2.LOGIN,
+                            response = main_pb2.MainResponse(
+                                action=main_pb2.LOGIN,
                                 result=True,
-                                users=[
-                                    s[0]
-                                    for s in sqlcur.execute(
-                                        "SELECT username FROM users WHERE username != ?",
-                                        (req.username,),
-                                    ).fetchall()
-                                ],
-                                n_undelivered=n_undelivered,
+                                moolah=moolah,
                             )
 
                             client_queue.put(response)
@@ -204,13 +192,13 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                             clients[username] = client_queue
                         else:
                             client_queue.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.LOGIN, result=False
+                                main_pb2.MainResponse(
+                                    action=main_pb2.LOGIN, result=False
                                 )
                             )
                         sqlcon.close()
 
-                    elif req.action == chat_pb2.REGISTER:
+                    elif req.action == main_pb2.REGISTER:
                         sqlcon = sqlite3.connect(db_path)
                         sqlcur = sqlcon.cursor()
 
@@ -220,8 +208,8 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                         )
                         if sqlcur.fetchone():
                             client_queue.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.REGISTER, result=False
+                                main_pb2.MainResponse(
+                                    action=main_pb2.REGISTER, result=False
                                 )
                             )
                         else:
@@ -234,16 +222,10 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                                 (req.username, new_passhash),
                             )
                             sqlcon.commit()
-                            response = chat_pb2.ChatResponse(
-                                action=chat_pb2.REGISTER,
+                            response = main_pb2.MainResponse(
+                                action=main_pb2.REGISTER,
                                 result=True,
-                                users=[
-                                    s[0]
-                                    for s in sqlcur.execute(
-                                        "SELECT username FROM users WHERE username != ?",
-                                        (req.username,),
-                                    ).fetchall()
-                                ],
+                                moolah = 500
                             )
 
                             client_queue.put(response)
@@ -254,196 +236,7 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                         username = req.username
                         clients[username] = client_queue
 
-                        # send ping_user to all clients
-                        for user_q in clients.values():
-                            user_q.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.PING_USER, ping_user=username
-                                )
-                            )
-
-                    elif req.action == chat_pb2.LOAD_CHAT:
-                        sqlcon = sqlite3.connect(db_path)
-                        sqlcur = sqlcon.cursor()
-
-                        username = req.username
-                        user2 = req.user2
-                        try:
-                            sqlcur.execute(
-                                "SELECT sender, recipient, message, message_id FROM messages WHERE (sender=? AND recipient=?) OR (sender=? AND recipient=?) ORDER BY time",
-                                (username, user2, user2, username),
-                            )
-                            result = sqlcur.fetchall()
-                        except Exception as e:
-                            logging.error(f"[CHAT] Error in Load Chat: {e}")
-                            result = []
-
-                        formatted_messages = []
-
-                        for sender, recipient, message, message_id in result:
-                            formatted_messages.append(
-                                chat_pb2.ChatMessage(
-                                    sender=sender,
-                                    recipient=recipient,
-                                    message=message,
-                                    message_id=message_id,
-                                )
-                            )
-
-                        client_queue.put(
-                            chat_pb2.ChatResponse(
-                                action=chat_pb2.LOAD_CHAT, messages=formatted_messages
-                            )
-                        )
-                        sqlcon.close()
-
-                    elif req.action == chat_pb2.SEND_MESSAGE:
-                        sender = req.sender
-                        recipient = req.recipient
-                        message = req.message
-                        sqlcon = sqlite3.connect(db_path)
-                        sqlcur = sqlcon.cursor()
-
-                        try:
-                            sqlcur.execute(
-                                "INSERT INTO messages (sender, recipient, message) VALUES (?, ?, ?)",
-                                (sender, recipient, message),
-                            )
-                            sqlcon.commit()
-
-                            # get the message_id
-                            sqlcur.execute(
-                                "SELECT message_id FROM messages WHERE sender=? AND recipient=? AND message=? ORDER BY time DESC LIMIT 1",
-                                (sender, recipient, message),
-                            )
-                            message_id = sqlcur.fetchone()[0]
-
-                            # send message to recipient
-                            client_queue.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.SEND_MESSAGE, message_id=message_id
-                                )
-                            )
-
-                            # ping recipient if online
-                            if recipient in clients:
-                                clients[recipient].put(
-                                    chat_pb2.ChatResponse(
-                                        action=chat_pb2.PING,
-                                        sender=sender,
-                                        sent_message=message,
-                                        message_id=message_id,
-                                    )
-                                )
-
-                        except Exception as e:
-                            logging.error(f"[CHAT] Error sending message: {e}")
-                            message_id = None
-
-                        sqlcon.close()
-
-                    elif req.action == chat_pb2.PING:
-                        # update message to delivered
-                        action = req.action
-                        sender = req.sender
-                        sent_message = req.sent_message
-                        message_id = req.message_id
-
-                        client_queue.put(
-                            chat_pb2.ChatResponse(
-                                action=action,
-                                sender=sender,
-                                sent_message=sent_message,
-                                message_id=message_id,
-                            )
-                        )
-
-                        sqlcon = sqlite3.connect(db_path)
-                        sqlcur = sqlcon.cursor()
-
-                        logging.info(
-                            f"[CHAT] Updating message {message_id} to delivered."
-                        )
-
-                        sqlcur.execute(
-                            "UPDATE messages SET delivered=1 WHERE message_id=?",
-                            (message_id,),
-                        )
-                        sqlcon.commit()
-
-                        sqlcon.close()
-
-                    elif req.action == chat_pb2.VIEW_UNDELIVERED:
-                        # view undelivered messages
-                        sqlcon = sqlite3.connect(db_path)
-                        sqlcur = sqlcon.cursor()
-
-                        username = req.username
-                        n_messages = req.n_messages
-
-                        sqlcur.execute(
-                            "SELECT sender, recipient, message, message_id FROM messages WHERE recipient=? AND delivered=0 ORDER BY time DESC LIMIT ?",
-                            (username, n_messages),
-                        )
-                        result = sqlcur.fetchall()
-
-                        # format messages to ChatMessage
-                        messages_formatted = []
-
-                        for sender, recipient, message, message_id in result:
-                            messages_formatted.append(
-                                chat_pb2.ChatMessage(
-                                    sender=sender,
-                                    recipient=recipient,
-                                    message=message,
-                                    message_id=message_id,
-                                )
-                            )
-
-                        client_queue.put(
-                            chat_pb2.ChatResponse(
-                                action=chat_pb2.VIEW_UNDELIVERED,
-                                messages=messages_formatted,
-                            )
-                        )
-
-                        sqlcur.execute(
-                            "UPDATE messages SET delivered=1 WHERE recipient=?",
-                            (username,),
-                        )
-
-                        sqlcon.commit()
-                        sqlcon.close()
-
-                    elif req.action == chat_pb2.DELETE_MESSAGE:
-                        sqlcon = sqlite3.connect(db_path)
-                        sqlcur = sqlcon.cursor()
-
-                        message_id = req.message_id
-                        sqlcur.execute(
-                            "DELETE FROM messages WHERE message_id=?", (message_id,)
-                        )
-                        sqlcon.commit()
-
-                        sqlcon.close()
-                        client_queue.put(
-                            chat_pb2.ChatResponse(
-                                action=chat_pb2.DELETE_MESSAGE, message_id=message_id
-                            )
-                        )
-
-                        # if recipient is online, ping recipient to update chat
-                        if req.recipient in clients:
-                            clients[req.recipient].put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.PING,
-                                    sender=req.sender,
-                                    sent_message=req.message,
-                                    message_id=message_id,
-                                )
-                            )
-
-                    elif req.action == chat_pb2.DELETE_ACCOUNT:
+                    elif req.action == main_pb2.DELETE_ACCOUNT:
                         # delete account if params match
                         sqlcon = sqlite3.connect(db_path)
                         sqlcur = sqlcon.cursor()
@@ -463,15 +256,11 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                                 sqlcur.execute(
                                     "DELETE FROM users WHERE username=?", (username,)
                                 )
-                                sqlcur.execute(
-                                    "DELETE FROM messages WHERE sender=? OR recipient=?",
-                                    (username, username),
-                                )
                                 sqlcon.commit()
 
                                 client_queue.put(
-                                    chat_pb2.ChatResponse(
-                                        action=chat_pb2.DELETE_ACCOUNT, result=True
+                                    main_pb2.MainResponse(
+                                        action=main_pb2.DELETE_ACCOUNT, result=True
                                     )
                                 )
                                 # tell server to ping users to update their chat, remove from connected users
@@ -480,65 +269,41 @@ class ChatServiceServicer(chat_pb2_grpc.ChatServiceServicer):
                                 if username in clients:
                                     del clients[username]
 
-                                for user_q in clients.values():
-                                    user_q.put(
-                                        chat_pb2.ChatResponse(
-                                            action=chat_pb2.PING_USER,
-                                            ping_user=username,
-                                        )
-                                    )
-
                             # username exists but passhash is wrong
                             else:
                                 client_queue.put(
-                                    chat_pb2.ChatResponse(
-                                        action=chat_pb2.DELETE_ACCOUNT, result=False
+                                    main_pb2.MainResponse(
+                                        action=main_pb2.DELETE_ACCOUNT, result=False
                                     )
                                 )
                         else:
                             # username doesn't exist
                             client_queue.put(
-                                chat_pb2.ChatResponse(
-                                    action=chat_pb2.DELETE_ACCOUNT, result=False
+                                main_pb2.MainResponse(
+                                    action=main_pb2.DELETE_ACCOUNT, result=False
                                 )
                             )
 
                         sqlcon.close()
-
-                    elif req.action == chat_pb2.PING_USER:
-                        # ping that a user has been added or deleted
-                        action = req.action
-                        ping_user = req.ping_user
-                        client_queue.put(
-                            chat_pb2.ChatResponse(action=action, ping_user=ping_user)
-                        )
-                    elif req.action == chat_pb2.CONNECT:
+                    elif req.action == main_pb2.CONNECT:
                         # a new leader was chosen, client connected to new leader
                         # add the user to the clients if they are signed in
-                        logging.info(f"[CHAT] {req.username} connected.")
+                        logging.info(f"[MAIN] {req.username} connected.")
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
-                            # update all messages recipient to delivered
-                            sqlcon = sqlite3.connect(db_path)
-                            sqlcur = sqlcon.cursor()
-                            sqlcur.execute(
-                                "UPDATE messages SET delivered=1 WHERE recipient=?",
-                                (req.username,),
-                            )
-                            sqlcon.commit()
-                            sqlcon.close()
                     else:
-                        logging.error(f"[CHAT] Invalid action: {req.action}")
+                        logging.error(f"[MAIN] Invalid action: {req.action}")
             except Exception as e:
                 tb = traceback.extract_tb(e.__traceback__)
                 line_number = tb[-1].lineno if tb else "unknown"
                 logging.error(
-                    f"[CHAT] Error handling requests at line {line_number}: {traceback.format_exc()}"
+                    f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}"
                 )
+                print(f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}")
             finally:
                 if username in clients:
                     del clients[username]
-                    logging.info(f"[CHAT] {username} disconnected.")
+                    logging.info(f"[MAIN] {username} disconnected.")
 
         # run request handling in a separate thread.
         threading.Thread(target=handle_requests, daemon=True).start()
@@ -567,7 +332,7 @@ class RaftServiceServicer(raft_pb2_grpc.RaftServiceServicer):
         request : raft_pb2.VoteRequest
             request object from client
         """
-        global current_term, voted_for
+        global current_term, voted_for, leader_address, raft_state, timer
 
         logging.info(
             f"[RAFT] Received VoteRequest: term={request.term}, candidate_id={request.candidate_id}, "
@@ -584,7 +349,7 @@ class RaftServiceServicer(raft_pb2_grpc.RaftServiceServicer):
             current_term = request.term
             voted_for = request.candidate_id
             response = raft_pb2.VoteResponse(term=current_term, vote_granted=True)
-            leader_address = None
+            # leader_address = None
             return response
 
     def AppendEntries(self, request, context):
@@ -763,10 +528,10 @@ def serve():
     Main loop for server. Runs server on separate thread.
     """
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    chat_pb2_grpc.add_ChatServiceServicer_to_server(ChatServiceServicer(), server)
+    main_pb2_grpc.add_MainServiceServicer_to_server(MainServiceServicer(), server)
     raft_pb2_grpc.add_RaftServiceServicer_to_server(RaftServiceServicer(), server)
     print(f"{host}:{port}")
-    server.add_insecure_port(f"0.0.0.0:{port}")
+    server.add_insecure_port(f"{host}:{port}")
     server.start()
 
     # make sure all servers are running before starting

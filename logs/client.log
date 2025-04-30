@@ -1,88 +1,45 @@
-2025-03-25 16:58:11 - INFO - Checking for leader...
-2025-03-25 16:58:16 - ERROR - Error connecting to 10.250.195.98:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:16.08702-04:00"}"
->
-2025-03-25 16:58:16 - ERROR - Error connecting to 10.250.195.98:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:16.087505-04:00"}"
->
-2025-03-25 16:58:16 - INFO - Checking for leader...
-2025-03-25 16:58:21 - ERROR - Error connecting to 10.250.195.98:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:21.118053-04:00"}"
->
-2025-03-25 16:58:21 - ERROR - Error connecting to 10.250.195.98:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T16:58:21.119093-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"}"
->
-2025-03-25 16:58:21 - INFO - Checking for leader...
-2025-03-25 16:58:26 - ERROR - Error connecting to 10.250.195.98:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T16:58:26.131768-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"}"
->
-2025-03-25 16:58:26 - ERROR - Error connecting to 10.250.195.98:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:26.1329-04:00"}"
->
-2025-03-25 16:58:26 - INFO - Checking for leader...
-2025-03-25 16:58:31 - ERROR - Error connecting to 10.250.195.98:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:31.144873-04:00"}"
->
-2025-03-25 16:58:31 - ERROR - Error connecting to 10.250.195.98:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T16:58:31.145769-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"}"
->
-2025-03-25 16:58:31 - INFO - Checking for leader...
-2025-03-25 16:58:36 - ERROR - Error connecting to 10.250.195.98:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:36.150047-04:00"}"
->
-2025-03-25 16:58:36 - ERROR - Error connecting to 10.250.195.98:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:36.150435-04:00"}"
->
-2025-03-25 16:58:36 - INFO - Checking for leader...
-2025-03-25 16:58:41 - ERROR - Error connecting to 10.250.195.98:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50003: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:41.162349-04:00"}"
->
-2025-03-25 16:58:41 - ERROR - Error connecting to 10.250.195.98:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:10.250.195.98:50004: connect: No route to host (65)", grpc_status:14, created_time:"2025-03-25T16:58:41.163257-04:00"}"
->
-2025-03-25 16:58:41 - ERROR - Could not find leader.
-2025-03-25 17:02:55 - INFO - Checking for leader...
-2025-03-25 19:23:38 - INFO - Checking for leader...
-2025-03-25 19:23:43 - INFO - Leader found: 127.0.0.1:50001
-2025-03-25 19:23:43 - INFO - Info came from: 127.0.0.1:50000
-2025-03-25 19:23:48 - INFO - Size of response: 80
-2025-03-25 19:23:50 - INFO - Size of response: 80
-2025-03-25 19:23:50 - INFO - Size of response: 80
-2025-03-25 19:24:00 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer ipv4:127.0.0.1:50001 {created_time:"2025-03-25T19:24:00.062485-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-03-25 19:24:00 - INFO - Checking for leader...
-2025-03-25 19:24:05 - INFO - Leader found: 127.0.0.1:50004
-2025-03-25 19:24:05 - INFO - Info came from: 127.0.0.1:50000
-2025-03-25 19:24:25 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-03-25T19:24:25.051823-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-03-25 19:24:25 - INFO - Checking for leader...
+2025-04-30 18:35:27 - INFO - Checking for leader...
+2025-04-30 18:35:32 - INFO - Leader found: 127.0.0.1:50001
+2025-04-30 18:35:32 - INFO - Info came from: 127.0.0.1:50000
+2025-04-30 18:35:37 - INFO - Size of response: 80
+2025-04-30 18:43:41 - INFO - Checking for leader...
+2025-04-30 18:43:46 - INFO - Leader found: 127.0.0.1:50004
+2025-04-30 18:43:46 - INFO - Info came from: 127.0.0.1:50000
+2025-04-30 18:43:52 - INFO - Size of response: 80
+2025-04-30 18:48:30 - INFO - Checking for leader...
+2025-04-30 18:48:35 - INFO - Leader found: 127.0.0.1:50000
+2025-04-30 18:48:35 - INFO - Info came from: 127.0.0.1:50000
+2025-04-30 18:48:40 - INFO - Size of response: 80
+2025-04-30 18:48:43 - INFO - Size of response: 80
+2025-04-30 18:48:54 - INFO - Deleting Account: nick4
+2025-04-30 18:48:55 - INFO - Deleting Account: nick4
+2025-04-30 18:48:55 - INFO - Deleting Account: nick4
+2025-04-30 18:48:55 - INFO - Deleting Account: nick4
+2025-04-30 18:49:52 - INFO - Checking for leader...
+2025-04-30 18:49:57 - INFO - Leader found: 127.0.0.1:50001
+2025-04-30 18:49:57 - INFO - Info came from: 127.0.0.1:50000
+2025-04-30 18:50:12 - INFO - Size of response: 80
+2025-04-30 18:50:15 - INFO - Size of response: 80
+2025-04-30 18:50:50 - INFO - Deleting Account: nick
+2025-04-30 18:52:24 - INFO - Checking for leader...
+2025-04-30 18:52:29 - INFO - Checking for leader...
+2025-04-30 18:52:34 - INFO - Checking for leader...
+2025-04-30 18:52:46 - INFO - Checking for leader...
+2025-04-30 18:52:51 - INFO - Checking for leader...
+2025-04-30 18:52:56 - INFO - Checking for leader...
+2025-04-30 18:53:01 - INFO - Checking for leader...
+2025-04-30 18:53:06 - INFO - Checking for leader...
+2025-04-30 18:53:23 - INFO - Checking for leader...
+2025-04-30 18:53:28 - INFO - Checking for leader...
+2025-04-30 18:53:33 - INFO - Checking for leader...
+2025-04-30 18:53:38 - INFO - Checking for leader...
+2025-04-30 18:53:43 - INFO - Checking for leader...
+2025-04-30 18:53:48 - INFO - Checking for leader...
+2025-04-30 18:53:53 - ERROR - Could not find leader.
+2025-04-30 18:56:10 - INFO - Checking for leader...
+2025-04-30 18:56:15 - INFO - Leader found: 127.0.0.1:50004
+2025-04-30 18:56:15 - INFO - Info came from: 127.0.0.1:50000
+2025-04-30 18:56:21 - INFO - Size of response: 80
+2025-04-30 18:56:24 - INFO - Size of response: 80
+2025-04-30 18:56:26 - INFO - Deleting Account: nick
+2025-04-30 18:56:26 - INFO - Size of response: 80

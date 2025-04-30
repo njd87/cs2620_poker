@@ -35,9 +35,9 @@ def structure_tables(data_path="data/messenger.db") -> None:
                 user_id INTEGER PRIMARY KEY,
                 username TEXT NOT NULL,
                 passhash TEXT NOT NULL,
-                moolah INTEGER DEFAULT 500,
+                moolah INTEGER DEFAULT 500
             );
-        """
+            """
         )
 
         # set up games table in messenger.db file
@@ -50,7 +50,7 @@ def structure_tables(data_path="data/messenger.db") -> None:
                 player3_id INTEGER NOT NULL,
                 player4_id INTEGER NOT NULL,
                 winner_id INTEGER NOT NULL,
-                game_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                game_date DATETIME DEFAULT CURRENT_TIMESTAMP
             );
         """
         )

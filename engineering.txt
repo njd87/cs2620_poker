@@ -15,6 +15,36 @@ These are a LOT of things that we need to change. Let's first start by changing 
 Once a player logs in, they should be brought to the main menu. Then, once connected to the lobby, they work with the lobby.
 
 So, we need 3 total services:
-- Landing: When the client interacts with the backend servers for logging in, checking game history, etc.
+- Main: When the client interacts with the backend servers for logging in, checking game history, etc.
 - Poker: When the client is actually playing poker
 - RAFT: finding new leaders
+
+
+04/20/25
+We need to change the way we are doing the grpc calls. We need to make sure that we are using the correct actions for all relevant information.
+Right now, we focus on main to make sure we can get everything up and running for connecting to lobbies. Once that is done, the focus of the project will be on
+game logic rather than the backend. Here is what the main protocol needs:
+- Login: The client sends a login request to the main server. The main server checks the credentials and returns a success or failure message.
+- Register: The client sends a registration request to the main server. The main server checks the credentials and returns a success or failure message.
+- Get Game History: The client sends a request to the main server to get the game history. The main server retrieves the game history from the database and returns it to the client.
+- Load Money: The client sends a request to the main server to load money into their account. The main server checks the credentials and returns a success or failure message.
+- Queue: Queue into lobbies
+- Delete Account
+
+After some trouble with grpc calls, we decided to do the following:
+- We decided that when a vote succeeds, keep the current leader address (to avoid overwriting the leader address with nothing)
+- We got rid of a lot of the actions from "chat", like messages, undeleivered, etc.
+- We got rid of the "chat" service and replaced it with "main"
+- At this point, we still keep track of who is logged into the main server, but we do not have to. This is for legacy reasons. We WILL have to reimplement this for
+lobbies.
+
+Now, we work on "lobby.py" which has all the game logic. We need to make sure that we have the following:
+- The lobby server should be able to handle multiple clients at once.
+- The lobby server should only handle 1 game at a time, with game type specified by the config file.
+- At the moment, we will have 2 lobbies to simplify our lobby assignment algorithm. One for 5-card draw and one for Texas Hold'em.
+- The Main service will assign the client to a lobby.
+- Clients in waiting rooms will have a "vote" option and need a buy-in of 100 moolah.
+- At this point, we just want to test this voting system. Once there are at least 2 players and all players are ready, the game starts.
+  - We will worry about game logic later.
+
+This will requier a new "poker.proto" file. It's going to have a lot, which is unfortunate, but we will start out small.
