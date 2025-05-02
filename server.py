@@ -22,6 +22,8 @@ from replica_helpers import replicate_action
 '''
 Making sure the server is started with the correct arguments.
 '''
+num_servers = 2
+
 if len(sys.argv) != 2:
     logging.error("Usage: python server.py <server_index>")
     sys.exit(1)
@@ -72,7 +74,7 @@ clients = {}
 # get names of all servers
 all_servers = [
     f"{config['servers']['hosts'][i]}:{config['servers']['ports'][i]}"
-    for i in range(5)
+    for i in range(num_servers)
     if i != idx
 ]
 
@@ -291,6 +293,15 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         logging.info(f"[MAIN] {req.username} connected.")
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
+                    elif req.action == main_pb2.JOIN_LOBBY:
+                        # disconnect from current server
+                        logging.info(f"[MAIN] {req.username} joining lobby.")
+                        # KG: can add logic to return open lobby
+                        client_queue.put(
+                            main_pb2.MainResponse(
+                                action=main_pb2.JOIN_LOBBY, result=True
+                            )
+                        )
                     else:
                         logging.error(f"[MAIN] Invalid action: {req.action}")
             except Exception as e:

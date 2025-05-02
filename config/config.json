@@ -2,31 +2,19 @@
     "servers": {
         "hosts": [
             "127.0.0.1",
-            "127.0.0.1",
-            "127.0.0.1",
-            "127.0.0.1",
             "127.0.0.1"
         ],
         "ports": [
             50000,
-            50001,
-            50002,
-            50003,
-            50004
+            50001
         ],
         "db_paths": [
             "data/r1/poker.db",
-            "data/r2/poker.db",
-            "data/r3/poker.db",
-            "data/r4/poker.db",
-            "data/r5/poker.db"
+            "data/r2/poker.db"
         ],
         "log_paths": [
             "logs/server_logs/r1.log",
-            "logs/server_logs/r2.log",
-            "logs/server_logs/r3.log",
-            "logs/server_logs/r4.log",
-            "logs/server_logs/r5.log"
+            "logs/server_logs/r2.log"
         ]
     },
 

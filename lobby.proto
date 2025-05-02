@@ -1,18 +1,10 @@
 syntax = "proto3";
-package main;
+package lobby;
 
 // Define the different types of actions.
-enum Action {
+enum LobbyAction {
   UNKNOWN = 0;
-  LOGIN = 1;
-  REGISTER = 2;
-  CHECK_USERNAME = 3;
-  VIEW_HISTORY = 4;
-  LOAD_MONEY = 5;
-  QUEUE = 6;
-  DELETE_ACCOUNT = 7;
-  CONNECT = 8;
-  JOIN_LOBBY = 9;
+  JOIN_LOBBY = 1;
 }
 
 enum GameType {
@@ -30,12 +22,12 @@ message GameHistoryEntry {
 }
 
 
-message MainRequest {
+message LobbyRequest {
   // FOR CLIENT USE
 
 
   // Define the action from enum
-  Action action = 1;
+  LobbyAction action = 1;
 
   // username + passhash used for creating an deleting accounts
   string username = 2;
@@ -45,8 +37,8 @@ message MainRequest {
   int32 game_type = 5;
 }
 
-message MainResponse {
-  Action action = 1;
+message LobbyResponse {
+  LobbyAction action = 1;
 
   // for client use (success vs failure)
   bool result = 2;
@@ -60,7 +52,7 @@ message MainResponse {
   int32 moolah = 5;
 }
 
-service MainService {
-  // A single bidirectional stream for all main operations
-  rpc Main(stream MainRequest) returns (stream MainResponse);
+service LobbyService {
+  // A single bidirectional stream for all lobby operations
+  rpc Lobby(stream LobbyRequest) returns (stream LobbyResponse);
 }

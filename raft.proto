@@ -1,5 +1,4 @@
 syntax = "proto3";
-
 package raft;
 
 
@@ -52,6 +51,7 @@ enum Action {
     QUEUE = 6;
     DELETE_ACCOUNT = 7;
     CONNECT = 8;
+    JOIN_LOBBY = 9;
   }
   
   enum GameType {

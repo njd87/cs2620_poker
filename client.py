@@ -13,6 +13,10 @@ import main_pb2_grpc
 import main_pb2
 import raft_pb2_grpc
 import raft_pb2
+import lobby_pb2_grpc
+import lobby_pb2
+
+num_servers = 2
 
 # log to a file
 log_file = "logs/client.log"
@@ -35,17 +39,29 @@ with open("config/config.json") as f:
 
 # get names of all servers
 all_servers = [
-    f"{config['servers']['hosts'][i]}:{config['servers']['ports'][i]}" for i in range(5)
+    f"{config['servers']['hosts'][i]}:{config['servers']['ports'][i]}" for i in range(num_servers)
+]
+
+# get names of all lobbies
+all_lobbies = [
+    f"{config['lobbies']['lobby_hosts'][i]}:{config['lobbies']['lobby_ports'][i]}" for i in range(3)
 ]
 
 # A thread-safe queue for outgoing MainRequests.
 outgoing_queue = queue.Queue()
+lobby_queue = queue.Queue()
 
 
 def request_generator():
     """Yield MainRequests from the outgoing_queue."""
     while True:
         req = outgoing_queue.get()
+        yield req
+
+def lobby_request_generator():
+    """Yield LobbyRequests from the lobby_queue."""
+    while True:
+        req = lobby_queue.get()
         yield req
 
 
@@ -81,6 +97,8 @@ class ClientUI:
 
         self.credentials = None
         self.leader_address = None
+        self.stop_main_event = threading.Event()
+
         self.check_for_leader()
 
         self.moolah = 0
@@ -96,8 +114,8 @@ class ClientUI:
         Constantly check for responses from the server and process them.
         """
         try:
-            responses = self.stub.Main(request_generator())
-            for resp in responses:
+            # responses = self.stub.Main(request_generator())
+            for resp in self.responses_iter:
                 logging.info(f"Size of response: {sys.getsizeof(resp)}")
                 action = resp.action
                 if action == main_pb2.CHECK_USERNAME:
@@ -140,9 +158,35 @@ class ClientUI:
                     else:
                         self.destroy_settings()
                         self.setup_settings(failed=True)
+                # elif action == main_pb2.JOIN_LOBBY:
+                #     if resp.result:
+                #         raise Exception
         except grpc.RpcError as e:
             logging.error(f"Error receiving response: {e}")
-            self.check_for_leader()
+            if not self.stop_main_event.is_set():
+                self.check_for_leader()
+
+    def lobby_handle_responses(self):
+        """
+        Constantly check for responses from the server and process them.
+        """
+        print("In lobby handle responses")
+        try:
+            responses = self.lobby_stub.Lobby(lobby_request_generator())
+            for resp in responses:
+                logging.info(f"Size of response: {sys.getsizeof(resp)}")
+                action = resp.action
+                if action == lobby_pb2.JOIN_LOBBY:
+                    # if successful, set up lobby
+                    if resp.result:
+                        print("IT WORKS!")
+                        self.destroy_main()
+                        self.setup_game()
+                    else:
+                        pass
+        except grpc.RpcError as e:
+            logging.error(f"[STREAM] RPC error, reconnecting in 1s: {e}")
+            time.sleep(1)
 
     def check_for_leader(self, retries=6):
         '''
@@ -185,6 +229,7 @@ class ClientUI:
                 pass
             self.channel = grpc.insecure_channel(self.leader_address)
             self.stub = main_pb2_grpc.MainServiceStub(self.channel)
+            self.responses_iter = self.stub.Main(request_generator())
             self.request_thread = threading.Thread(
                 target=self.handle_responses, daemon=True
             )
@@ -210,6 +255,49 @@ class ClientUI:
         Reset the login variables.
         """
         self.credentials = None
+
+    def connect_to_lobby(self, lobby = 0):
+        """
+        Connect to a lobby.
+
+        Parameters
+        ----------
+        lobby : str
+            The lobby to connect to.
+        """
+        self.lobby = lobby
+
+        # close main channel
+        self.stop_main_event.set()
+        self.responses_iter.cancel()
+        self.request_thread.join()
+        self.channel.close()
+        self.leader_address = None
+        self.stop_main_event.clear()
+        print("here!")
+
+        self.lobby_channel = grpc.insecure_channel(all_lobbies[lobby])
+        self.lobby_stub = lobby_pb2_grpc.LobbyServiceStub(self.lobby_channel)
+        self.lobby_request_thread = threading.Thread(
+            target=self.lobby_handle_responses, daemon=True
+        )
+        self.lobby_request_thread.start()
+        time.sleep(1)
+
+        request = lobby_pb2.LobbyRequest(
+            action=lobby_pb2.JOIN_LOBBY, username=self.credentials
+        )
+
+        lobby_queue.put(request)
+        print("Sent request to lobby")
+
+    def reconnect_to_server(self):
+        """
+        Reconnect to the server.
+        """
+        self.check_for_leader()
+        self.destroy_game()
+        self.setup_main()
 
     """
     Functions starting with "send_" are used to send requests to the server.
@@ -269,6 +357,17 @@ class ClientUI:
             action=main_pb2.DELETE_ACCOUNT,
             username=self.credentials,
             passhash=password,
+        )
+
+        outgoing_queue.put(request)
+    
+    def send_join_lobby_request(self):
+        """
+        Send a request to join the lobby.
+        """
+        request = main_pb2.MainRequest(
+            action=main_pb2.JOIN_LOBBY,
+            username=self.credentials,
         )
 
         outgoing_queue.put(request)
@@ -340,7 +439,7 @@ class ClientUI:
             self.login_frame,
             text="Login",
             command=lambda: (
-                self.send_logreg_request(  # KG: design choice for empty strings?
+                self.send_logreg_request( 
                     main_pb2.LOGIN,
                     self.login_entry.get(),
                     self.login_password_entry.get(),
@@ -411,7 +510,7 @@ class ClientUI:
             self.register_frame,
             text="Register",
             command=lambda: (
-                self.send_logreg_request(  # KG: design choice for empty strings?
+                self.send_logreg_request(
                     main_pb2.REGISTER,
                     self.register_entry.get(),
                     self.register_password_entry.get(),
@@ -475,11 +574,46 @@ class ClientUI:
         )
         self.moolah_label.pack(side=tk.BOTTOM)
 
+        # add button for connecting to lobby 1
+        self.lobby1_button = tk.Button(
+            self.main_frame,
+            text="Connect to Lobby",
+            command=lambda: self.connect_to_lobby(),
+        )
+        self.lobby1_button.pack(side=tk.BOTTOM)
+
     def destroy_main(self):
         """
         Destroy the main screen.
         """
         self.main_frame.destroy()
+
+    def setup_game(self):
+        """
+        Set up the lobby 1 screen.
+
+        Has:
+        - A label that says "Lobby 1"
+        - A button that says "Back" to go back to the main screen.
+        """
+        self.game_frame = tk.Frame(self.root)
+        self.game_frame.pack()
+
+        self.game_label = tk.Label(self.game_frame, text="Lobby 1")
+        self.game_label.pack()
+
+        self.back_button_game = tk.Button(
+            self.game_frame,
+            text="Back",
+            command=lambda: [self.destroy_game(), self.setup_main()],
+        )
+        self.back_button_game.pack()
+
+    def destroy_game(self):
+        """
+        Destroy the lobby 1 screen.
+        """
+        self.game_frame.destroy()
 
     def setup_settings(self, failed=False):
         """

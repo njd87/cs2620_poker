@@ -1,0 +1,22 @@
+2025-05-02 00:02:52 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-02 00:03:14 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-02 00:03:14 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "kenny"
+
+2025-05-02 00:03:14 - INFO - [MAIN] kenny connected.
+2025-05-02 00:03:30 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/kennygu/school/s25/cs262/cs2620_poker/server_lobby.py", line 99, in handle_requests
+    for req in request_iterator:
+               ^^^^^^^^^^^^^^^^
+  File "/Users/kennygu/school/s25/cs262/replication262/lib/python3.13/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ~~~~~~~~~~^^
+  File "/Users/kennygu/school/s25/cs262/replication262/lib/python3.13/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+  File "/Users/kennygu/school/s25/cs262/replication262/lib/python3.13/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/kennygu/school/s25/cs262/replication262/lib/python3.13/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
