@@ -98,6 +98,7 @@ class ClientUI:
         self.credentials = None
         self.leader_address = None
         self.stop_main_event = threading.Event()
+        self.stop_lobby_event = threading.Event()
 
         self.check_for_leader()
 
@@ -170,23 +171,21 @@ class ClientUI:
         """
         Constantly check for responses from the server and process them.
         """
-        print("In lobby handle responses")
         try:
-            responses = self.lobby_stub.Lobby(lobby_request_generator())
-            for resp in responses:
+            for resp in self.lobby_responses_iter:
                 logging.info(f"Size of response: {sys.getsizeof(resp)}")
                 action = resp.action
                 if action == lobby_pb2.JOIN_LOBBY:
                     # if successful, set up lobby
                     if resp.result:
-                        print("IT WORKS!")
                         self.destroy_main()
                         self.setup_game()
                     else:
                         pass
         except grpc.RpcError as e:
-            logging.error(f"[STREAM] RPC error, reconnecting in 1s: {e}")
-            time.sleep(1)
+            logging.error(f"Error receiving response: {e}")
+            if not self.stop_main_event.is_set():
+                print("uhhhhhh problem?")
 
     def check_for_leader(self, retries=6):
         '''
@@ -274,27 +273,35 @@ class ClientUI:
         self.channel.close()
         self.leader_address = None
         self.stop_main_event.clear()
-        print("here!")
 
         self.lobby_channel = grpc.insecure_channel(all_lobbies[lobby])
         self.lobby_stub = lobby_pb2_grpc.LobbyServiceStub(self.lobby_channel)
+        self.lobby_responses_iter = self.lobby_stub.Lobby(lobby_request_generator())
         self.lobby_request_thread = threading.Thread(
             target=self.lobby_handle_responses, daemon=True
         )
         self.lobby_request_thread.start()
         time.sleep(1)
 
+        # KG: for some reason this needs to be done twice
         request = lobby_pb2.LobbyRequest(
             action=lobby_pb2.JOIN_LOBBY, username=self.credentials
         )
 
         lobby_queue.put(request)
-        print("Sent request to lobby")
 
     def reconnect_to_server(self):
         """
         Reconnect to the server.
         """
+        # close lobby channel
+        self.stop_lobby_event.set()
+        self.lobby_responses_iter.cancel()
+        self.lobby_request_thread.join()
+        self.lobby_channel.close()
+        self.leader_address = None
+        self.stop_lobby_event.clear()
+
         self.check_for_leader()
         self.destroy_game()
         self.setup_main()
@@ -605,7 +612,7 @@ class ClientUI:
         self.back_button_game = tk.Button(
             self.game_frame,
             text="Back",
-            command=lambda: [self.destroy_game(), self.setup_main()],
+            command=lambda: self.reconnect_to_server(),
         )
         self.back_button_game.pack()
 

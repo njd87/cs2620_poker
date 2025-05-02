@@ -106,6 +106,7 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
                         logging.info(f"[MAIN] {req.username} connected.")
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
+                            username = req.username
                         client_queue.put(
                             lobby_pb2.LobbyResponse(
                                 action=lobby_pb2.JOIN_LOBBY, result=True
