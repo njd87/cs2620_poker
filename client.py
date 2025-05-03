@@ -199,6 +199,7 @@ class ClientUI:
                     else:
                         pass
                 elif action == lobby_pb2.SHOW_GAME:
+                    print("asked to show game")
                     # if successful, set up lobby
                     if resp.result:
                         self.game_state = resp.game_state
@@ -208,6 +209,12 @@ class ClientUI:
                         )[0][0]
                         self.destroy_lobby()
                         self.setup_game()
+                elif action == lobby_pb2.KICK_PLAYER:
+                    # if successful, set up lobby
+                    if resp.result:
+                        self.voted = False
+                        self.destroy_game()
+                        self.setup_game_over()
         except grpc.RpcError as e:
             logging.error(f"Error receiving response: {e}")
             if not self.stop_main_event.is_set():
@@ -415,6 +422,40 @@ class ClientUI:
             vote=vote,
         )
 
+        lobby_queue.put(request)
+    
+    def send_game_action(self, action, amount=None):
+        """
+        Send a request to perform an action in the game.
+
+        Parameters
+        ----------
+        action : str
+            The action to perform. Either "FOLD", "CALL", or "RAISE".
+        amount : int
+            The amount to raise. Only used for "RAISE".
+        """
+
+        if amount is not None:
+            amount = int(amount)
+            request = lobby_pb2.LobbyRequest(
+                action='PLAY_MOVE',
+                player_action=action,
+                amount=amount,
+            )
+        else:
+            request = lobby_pb2.LobbyRequest(
+                action='PLAY_MOVE',
+                player_action=action,
+            )
+
+        # if action is RAISE and the user cannot afford it, do not send the request
+        if (action == lobby_pb2.RAISE and amount + self.game_state.bets[self.index] > self.game_state.money[self.index])\
+        or (action == lobby_pb2.RAISE and amount <= 0)\
+        or (action == lobby_pb2.RAISE and amount is None):
+            logging.error("Cannot afford raise")
+            return
+        
         lobby_queue.put(request)
 
     """
@@ -790,6 +831,8 @@ class ClientUI:
         self.game_frame.pack(fill=tk.BOTH, expand=True, pady=10)
 
         # ── Top: show other players with their moolah and current bet ──
+        round_label = tk.Label(self.game_frame, text="Round: " + str(self.game_state.game_round) + "/5")
+        round_label.pack(side=tk.TOP, pady=(0,10))
         opponents_frame = tk.Frame(self.game_frame)
         opponents_frame.pack(side=tk.TOP, pady=(0,10))
         for idx, uname in enumerate(self.game_state.players):
@@ -831,21 +874,61 @@ class ClientUI:
 
         cards = " ".join(curr_cards)
         tk.Label(hand_frame, text=cards).pack()
+        # show the current bet
+        tk.Label(hand_frame, text=f"Your Bet: {self.game_state.bets[self.index]}").pack()
+
+        # show money left
+        tk.Label(hand_frame, text=f"Money Left: {self.game_state.money[self.index]}").pack()
 
         # ── Bottom: action buttons, only if it's your turn ──
         if self.game_state.current_player == self.credentials:
             actions_frame = tk.Frame(self.game_frame)
             actions_frame.pack(side=tk.TOP, pady=(0,10))
             tk.Button(actions_frame, text="Fold",
-                  command=lambda: self.send_game_action("FOLD")).pack(side=tk.LEFT, padx=5)
-            tk.Button(actions_frame, text="Call",
-                  command=lambda: self.send_game_action("CALL")).pack(side=tk.LEFT, padx=5)
+                  command=lambda: self.send_game_action(lobby_pb2.FOLD)).pack(side=tk.LEFT, padx=5)
+            tk.Button(actions_frame, text="Check/Call",
+                  command=lambda: self.send_game_action(lobby_pb2.CHECK_CALL)).pack(side=tk.LEFT, padx=5)
             tk.Button(actions_frame, text="Raise",
-                  command=lambda: self.send_game_action("RAISE", self.raise_amount.get())).pack(side=tk.LEFT, padx=5)
+                  command=lambda: self.send_game_action(lobby_pb2.RAISE, self.raise_amount.get())).pack(side=tk.LEFT, padx=5)
             # add number box to raise
             self.raise_amount = tk.Entry(actions_frame)
             self.raise_amount.pack(side=tk.LEFT, padx=5)
             self.raise_amount.insert(0, "Enter raise amount")
+
+    def destroy_game(self):
+        """
+        Destroy the game screen.
+        """
+        self.game_frame.destroy()
+
+    def setup_game_over(self):
+        """
+        Set up the game over screen.
+
+        Has:
+        - A label that says "Game Over"
+        - A button that says "Back" to go back to the main screen.
+        """
+        self.game_over_frame = tk.Frame(self.root)
+        self.game_over_frame.pack()
+
+        self.game_over_label = tk.Label(
+            self.game_over_frame, text="Game Over"
+        )
+        self.game_over_label.pack()
+
+        self.back_button_game_over = tk.Button(
+            self.game_over_frame,
+            text="Back",
+            command=lambda: [self.destroy_game_over(), self.reconnect_to_server()],
+        )
+        self.back_button_game_over.pack()
+
+    def destroy_game_over(self):
+        """
+        Destroy the game over screen.
+        """
+        self.game_over_frame.destroy()
 
 
 
