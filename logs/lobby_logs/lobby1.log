@@ -937,3 +937,963 @@ grpc.RpcError
 grpc.RpcError
 
 2025-05-02 20:46:27 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:22:00 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:22:34 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:22:34 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:22:34 - INFO - [MAIN] nick connected.
+2025-05-03 00:22:42 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:22:42 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:22:42 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:22:43 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:22:43 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:22:44 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:22:44 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:22:44 - ERROR - [MAIN] Error handling requests at line 182: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 334, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 220, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 182, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: bad argument type for built-in operation
+
+2025-05-03 00:22:44 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:23:09 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 278, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:23:09 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:24:12 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:24:28 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:24:28 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:24:28 - INFO - [MAIN] nick connected.
+2025-05-03 00:24:34 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:24:34 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:24:34 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:24:35 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:24:35 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:24:36 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:24:36 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:24:36 - ERROR - [MAIN] Error handling requests at line 182: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 334, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 220, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 182, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: bad argument type for built-in operation
+
+2025-05-03 00:24:36 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:25:30 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 278, in handle_requests
+    lobby_pb2.LobbyResponse(
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:25:30 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:25:31 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:25:50 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:25:50 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:25:50 - INFO - [MAIN] nick connected.
+2025-05-03 00:25:56 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:25:56 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:25:56 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:25:57 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:25:57 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:25:58 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:25:58 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:26:18 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 255, in handle_requests
+    context : context
+            ^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:26:18 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 255, in handle_requests
+    context : context
+            ^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:26:18 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:26:18 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:26:23 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:26:39 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:26:39 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:26:39 - INFO - [MAIN] nick connected.
+2025-05-03 00:26:45 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:26:45 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:26:45 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:26:46 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:26:46 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:26:47 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:26:47 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:26:47 - ERROR - [MAIN] Error handling requests at line 182: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 323, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 209, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 182, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: bad argument type for built-in operation
+
+2025-05-03 00:26:47 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:27:46 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 267, in handle_requests
+    context : context
+            ^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:27:46 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:27:49 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:28:17 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:28:17 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:28:17 - INFO - [MAIN] nick connected.
+2025-05-03 00:28:25 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:28:25 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:28:25 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:28:27 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:28:27 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:28:29 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:28:29 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:28:29 - ERROR - [MAIN] Error handling requests at line 183: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 335, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 221, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 183, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: bad argument type for built-in operation
+
+2025-05-03 00:28:29 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:30:39 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 279, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:30:39 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:30:41 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:31:01 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:31:01 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:31:01 - INFO - [MAIN] nick connected.
+2025-05-03 00:31:07 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:31:07 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:31:07 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:31:08 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:31:08 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:31:09 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:31:09 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:31:09 - ERROR - [MAIN] Error handling requests at line 183: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 335, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 221, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 183, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: bad argument type for built-in operation
+
+2025-05-03 00:31:09 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:31:17 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 279, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:31:17 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:31:36 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:31:51 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:31:51 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:31:51 - INFO - [MAIN] nick connected.
+2025-05-03 00:31:58 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:31:58 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:31:58 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:32:00 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:32:00 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:32:01 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:32:01 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:32:15 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 266, in handle_requests
+    nonlocal username
+        ^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:32:15 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:32:16 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 266, in handle_requests
+    nonlocal username
+        ^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:32:16 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:32:19 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:32:37 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:32:37 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:32:37 - INFO - [MAIN] nick connected.
+2025-05-03 00:32:45 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:32:45 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:32:45 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:32:46 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:32:46 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:32:46 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:32:46 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:33:08 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 268, in handle_requests
+    All tutorials have this, but it's not used here. Kept for compatibility.
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:33:08 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 268, in handle_requests
+    All tutorials have this, but it's not used here. Kept for compatibility.
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:33:08 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:33:08 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:33:12 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:33:27 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:33:27 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:33:27 - INFO - [MAIN] nick connected.
+2025-05-03 00:33:33 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:33:33 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:33:33 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:33:33 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:33:33 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:33:34 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:33:34 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:36:30 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 279, in handle_requests
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:36:30 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:36:31 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 279, in handle_requests
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:36:31 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:36:32 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:36:47 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:36:47 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:36:47 - INFO - [MAIN] nick connected.
+2025-05-03 00:36:54 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:36:54 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:36:54 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:36:55 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:36:55 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:36:57 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:36:57 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:36:57 - ERROR - [MAIN] Error handling requests at line 183: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 341, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 221, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 183, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: bad argument type for built-in operation
+
+2025-05-03 00:36:57 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:37:03 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 285, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:37:03 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:37:09 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:37:23 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:37:23 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:37:23 - INFO - [MAIN] nick connected.
+2025-05-03 00:37:30 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:37:30 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:37:30 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:37:30 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:37:30 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:37:31 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:37:31 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:37:31 - ERROR - [MAIN] Error handling requests at line 183: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 341, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 221, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 183, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: Parameter to MergeFrom() must be instance of same class: expected <class 'lobby_pb2.HandCards'> got <class 'list'>.
+
+2025-05-03 00:37:31 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:38:21 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 285, in handle_requests
+    try:
+        
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:38:21 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:38:23 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:39:12 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:39:25 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:39:25 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:39:25 - INFO - [MAIN] nick connected.
+2025-05-03 00:39:31 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:39:31 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:39:31 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:39:32 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:39:32 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:39:33 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:39:33 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:39:33 - ERROR - [MAIN] Error handling requests at line 184: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 342, in handle_requests
+    game.start()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 222, in start
+    self.get_game_state()
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 184, in get_game_state
+    return lobby_pb2.GameState(
+           ^^^^^^^^^^^^^^^^^^^^
+TypeError: Parameter to MergeFrom() must be instance of same class: expected <class 'lobby_pb2.HandCards'> got <class 'list'>.
+
+2025-05-03 00:39:33 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:39:58 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    try:
+        
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:39:58 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:40:01 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:40:16 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:40:16 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:40:16 - INFO - [MAIN] nick connected.
+2025-05-03 00:40:18 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:40:18 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:40:26 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:40:26 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:40:26 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:40:26 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:40:26 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:40:47 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 287, in handle_requests
+    # print size of req in bytes
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:40:47 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 287, in handle_requests
+    # print size of req in bytes
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:40:47 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:40:47 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:43:01 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:43:16 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:43:16 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:43:16 - INFO - [MAIN] nick connected.
+2025-05-03 00:43:23 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:43:23 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:43:23 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:43:24 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:43:24 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:43:25 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:43:25 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:45:11 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:45:11 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:45:12 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:45:12 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:45:19 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:45:34 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:45:34 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:45:34 - INFO - [MAIN] nick connected.
+2025-05-03 00:45:51 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:45:51 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:45:51 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:45:52 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:45:52 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:46:00 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:46:00 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:46:23 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:46:23 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:46:23 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:46:23 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:46:28 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:46:39 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:46:39 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:46:39 - INFO - [MAIN] nick connected.
+2025-05-03 00:46:42 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:46:42 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:46:50 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:46:50 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:46:50 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:46:50 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:46:50 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:48:39 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:48:40 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:48:40 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:48:43 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:48:57 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:48:57 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:48:57 - INFO - [MAIN] nick connected.
+2025-05-03 00:49:03 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:03 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:49:03 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:49:04 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:04 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:49:04 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:04 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:49:15 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:49:15 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:49:16 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:49:16 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:49:22 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:49:36 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:36 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:49:36 - INFO - [MAIN] nick connected.
+2025-05-03 00:49:43 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:43 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:49:43 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:49:44 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:44 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:49:45 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:49:45 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:50:05 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:50:05 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:50:06 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:50:06 - INFO - [MAIN] nick2 disconnected.
+2025-05-03 00:50:12 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 00:50:27 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:50:27 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-03 00:50:27 - INFO - [MAIN] nick connected.
+2025-05-03 00:50:33 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:50:33 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-03 00:50:33 - INFO - [MAIN] nick2 connected.
+2025-05-03 00:50:34 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:50:34 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-03 00:50:35 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-03 00:50:35 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-03 00:51:12 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:51:12 - INFO - [MAIN] nick disconnected.
+2025-05-03 00:51:14 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 286, in handle_requests
+    for req in request_iterator:
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-03 00:51:14 - INFO - [MAIN] nick2 disconnected.

@@ -140,7 +140,7 @@ class Player:
         )
     
 
-class Game:
+class TexasHoldem:
     """
     Game class for the lobby server.
 
@@ -150,12 +150,16 @@ class Game:
     def __init__(self):
         self.deck = Deck()
         self.players = []
-        self.bets = []
         self.money = []
+        self.bets = []
+        # for call vs check
+        self.delta_bet = 0
         self.round = 0
         self.big_blind = 0
         self.small_blind = 1
         self.pot = 0
+        self.phase = 0
+        self.player_pointer = 0
 
     def load_players(self, players):
         for player in players.values():
@@ -175,6 +179,7 @@ class Game:
         self.small_blind = (self.small_blind + 1) % len(self.players)
 
     def get_game_state(self):
+        global game_type
         return lobby_pb2.GameState(
             players = [
                 player.username for player in self.players
@@ -184,6 +189,19 @@ class Game:
             ],
             bets = [
                 player.current_bet for player in self.players
+            ],
+            river_cards = [],
+            current_player = self.players[self.player_pointer].username,
+            hand_cards = [
+                player.hand for player in self.players
+            ],
+            pot = self.pot,
+            small_blind = self.small_blind,
+            big_blind = self.big_blind,
+            game_round = self.round,
+            game_type = game_type,
+            folded = [
+                player.folded for player in self.players
             ],
         )
 
@@ -198,10 +216,38 @@ class Game:
 
         game_started = True
         for player in self.players:
+            # deal each player 2 cards
+            cards = self.deck.deal(2)
+            player.hand = lobby_pb2.HandCards(
+                card1=cards[0],
+                card2=cards[1]
+            )
+        for player in self.players:
             # give all players the current game state
             player.send_game_state(
                 self.get_game_state()
             )
+
+    def advance_phase(self):
+        # advance the game phase
+        if self.phase == 0:
+            # deal the flop
+            self.river = self.deck.deal(3)
+            self.phase = 1
+        elif self.phase == 1:
+            # deal the turn
+            self.river.append(self.deck.deal(1)[0])
+            self.phase = 2
+        elif self.phase == 2:
+            # deal the river
+            self.river.append(self.deck.deal(1)[0])
+            self.phase = 3
+        elif self.phase == 3:
+            # end the game
+            self.end()
+    
+    def play_next(self, play):
+        pass
 
     def end(self):
         global game_started
@@ -292,7 +338,7 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
                                 )
                             if all(p.voted_yes for p in players.values()) and len(players) >= 2:
                                 # start the game
-                                game = Game()
+                                game = TexasHoldem()
                                 game.start()
 
 

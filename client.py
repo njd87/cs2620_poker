@@ -8,6 +8,7 @@ import json
 import logging
 
 import grpc
+import numpy as np
 
 import main_pb2_grpc
 import main_pb2
@@ -200,6 +201,11 @@ class ClientUI:
                 elif action == lobby_pb2.SHOW_GAME:
                     # if successful, set up lobby
                     if resp.result:
+                        self.game_state = resp.game_state
+                        # get index of self
+                        self.index = np.where(
+                            np.array(self.game_state.players) == self.credentials
+                        )[0][0]
                         self.destroy_lobby()
                         self.setup_game()
         except grpc.RpcError as e:
@@ -779,17 +785,69 @@ class ClientUI:
         self.deleted_frame.destroy()
 
     def setup_game(self):
-        # just have a label that says "Game started" for now
+        # create a fresh frame for the game
         self.game_frame = tk.Frame(self.root)
-        self.game_frame.pack()
-        self.game_label = tk.Label(self.game_frame, text="Game started")
-        self.game_label.pack()
-        self.back_button_game = tk.Button(
-            self.game_frame,
-            text="Back",
-            command=lambda: self.reconnect_to_server(),
-        )
-        self.back_button_game.pack()
+        self.game_frame.pack(fill=tk.BOTH, expand=True, pady=10)
+
+        # ── Top: show other players with their moolah and current bet ──
+        opponents_frame = tk.Frame(self.game_frame)
+        opponents_frame.pack(side=tk.TOP, pady=(0,10))
+        for idx, uname in enumerate(self.game_state.players):
+            if uname == self.credentials:
+                continue
+            # assuming parallel lists .moolahs and .bets in game_state
+            m = self.game_state.money[idx]
+            b = self.game_state.bets[idx]
+            slot = tk.Frame(opponents_frame, bd=1, relief=tk.RIDGE, padx=5, pady=5)
+            slot.pack(side=tk.LEFT, padx=10)
+            tk.Label(slot, text=f"{uname}\nMoolah: {m}\nBet: {b}", width=15, height=3).pack()
+
+        # ── Middle: community cards (the “river”) ──
+        river_frame = tk.Frame(self.game_frame)
+        river_frame.pack(side=tk.TOP, pady=(0,10))
+        tk.Label(river_frame, text="Community Cards:").pack()
+        cards = " ".join(self.game_state.river_cards)
+        tk.Label(river_frame, text=cards).pack()
+
+        # ── Pot ──
+        pot_frame = tk.Frame(self.game_frame)
+        pot_frame.pack(side=tk.TOP, pady=(0,10))
+        tk.Label(pot_frame, text=f"Pot: {self.game_state.pot}").pack()
+
+        # ── Your cards ──
+        hand_frame = tk.Frame(self.game_frame)
+        hand_frame.pack(side=tk.TOP, pady=(0,10))
+        tk.Label(hand_frame, text="Your Cards:").pack()
+        # self.index was set to your player index in SHOW_GAME handling
+        current_cards = self.game_state.hand_cards[self.index]
+        curr_cards = []
+        if self.game_state.game_type == lobby_pb2.TEXAS:
+            # show the first two cards
+            curr_cards = [current_cards.card1, current_cards.card2]
+        else:
+            # show all cards, 5 card draw
+            curr_cards = [current_cards.card1, current_cards.card2, current_cards.card3, 
+                     current_cards.card4, current_cards.card5]
+
+        cards = " ".join(curr_cards)
+        tk.Label(hand_frame, text=cards).pack()
+
+        # ── Bottom: action buttons, only if it's your turn ──
+        if self.game_state.current_player == self.credentials:
+            actions_frame = tk.Frame(self.game_frame)
+            actions_frame.pack(side=tk.TOP, pady=(0,10))
+            tk.Button(actions_frame, text="Fold",
+                  command=lambda: self.send_game_action("FOLD")).pack(side=tk.LEFT, padx=5)
+            tk.Button(actions_frame, text="Call",
+                  command=lambda: self.send_game_action("CALL")).pack(side=tk.LEFT, padx=5)
+            tk.Button(actions_frame, text="Raise",
+                  command=lambda: self.send_game_action("RAISE", self.raise_amount.get())).pack(side=tk.LEFT, padx=5)
+            # add number box to raise
+            self.raise_amount = tk.Entry(actions_frame)
+            self.raise_amount.pack(side=tk.LEFT, padx=5)
+            self.raise_amount.insert(0, "Enter raise amount")
+
+
 
 
 """

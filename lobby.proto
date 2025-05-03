@@ -31,6 +31,13 @@ message UserInformation {
   int32 moolah = 3;
 }
 
+enum PlayerAction {
+  CALL = 0;
+  RAISE = 1;
+  FOLD = 2;
+  CHECK = 3;
+}
+
 
 message LobbyRequest {
   // FOR CLIENT USE
@@ -66,14 +73,18 @@ message GameState {
 
   string current_player = 5;
 
-  repeated string hand_cards = 6;
+  repeated HandCards hand_cards = 6;
 
   int32 pot = 7;
 
   int32 big_blind = 8;
   int32 small_blind = 9;
   int32 game_round = 10;
+  GameType game_type = 11;
+  int32 delta_bet = 12;
+  repeated bool folded = 13;
 }
+
 
 message LobbyResponse {
   LobbyAction action = 1;
