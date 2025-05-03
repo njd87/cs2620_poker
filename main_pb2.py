@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nmain.proto\x12\x04main\"W\n\x10GameHistoryEntry\x12\x0f\n\x07game_id\x18\x01 \x01(\x05\x12\x11\n\tgame_type\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x11\n\tmoney_won\x18\x04 \x01(\x05\"x\n\x0bMainRequest\x12\x1c\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x0c.main.Action\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08passhash\x18\x03 \x01(\t\x12\x14\n\x0cmoney_to_add\x18\x04 \x01(\x05\x12\x11\n\tgame_type\x18\x05 \x01(\x05\"\x8e\x01\n\x0cMainResponse\x12\x1c\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x0c.main.Action\x12\x0e\n\x06result\x18\x02 \x01(\x08\x12\x12\n\ngame_lobby\x18\x03 \x01(\t\x12,\n\x0cgame_history\x18\x04 \x03(\x0b\x32\x16.main.GameHistoryEntry\x12\x0e\n\x06moolah\x18\x05 \x01(\x05*\x90\x01\n\x06\x41\x63tion\x12\x0b\n\x07UNKNOWN\x10\x00\x12\t\n\x05LOGIN\x10\x01\x12\x0c\n\x08REGISTER\x10\x02\x12\x12\n\x0e\x43HECK_USERNAME\x10\x03\x12\x10\n\x0cVIEW_HISTORY\x10\x04\x12\x0e\n\nLOAD_MONEY\x10\x05\x12\t\n\x05QUEUE\x10\x06\x12\x12\n\x0e\x44\x45LETE_ACCOUNT\x10\x07\x12\x0b\n\x07\x43ONNECT\x10\x08*.\n\x08GameType\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05TEXAS\x10\x01\x12\r\n\tFIVE_HAND\x10\x02\x32@\n\x0bMainService\x12\x31\n\x04Main\x12\x11.main.MainRequest\x1a\x12.main.MainResponse(\x01\x30\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nmain.proto\x12\x04main\"W\n\x10GameHistoryEntry\x12\x0f\n\x07game_id\x18\x01 \x01(\x05\x12\x11\n\tgame_type\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x11\n\tmoney_won\x18\x04 \x01(\x05\"x\n\x0bMainRequest\x12\x1c\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x0c.main.Action\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08passhash\x18\x03 \x01(\t\x12\x14\n\x0cmoney_to_add\x18\x04 \x01(\x05\x12\x11\n\tgame_type\x18\x05 \x01(\x05\"\x8e\x01\n\x0cMainResponse\x12\x1c\n\x06\x61\x63tion\x18\x01 \x01(\x0e\x32\x0c.main.Action\x12\x0e\n\x06result\x18\x02 \x01(\x08\x12\x12\n\ngame_lobby\x18\x03 \x01(\t\x12,\n\x0cgame_history\x18\x04 \x03(\x0b\x32\x16.main.GameHistoryEntry\x12\x0e\n\x06moolah\x18\x05 \x01(\x05*\xb3\x01\n\x06\x41\x63tion\x12\x0b\n\x07UNKNOWN\x10\x00\x12\t\n\x05LOGIN\x10\x01\x12\x0c\n\x08REGISTER\x10\x02\x12\x12\n\x0e\x43HECK_USERNAME\x10\x03\x12\x10\n\x0cVIEW_HISTORY\x10\x04\x12\x0e\n\nLOAD_MONEY\x10\x05\x12\t\n\x05QUEUE\x10\x06\x12\x12\n\x0e\x44\x45LETE_ACCOUNT\x10\x07\x12\x0b\n\x07\x43ONNECT\x10\x08\x12\x0e\n\nJOIN_LOBBY\x10\t\x12\x11\n\rCONNECT_LOBBY\x10\n*.\n\x08GameType\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05TEXAS\x10\x01\x12\r\n\tFIVE_HAND\x10\x02\x32@\n\x0bMainService\x12\x31\n\x04Main\x12\x11.main.MainRequest\x1a\x12.main.MainResponse(\x01\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,15 +32,15 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'main_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_ACTION']._serialized_start=377
-  _globals['_ACTION']._serialized_end=521
-  _globals['_GAMETYPE']._serialized_start=523
-  _globals['_GAMETYPE']._serialized_end=569
+  _globals['_ACTION']._serialized_end=556
+  _globals['_GAMETYPE']._serialized_start=558
+  _globals['_GAMETYPE']._serialized_end=604
   _globals['_GAMEHISTORYENTRY']._serialized_start=20
   _globals['_GAMEHISTORYENTRY']._serialized_end=107
   _globals['_MAINREQUEST']._serialized_start=109
   _globals['_MAINREQUEST']._serialized_end=229
   _globals['_MAINRESPONSE']._serialized_start=232
   _globals['_MAINRESPONSE']._serialized_end=374
-  _globals['_MAINSERVICE']._serialized_start=571
-  _globals['_MAINSERVICE']._serialized_end=635
+  _globals['_MAINSERVICE']._serialized_start=606
+  _globals['_MAINSERVICE']._serialized_end=670
 # @@protoc_insertion_point(module_scope)

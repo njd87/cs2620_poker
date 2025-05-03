@@ -112,13 +112,17 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
             All tutorials have this, but it's not used here. Kept for compatibility.
         """
         username = None
+        # indicator for whether the server is connected to a lobby or a client
+        connected_to_lobby = False
         # queue for sending responses to client
         client_queue = queue.Queue()
+        # queue for sending responses to lobby
+        lobby_queue = queue.Queue()
 
         # handle incoming requests
         def handle_requests():
             global log, current_term
-            nonlocal username
+            nonlocal username, connected_to_lobby
             try:
                 for req in request_iterator:
                     # print size of req in bytes
@@ -303,6 +307,11 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                                 action=main_pb2.JOIN_LOBBY, result=True
                             )
                         )
+                    elif req.action == main_pb2.CONNECT_LOBBY:
+                        logging.info(f"[MAIN] Lobby {req.username} connected.")
+                        if (req.username != "") and (req.username not in clients):
+                            clients[req.username] = client_queue
+                            connected_to_lobby = True
                     else:
                         logging.error(f"[MAIN] Invalid action: {req.action}")
             except Exception as e:
@@ -315,7 +324,10 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
             finally:
                 if username in clients:
                     del clients[username]
-                    logging.info(f"[MAIN] {username} disconnected.")
+                    if connected_to_lobby:
+                        logging.info(f"[MAIN] Lobby {username} disconnected.")
+                    else:
+                        logging.info(f"[MAIN] {username} disconnected.")
 
         # run request handling in a separate thread.
         threading.Thread(target=handle_requests, daemon=True).start()

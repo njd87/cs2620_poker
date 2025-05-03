@@ -52,6 +52,7 @@ enum Action {
     DELETE_ACCOUNT = 7;
     CONNECT = 8;
     JOIN_LOBBY = 9;
+    CONNECT_LOBBY = 10;
   }
   
   enum GameType {

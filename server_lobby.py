@@ -15,12 +15,19 @@ from collections import Counter
 
 import lobby_pb2_grpc
 import lobby_pb2
+import main_pb2_grpc
+import main_pb2
+import raft_pb2_grpc
+import raft_pb2
+
 import json
 import traceback
 
 '''
 Making sure the server is started with the correct arguments.
 '''
+
+num_servers = 2
 
 if len(sys.argv) != 2:
     logging.error("Usage: python server_lobby.py <lobby_index>")
@@ -42,6 +49,14 @@ with open("config/config.json") as f:
 
 log_path = config["lobbies"]["lobby_log_paths"][idx]
 db_path = config["lobbies"]["lobby_db_paths"][idx]
+
+# get names of all servers
+all_servers = [
+    f"{config['servers']['hosts'][i]}:{config['servers']['ports'][i]}" for i in range(num_servers)
+]
+
+credentials = None
+leader_address = None
 
 # setup logging
 if not os.path.exists(log_path):
@@ -480,7 +495,7 @@ class TexasHoldem:
 
 class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
     """
-    MainServiceServicer class for MainServiceServicer
+    LobbyServiceServicer class for LobbyServiceServicer
 
     This class handles the main chat functionality of the server, sending responses via queues.
     All log messages in this service begin with [MAIN].
@@ -631,6 +646,92 @@ def serve():
     except KeyboardInterrupt:
         server.stop(0)
 
+def handle_responses(responses_iter):
+    """
+    Constantly check for responses from the server and process them.
+    """
+    try:
+        for resp in responses_iter:
+            logging.info(f"Size of response: {sys.getsizeof(resp)}")
+            action = resp.action
+            if action == main_pb2.CHECK_USERNAME:
+                pass
+    except grpc.RpcError as e:
+        logging.error(f"Error receiving response: {e}")
+        check_for_leader()
+
+def check_for_leader(retries=6):
+    '''
+    Check for the leader of the servers.
+    Retries 6 times by default.
+    '''
+    global leader_address
+    if retries <= 0:
+        logging.error("Could not find leader.")
+        sys.exit(1)
+    logging.info("Checking for leader...")
+    time.sleep(5)
+    # we want to make sure that we are connected to the leader
+    # if we are not connected OR we had errors in connecting to the leader
+    # we need to ask replicas for new leader
+    no_leader = True
+    previous_leader = leader_address
+    for server in all_servers:
+        try:
+            channel = grpc.insecure_channel(server)
+            stub = raft_pb2_grpc.RaftServiceStub(channel)
+            response = stub.GetLeader(raft_pb2.GetLeaderRequest(useless=True))
+            if response.leader_address:
+                logging.info(f"Leader found: {response.leader_address}")
+                logging.info(f"Info came from: {server}")
+                leader_address = response.leader_address
+                no_leader = False
+                break
+        except grpc.RpcError as e:
+            logging.error(f"Error connecting to {server}: {e}")
+
+    if no_leader:
+        check_for_leader(retries - 1)
+        return
+    if leader_address != previous_leader:
+        # new leader
+        try:
+            request_thread.join()
+            channel.close()
+        except:
+            pass
+        channel = grpc.insecure_channel(leader_address)
+        stub = main_pb2_grpc.MainServiceStub(channel)
+        responses_iter = stub.Main(request_generator())
+        request_thread = threading.Thread(
+            target=handle_responses, args=(responses_iter,), daemon=True
+        )
+        request_thread.start()
+        time.sleep(1)
+        # this NEEDS to happen twice due to multiple threads
+        send_connect_request()
+        send_connect_request()
+
+outgoing_queue = queue.Queue()
+def request_generator():
+    """Yield MainRequests from the outgoing_queue."""
+    while True:
+        req = outgoing_queue.get()
+        yield req
+
+def send_connect_request():
+    """
+    When a new leader is found, send a connect request to the server.
+    """
+    # create a request
+    request = main_pb2.MainRequest(
+        action=main_pb2.CONNECT_LOBBY, username=str(idx) # KG: prevent users from signing up with the same username
+    )
+
+    outgoing_queue.put(request)
 
 if __name__ == "__main__":
-    serve()
+    server_thread = threading.Thread(target=serve, daemon=True)
+    server_thread.start()
+    check_for_leader()
+    server_thread.join()
