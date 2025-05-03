@@ -5280,3 +5280,104 @@
 2025-05-03 18:51:13 - INFO - Size of response: 80
 2025-05-03 18:51:18 - INFO - Size of response: 80
 2025-05-03 18:51:20 - INFO - Size of response: 80
+2025-05-03 19:12:43 - INFO - Checking for leader...
+2025-05-03 19:12:44 - INFO - Checking for leader...
+2025-05-03 19:12:48 - INFO - Leader found: 127.0.0.1:50004
+2025-05-03 19:12:48 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 19:12:49 - INFO - Size of response: 80
+2025-05-03 19:12:49 - INFO - Leader found: 127.0.0.1:50004
+2025-05-03 19:12:49 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 19:12:50 - INFO - Size of response: 80
+2025-05-03 19:13:32 - INFO - Size of response: 80
+2025-05-03 19:13:34 - INFO - Size of response: 80
+2025-05-03 19:13:36 - INFO - Size of response: 80
+2025-05-03 19:13:38 - INFO - Size of response: 80
+2025-05-03 19:13:42 - INFO - Size of response: 80
+2025-05-03 19:13:43 - INFO - Size of response: 80
+2025-05-03 19:13:44 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-03 19:13:45 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-03 19:13:45 - INFO - Size of response: 80
+2025-05-03 19:13:45 - INFO - Size of response: 80
+2025-05-03 19:13:46 - INFO - Size of response: 80
+2025-05-03 19:13:46 - INFO - Size of response: 80
+2025-05-03 19:13:46 - INFO - Size of response: 80
+2025-05-03 19:13:47 - INFO - Size of response: 80
+2025-05-03 19:13:47 - INFO - Size of response: 80
+2025-05-03 19:13:47 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:48 - INFO - Size of response: 80
+2025-05-03 19:13:50 - INFO - Size of response: 80
+2025-05-03 19:13:50 - INFO - Size of response: 80
+2025-05-03 19:13:51 - INFO - Size of response: 80
+2025-05-03 19:13:51 - INFO - Size of response: 80
+2025-05-03 19:13:52 - INFO - Size of response: 80
+2025-05-03 19:13:52 - INFO - Size of response: 80
+2025-05-03 19:13:59 - INFO - Size of response: 80
+2025-05-03 19:13:59 - INFO - Size of response: 80
+2025-05-03 19:13:59 - INFO - Size of response: 80
+2025-05-03 19:13:59 - INFO - Size of response: 80
+2025-05-03 19:14:03 - INFO - Size of response: 80
+2025-05-03 19:14:03 - INFO - Size of response: 80
+2025-05-03 19:14:04 - INFO - Size of response: 80
+2025-05-03 19:14:04 - INFO - Size of response: 80
+2025-05-03 19:14:06 - INFO - Size of response: 80
+2025-05-03 19:14:06 - INFO - Size of response: 80
+2025-05-03 19:14:15 - INFO - Size of response: 80
+2025-05-03 19:14:15 - INFO - Size of response: 80
+2025-05-03 19:14:16 - INFO - Size of response: 80
+2025-05-03 19:14:16 - INFO - Size of response: 80
+2025-05-03 19:14:17 - INFO - Size of response: 80
+2025-05-03 19:14:17 - INFO - Size of response: 80
+2025-05-03 19:14:18 - INFO - Size of response: 80
+2025-05-03 19:14:18 - INFO - Size of response: 80
+2025-05-03 19:14:19 - INFO - Size of response: 80
+2025-05-03 19:14:19 - INFO - Size of response: 80
+2025-05-03 19:14:19 - INFO - Size of response: 80
+2025-05-03 19:14:20 - INFO - Size of response: 80
+2025-05-03 19:14:21 - INFO - Size of response: 80
+2025-05-03 19:14:21 - INFO - Size of response: 80
+2025-05-03 19:14:21 - INFO - Size of response: 80
+2025-05-03 19:14:21 - INFO - Size of response: 80
+2025-05-03 19:14:23 - INFO - Size of response: 80
+2025-05-03 19:14:23 - INFO - Size of response: 80
+2025-05-03 19:14:23 - INFO - Size of response: 80
+2025-05-03 19:14:23 - INFO - Size of response: 80
+2025-05-03 19:14:24 - INFO - Size of response: 80
+2025-05-03 19:14:24 - INFO - Size of response: 80
+2025-05-03 19:14:24 - INFO - Size of response: 80
+2025-05-03 19:14:24 - INFO - Size of response: 80
+2025-05-03 19:14:24 - INFO - Size of response: 80
+2025-05-03 19:14:24 - INFO - Size of response: 80
+2025-05-03 19:14:26 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-03 19:14:26 - ERROR - Error receiving response, reconnecting to server...
+2025-05-03 19:14:26 - INFO - Checking for leader...
+2025-05-03 19:14:27 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-03 19:14:27 - ERROR - Error receiving response, reconnecting to server...
+2025-05-03 19:14:27 - INFO - Checking for leader...
+2025-05-03 19:14:31 - INFO - Leader found: 127.0.0.1:50004
+2025-05-03 19:14:31 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 19:14:32 - INFO - Size of response: 80
+2025-05-03 19:14:32 - INFO - Leader found: 127.0.0.1:50004
+2025-05-03 19:14:32 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 19:14:33 - INFO - Size of response: 80
