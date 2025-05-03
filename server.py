@@ -24,7 +24,7 @@ from replica_helpers import replicate_action
 '''
 Making sure the server is started with the correct arguments.
 '''
-num_servers = 2
+num_servers = 5
 num_lobbies = 2
 
 if len(sys.argv) != 2:

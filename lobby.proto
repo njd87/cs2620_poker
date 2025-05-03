@@ -37,6 +37,7 @@ enum PlayerAction {
   CHECK_CALL = 0;
   RAISE = 1;
   FOLD = 2;
+  EXCHANGE = 3;
 }
 
 
@@ -58,6 +59,7 @@ message LobbyRequest {
 
   PlayerAction player_action = 7; // for playing a move
   int32 amount = 8; // for playing a move
+  repeated int32 card_exchange_idx = 9; // for playing a move
 }
 
 message HandCards {
@@ -88,6 +90,7 @@ message GameState {
   int32 delta_bet = 12;
   repeated bool folded = 13;
   int32 min_bet = 14;
+  repeated bool can_exchange = 15;
 }
 
 

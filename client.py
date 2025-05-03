@@ -17,7 +17,7 @@ import raft_pb2
 import lobby_pb2_grpc
 import lobby_pb2
 
-num_servers = 2
+num_servers = 5
 num_lobbies = 2
 
 # log to a file
@@ -69,7 +69,7 @@ def lobby_request_generator():
 
 class ClientUI:
     """
-    The client UI for the messenger.
+    The client UI for Poker.
 
     The client UI is a tkinter application that has a few different states:
     - User Entry
@@ -94,7 +94,7 @@ class ClientUI:
         Initialize the client UI.
         """
         self.root = tk.Tk()
-        self.root.title("Messenger")
+        self.root.title("Poker")
         self.root.geometry("800x600")
 
         self.credentials = None
@@ -439,7 +439,7 @@ class ClientUI:
 
         lobby_queue.put(request)
     
-    def send_game_action(self, action, amount=None):
+    def send_game_action(self, action, amount=None, indicies=None):
         """
         Send a request to perform an action in the game.
 
@@ -457,6 +457,15 @@ class ClientUI:
                 action='PLAY_MOVE',
                 player_action=action,
                 amount=amount,
+            )
+        elif indicies is not None:
+            # convert indicies to a list of ints
+            indicies = [int(i.get()) for i in indicies]
+            print("EXCHANGE INDICIES: ", indicies)
+            request = lobby_pb2.LobbyRequest(
+                action='PLAY_MOVE',
+                player_action=action,
+                card_exchange_idx=indicies,
             )
         else:
             request = lobby_pb2.LobbyRequest(
@@ -911,12 +920,13 @@ class ClientUI:
             slot.pack(side=tk.LEFT, padx=10)
             tk.Label(slot, text=f"{uname}\nMoolah: {m}\nBet: {b}", width=15, height=3).pack()
 
-        # ── Middle: community cards (the “river”) ──
-        river_frame = tk.Frame(self.game_frame)
-        river_frame.pack(side=tk.TOP, pady=(0,10))
-        tk.Label(river_frame, text="Community Cards:").pack()
-        cards = " ".join(self.game_state.river_cards)
-        tk.Label(river_frame, text=cards).pack()
+        if self.game_state.game_type == lobby_pb2.TEXAS:
+            # ── Middle: community cards (the “river”) ──
+            river_frame = tk.Frame(self.game_frame)
+            river_frame.pack(side=tk.TOP, pady=(0,10))
+            tk.Label(river_frame, text="Community Cards:").pack()
+            cards = " ".join(self.game_state.river_cards)
+            tk.Label(river_frame, text=cards).pack()
 
         # ── Pot ──
         pot_frame = tk.Frame(self.game_frame)
@@ -947,7 +957,20 @@ class ClientUI:
         tk.Label(hand_frame, text=f"Money Left: {self.game_state.money[self.index]}").pack()
 
         # ── Bottom: action buttons, only if it's your turn ──
-        if self.game_state.current_player == self.credentials:
+        # if it is your turn, the game_type is five hand, AND you can exchange, instead show 5 check boxes
+        if self.game_state.current_player == self.credentials and self.game_state.game_type == lobby_pb2.FIVE_HAND and self.game_state.can_exchange[self.index]:
+            exchange_frame = tk.Frame(self.game_frame)
+            exchange_frame.pack(side=tk.TOP, pady=(0,10))
+            tk.Label(exchange_frame, text="Exchange Cards:").pack()
+            # create 5 checkboxes for each card
+            self.check_vars = []
+            for i in range(5):
+                var = tk.IntVar()
+                self.check_vars.append(var)
+                tk.Checkbutton(exchange_frame, text=f"Card {i+1}", variable=var).pack(side=tk.LEFT)
+            tk.Button(exchange_frame, text="Exchange",
+                  command=lambda: self.send_game_action(lobby_pb2.EXCHANGE, indicies = self.check_vars)).pack(side=tk.LEFT, padx=5)
+        elif self.game_state.current_player == self.credentials:
             actions_frame = tk.Frame(self.game_frame)
             actions_frame.pack(side=tk.TOP, pady=(0,10))
             tk.Button(actions_frame, text="Fold",

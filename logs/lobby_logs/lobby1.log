@@ -1670,3 +1670,41 @@ grpc.RpcError
     raise rpc_error
 grpc.RpcError
 
+2025-05-03 18:40:18 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-03T18:40:18.769218-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
+>
+2025-05-03 18:40:18 - INFO - Checking for leader...
+2025-05-03 18:40:21 - INFO - Checking for leader...
+2025-05-03 18:40:21 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 18:40:27 - INFO - Leader found: 127.0.0.1:50000
+2025-05-03 18:40:27 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 18:43:19 - INFO - Checking for leader...
+2025-05-03 18:43:19 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 18:43:24 - INFO - Leader found: 127.0.0.1:50001
+2025-05-03 18:43:24 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 18:46:45 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-03T18:46:45.121649-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
+>
+2025-05-03 18:46:45 - INFO - Checking for leader...
+2025-05-03 18:47:05 - INFO - Checking for leader...
+2025-05-03 18:47:05 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 18:47:10 - INFO - Leader found: 127.0.0.1:50000
+2025-05-03 18:47:10 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 18:48:23 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-03T18:48:23.017818-04:00"}"
+>
+2025-05-03 18:48:23 - INFO - Checking for leader...
+2025-05-03 18:48:30 - INFO - Checking for leader...
+2025-05-03 18:48:30 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 18:48:35 - INFO - Leader found: 127.0.0.1:50000
+2025-05-03 18:48:35 - INFO - Info came from: 127.0.0.1:50000
+2025-05-03 18:51:02 - INFO - Checking for leader...
+2025-05-03 18:51:02 - INFO - [SETUP] Lobby server started on port 60000
+2025-05-03 18:51:07 - INFO - Leader found: 127.0.0.1:50001
+2025-05-03 18:51:07 - INFO - Info came from: 127.0.0.1:50000
