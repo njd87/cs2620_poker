@@ -12,6 +12,7 @@ enum LobbyAction {
   KICK_PLAYER = 6;
 }
 
+// Game type
 enum GameType {
   NONE = 0;
   TEXAS = 1;
@@ -26,40 +27,19 @@ message GameHistoryEntry {
   int32 money_won = 4;
 }
 
-// Define Commands for voting
+// Define Commands for voting (waiting room)
 message UserInformation {
   string username = 1;
   bool voted_yes = 2;
   int32 moolah = 3;
 }
 
+// actions during the game
 enum PlayerAction {
   CHECK_CALL = 0;
   RAISE = 1;
   FOLD = 2;
   EXCHANGE = 3;
-}
-
-
-message LobbyRequest {
-  // FOR CLIENT USE
-
-
-  // Define the action from enum
-  LobbyAction action = 1;
-
-  // username + passhash used for creating an deleting accounts
-  string username = 2;
-  string passhash = 3;
-
-  int32 money_to_add = 4;
-  int32 game_type = 5;
-
-  bool vote = 6; // for voting
-
-  PlayerAction player_action = 7; // for playing a move
-  int32 amount = 8; // for playing a move
-  repeated int32 card_exchange_idx = 9; // for playing a move
 }
 
 message HandCards {
@@ -91,6 +71,27 @@ message GameState {
   repeated bool folded = 13;
   int32 min_bet = 14;
   repeated bool can_exchange = 15;
+}
+
+message LobbyRequest {
+  // FOR CLIENT USE
+
+
+  // Define the action from enum
+  LobbyAction action = 1;
+
+  // username + passhash used for creating an deleting accounts
+  string username = 2;
+  string passhash = 3;
+
+  int32 money_to_add = 4;
+  int32 game_type = 5;
+
+  bool vote = 6; // for voting
+
+  PlayerAction player_action = 7; // for playing a move
+  int32 amount = 8; // for playing a move
+  repeated int32 card_exchange_idx = 9; // for playing a move
 }
 
 

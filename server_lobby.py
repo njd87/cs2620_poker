@@ -33,9 +33,9 @@ if len(sys.argv) != 2:
     logging.error("Usage: python server_lobby.py <lobby_index>")
     sys.exit(1)
 
-# if it is and the argument is NOT an integer between 0 and 4, exit
-if not (0 <= int(sys.argv[1]) <= 4):
-    logging.error("Invalid argument. Please enter an integer between 0 and 4")
+# if it is and the argument is NOT an integer between 0 and 1, exit
+if not (0 <= int(sys.argv[1]) <= 1):
+    logging.error("Invalid argument. Please enter an integer between 0 and 1")
     sys.exit(1)
 
 idx = int(sys.argv[1])
@@ -87,7 +87,7 @@ needs to keep consistent for Raft
 players = {}
 
 
-# params for lobby
+# params the game
 SUITS = ['\u2660', '\u2665', '\u2666', '\u2663']  # Spades, Hearts, Diamonds, Clubs
 RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 RANK_VALUE = {r: i + 2 for i, r in enumerate(RANKS)}
@@ -123,6 +123,9 @@ class Player:
     Player class for the lobby server.
 
     This class represents a player in the lobby server.
+
+    This just helps to keep track of the player information on the backend, so that no logic
+    has to take place in the client.
     """
 
     def __init__(self, username, user_queue):
@@ -140,6 +143,7 @@ class Player:
         self.current_bet = 0
 
     def send_message(self, message):
+        # send a message to client
         self.queue.put(message)
 
     def reset_for_round(self):
@@ -156,7 +160,7 @@ class Player:
         )
     
     def send_game_state(self, game_state):
-        print('Sending game state to player', self.username)
+        # update player on the game
         self.queue.put(
             lobby_pb2.LobbyResponse(
                 action=lobby_pb2.SHOW_GAME,
@@ -213,17 +217,17 @@ class TexasHoldem:
         Hand categories (0-8): high card, pair, two pair, three of a kind, straight,
         flush, full house, four of a kind, straight flush.
         """
-        # Parse ranks and suits
+        # parse cards
         ranks = [RANK_VALUE[c[0]] for c in cards]
         suits = [c[1] for c in cards]
         counts = Counter(ranks)
-        # Sort by frequency, then by rank
+        # sort cards
         counts_items = sorted(counts.items(), key=lambda x: (-x[1], -x[0]))
 
-        # Check for flush
+        # check for flush
         is_flush = len(set(suits)) == 1
 
-        # Check for straight (including wheel A-2-3-4-5)
+        # check straight for straight (including wheel A-2-3-4-5)
         unique_ranks = sorted(set(ranks))
         if len(unique_ranks) == 5 and unique_ranks[-1] - unique_ranks[0] == 4:
             is_straight = True
@@ -235,7 +239,7 @@ class TexasHoldem:
             is_straight = False
             straight_high = None
 
-        # Determine hand category and tiebreakers
+        # hand category
         if is_straight and is_flush:
             category = 8
             tiebreak = [straight_high]
@@ -275,11 +279,10 @@ class TexasHoldem:
             category = 0
             tiebreak = sorted(ranks, reverse=True)
 
-        # Pad tiebreakers to length 5
+        # tiebreakers to length 5
         tiebreak += [0] * (5 - len(tiebreak))
 
-        # Compute overall numeric rank
-        # Use base 14 for each kicker slot
+        # compute numeric rank
         value = category * (14 ** 5)
         for i, v in enumerate(tiebreak):
             value += v * (14 ** (4 - i))
@@ -299,14 +302,17 @@ class TexasHoldem:
         return best_val
 
     def load_players(self, players):
+        # load the players into the game
         for player in players.values():
             self.players.append(player)
             self.money.append(100)
         self.active_players = len(self.players)
 
     def reset_for_round(self):
+        # reset all params
         self.round += 1
         if self.round > 5 or any(player.money <= 0 for player in self.players):
+            # game is over
             self.end()
             return
 
@@ -317,7 +323,6 @@ class TexasHoldem:
         self.pot = 0
         self.phase = 0
         self.active_players = len(self.players)
-
 
         for player in self.players:
             player.reset_for_round()
@@ -377,7 +382,6 @@ class TexasHoldem:
                 card2=cards[1]
             )
         for player in self.players:
-            print('sending game state to player', player.username, 'from start_round')
             # give all players the current game state
             player.send_game_state(
                 self.get_game_state()
@@ -399,7 +403,6 @@ class TexasHoldem:
             self.river.append(self.deck.deal(1)[0])
             self.phase = 3
         elif self.phase == 3:
-            print('Evaluating winner...')
             # evaluate the winner
             active_players = [player for player in self.players if not player.folded]
             best_hand = 0
@@ -464,6 +467,7 @@ class TexasHoldem:
                 [player.current_bet for player in self.players]
         )
         self.player_pointer = (self.player_pointer + 1) % len(self.players)
+
         # while the player pointer points to a folded player, move to the next player
         while self.players[self.player_pointer].folded:
             self.player_pointer = (self.player_pointer + 1) % len(self.players)
@@ -487,6 +491,7 @@ class TexasHoldem:
         self.tell_all_players()
 
     def end(self):
+        # game has ended, update main and kick all players
         global game_started, outgoing_queue, game_type
         game_started = False
         # close connections to all players
@@ -509,11 +514,9 @@ class TexasHoldem:
                 )
             )
 
+        # clear players
         global players
         players = {}
-        '''
-        send game result to main server
-        '''
         
         self.reset_params()
 
@@ -566,17 +569,17 @@ class FiveCardDraw:
         Hand categories (0-8): high card, pair, two pair, three of a kind, straight,
         flush, full house, four of a kind, straight flush.
         """
-        # Parse ranks and suits
+        # parse ranks and suits
         ranks = [RANK_VALUE[c[0]] for c in cards]
         suits = [c[1] for c in cards]
         counts = Counter(ranks)
-        # Sort by frequency, then by rank
+        # sort
         counts_items = sorted(counts.items(), key=lambda x: (-x[1], -x[0]))
 
-        # Check for flush
+        # flush
         is_flush = len(set(suits)) == 1
 
-        # Check for straight (including wheel A-2-3-4-5)
+        # straight
         unique_ranks = sorted(set(ranks))
         if len(unique_ranks) == 5 and unique_ranks[-1] - unique_ranks[0] == 4:
             is_straight = True
@@ -588,7 +591,7 @@ class FiveCardDraw:
             is_straight = False
             straight_high = None
 
-        # Determine hand category and tiebreakers
+        # tiebreakers
         if is_straight and is_flush:
             category = 8
             tiebreak = [straight_high]
@@ -628,17 +631,17 @@ class FiveCardDraw:
             category = 0
             tiebreak = sorted(ranks, reverse=True)
 
-        # Pad tiebreakers to length 5
+        # tiebreakers to length 5
         tiebreak += [0] * (5 - len(tiebreak))
 
-        # Compute overall numeric rank
-        # Use base 14 for each kicker slot
+        # compute numeric rank
         value = category * (14 ** 5)
         for i, v in enumerate(tiebreak):
             value += v * (14 ** (4 - i))
         return value
     
     def evaluate_hand(self, cards):
+        # helper function, given that this class is based on the texas holdem class
         return self.evaluate_5cards(cards)
 
     def load_players(self, players):
@@ -886,7 +889,7 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
 
     def Lobby(self, request_iterator, context):
         """
-        Chat function for ChatServiceServicer, unique to each client.
+        Main loop for lobby server. Handles incoming requests from clients.
 
         Parameters:
         ----------

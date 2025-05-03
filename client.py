@@ -41,12 +41,14 @@ with open("config/config.json") as f:
 
 # get names of all servers
 all_servers = [
-    f"{config['servers']['hosts'][i]}:{config['servers']['ports'][i]}" for i in range(num_servers)
+    f"{config['servers']['hosts'][i]}:{config['servers']['ports'][i]}"
+    for i in range(num_servers)
 ]
 
 # get names of all lobbies
 all_lobbies = [
-    f"{config['lobbies']['lobby_hosts'][i]}:{config['lobbies']['lobby_ports'][i]}" for i in range(num_lobbies)
+    f"{config['lobbies']['lobby_hosts'][i]}:{config['lobbies']['lobby_ports'][i]}"
+    for i in range(num_lobbies)
 ]
 
 # A thread-safe queue for outgoing MainRequests.
@@ -59,6 +61,7 @@ def request_generator():
     while True:
         req = outgoing_queue.get()
         yield req
+
 
 def lobby_request_generator():
     """Yield LobbyRequests from the lobby_queue."""
@@ -105,6 +108,7 @@ class ClientUI:
         self.voted = False
         self.lobby_idx = 0
 
+        # connect to main leader
         self.check_for_leader()
 
         self.moolah = 0
@@ -165,10 +169,8 @@ class ClientUI:
                         self.destroy_settings()
                         self.setup_settings(failed=True)
                 elif action == main_pb2.GET_USER_INFO:
-                    print("GOT USER INFO")
+                    # if successful, update moolah and go to main
                     if resp.result:
-                        print("GOT RESULT")
-                        print("MOOLAH IS NOW: ", resp.moolah)
                         self.moolah = resp.moolah
                         self.rerender_main()
                 elif action == main_pb2.JOIN_LOBBY:
@@ -200,12 +202,12 @@ class ClientUI:
                     else:
                         pass
                 elif action == lobby_pb2.SHOW_LOBBY:
+                    # update when players join or vote
                     self.players = resp.user_info
                     self.destroy_lobby()
                     self.setup_lobby()
                 elif action == lobby_pb2.SEND_VOTE:
-                    print('got a send_vote response')
-                    # if successful, set up lobby
+                    # rerender lobby
                     if resp.result:
                         self.voted = True
                         self.destroy_lobby()
@@ -213,8 +215,7 @@ class ClientUI:
                     else:
                         pass
                 elif action == lobby_pb2.SHOW_GAME:
-                    print("asked to show game")
-                    # if successful, set up lobby
+                    # display the current game state
                     if resp.result:
                         self.game_state = resp.game_state
                         # get index of self
@@ -224,7 +225,7 @@ class ClientUI:
                         self.destroy_lobby()
                         self.setup_game()
                 elif action == lobby_pb2.KICK_PLAYER:
-                    # if successful, set up lobby
+                    # game ended, lobby is kicking all players
                     if resp.result:
                         self.voted = False
                         self.destroy_game()
@@ -232,13 +233,13 @@ class ClientUI:
         except grpc.RpcError as e:
             logging.error(f"Error receiving response: {e}")
             if not self.stop_main_event.is_set():
-                print("uhhhhhh problem?")
+                logging.error("Error receiving response, reconnecting to server...")
 
     def check_for_leader(self, retries=6):
-        '''
+        """
         Check for the leader of the servers.
         Retries 6 times by default.
-        '''
+        """
         if retries <= 0:
             logging.error("Could not find leader.")
             sys.exit(1)
@@ -303,7 +304,7 @@ class ClientUI:
         """
         self.credentials = None
 
-    def connect_to_lobby(self, lobby = 0):
+    def connect_to_lobby(self, lobby=0):
         """
         Connect to a lobby.
 
@@ -415,7 +416,7 @@ class ClientUI:
         )
 
         outgoing_queue.put(request)
-    
+
     def send_join_lobby_request(self):
         """
         Send a request to join the lobby.
@@ -426,7 +427,7 @@ class ClientUI:
         )
 
         outgoing_queue.put(request)
-    
+
     def send_lobby_vote_request(self, vote):
         """
         Send a request to vote for the game to start.
@@ -438,7 +439,7 @@ class ClientUI:
         )
 
         lobby_queue.put(request)
-    
+
     def send_game_action(self, action, amount=None, indicies=None):
         """
         Send a request to perform an action in the game.
@@ -454,34 +455,39 @@ class ClientUI:
         if amount is not None:
             amount = int(amount)
             request = lobby_pb2.LobbyRequest(
-                action='PLAY_MOVE',
+                action="PLAY_MOVE",
                 player_action=action,
                 amount=amount,
             )
         elif indicies is not None:
             # convert indicies to a list of ints
             indicies = [int(i.get()) for i in indicies]
-            print("EXCHANGE INDICIES: ", indicies)
             request = lobby_pb2.LobbyRequest(
-                action='PLAY_MOVE',
+                action="PLAY_MOVE",
                 player_action=action,
                 card_exchange_idx=indicies,
             )
         else:
             request = lobby_pb2.LobbyRequest(
-                action='PLAY_MOVE',
+                action="PLAY_MOVE",
                 player_action=action,
             )
 
         # if action is RAISE and the user cannot afford it, do not send the request
-        if (action == lobby_pb2.RAISE and amount + self.game_state.bets[self.index] > self.game_state.money[self.index])\
-        or (action == lobby_pb2.RAISE and amount <= 0)\
-        or (action == lobby_pb2.RAISE and amount is None):
+        if (
+            (
+                action == lobby_pb2.RAISE
+                and amount + self.game_state.bets[self.index]
+                > self.game_state.money[self.index]
+            )
+            or (action == lobby_pb2.RAISE and amount <= 0)
+            or (action == lobby_pb2.RAISE and amount is None)
+        ):
             logging.error("Cannot afford raise")
             return
-        
+
         lobby_queue.put(request)
-    
+
     def send_user_info_request(self):
         """
         Send a request to get the user info.
@@ -492,7 +498,7 @@ class ClientUI:
         )
 
         outgoing_queue.put(request)
-    
+
     def send_join_lobby_request(self, game_type=lobby_pb2.TEXAS):
         """
         Send a request to join the lobby.
@@ -571,7 +577,7 @@ class ClientUI:
             self.login_frame,
             text="Login",
             command=lambda: (
-                self.send_logreg_request( 
+                self.send_logreg_request(
                     main_pb2.LOGIN,
                     self.login_entry.get(),
                     self.login_password_entry.get(),
@@ -675,19 +681,7 @@ class ClientUI:
 
     def setup_main(self):
         """
-        Main is set up into 3 components.
-
-        On the left side is a list of all available users.
-        - This is a listbox that is populated with all users.]
-        - You can click on a user and click "Message" to start a chat with them.
-
-        In the middle is the chat window.
-        - This is a text widget that displays the chat history.
-        - It is read-only.
-
-        On the right side is the chat entry and settings.
-        - It has a text entry for typing messages and a button under that says "send".
-        - There is a button that says "Settings" at the bottom opens a new window.
+        Main displays settings (for delete account), current money, and lobbies to join
         """
         self.main_frame = tk.Frame(self.root)
         self.main_frame.pack()
@@ -710,17 +704,16 @@ class ClientUI:
         self.lobby1_button = tk.Button(
             self.main_frame,
             text="Connect to Texas Hold Em Lobby",
-            command = lambda: self.send_join_lobby_request(main_pb2.TEXAS),
+            command=lambda: self.send_join_lobby_request(main_pb2.TEXAS),
         )
         self.lobby1_button.pack(side=tk.BOTTOM)
         # add button for connecting to lobby 2
         self.lobby2_button = tk.Button(
             self.main_frame,
             text="Connect to 5 Card Draw Lobby",
-            command = lambda: self.send_join_lobby_request(main_pb2.FIVE_HAND),
+            command=lambda: self.send_join_lobby_request(main_pb2.FIVE_HAND),
         )
         self.lobby2_button.pack(side=tk.BOTTOM)
-
 
     def destroy_main(self):
         """
@@ -729,20 +722,17 @@ class ClientUI:
         self.main_frame.destroy()
 
     def setup_lobby(self):
-        print("SETTING UP LOBBY")
-        print("CREDENTIALS: ", self.credentials)
-        print("PLAYERS: ", self.players)
         """
-        Set up the lobby 1 screen.
+        Set up the lobby screen.
 
         Has:
-        - A label that says "Lobby 1"
+        - A label that says "Lobby"
         - A button that says "Back" to go back to the main screen.
         """
         self.game_frame = tk.Frame(self.root)
         self.game_frame.pack()
 
-        self.game_label = tk.Label(self.game_frame, text="Lobby 1")
+        self.game_label = tk.Label(self.game_frame, text="Lobby")
         self.game_label.pack()
 
         # create four player slots in a row
@@ -758,7 +748,7 @@ class ClientUI:
                 text = f"{self.credentials}\n{self.moolah}"
             elif i >= 1 and i <= len(self.players):
                 text = f"{self.players[i-1].username}\n{self.players[i-1].moolah}"
-                voted = "Ready" if self.players[i-1].voted_yes else "Not Ready"
+                voted = "Ready" if self.players[i - 1].voted_yes else "Not Ready"
             else:
                 text = "waiting for player..."
                 voted = ""
@@ -770,7 +760,11 @@ class ClientUI:
 
             # add vote button under the first label
             if i == 0 and not self.voted:
-                btn = tk.Button(slot_frame, text="Vote to Start", command=lambda: self.send_lobby_vote_request(True))
+                btn = tk.Button(
+                    slot_frame,
+                    text="Vote to Start",
+                    command=lambda: self.send_lobby_vote_request(True),
+                )
                 btn.pack(pady=(5, 0))
             elif i == 0 and self.voted:
                 # should now have label
@@ -791,7 +785,7 @@ class ClientUI:
 
     def destroy_lobby(self):
         """
-        Destroy the lobby 1 screen.
+        Destroy the lobby screen.
         """
         self.game_frame.destroy()
 
@@ -886,9 +880,7 @@ class ClientUI:
         self.lobby_found_frame = tk.Frame(self.root)
         self.lobby_found_frame.pack()
 
-        self.lobby_found_label = tk.Label(
-            self.lobby_found_frame, text="Lobby found."
-        )
+        self.lobby_found_label = tk.Label(self.lobby_found_frame, text="Lobby found.")
         self.lobby_found_label.pack()
 
         # join lobby button
@@ -901,15 +893,34 @@ class ClientUI:
         self.join_lobby_button.pack()
 
     def setup_game(self):
-        # create a fresh frame for the game
+        """
+        Shows the entire game screen.
+
+        Has:
+        - A label that says "Round: X/Y"
+        - A label that says "Community Cards:"
+        - A label that says "Pot: X"
+        - A label that says "Your Cards:"
+        - A label that says "Your Bet: X"
+        - A label that says "Your Moolah: X"
+        - A button that says "Fold"
+        - A button that says "Check/Call"
+        - A button that says "Raise"
+        - A number box to enter the raise amount
+        - A button that says "Exchange" if it's your turn and you can exchange cards (5 card only)
+        - A check box for each card to exchange
+        - A button that says "Exchange" to exchange the selected cards
+        """
         self.game_frame = tk.Frame(self.root)
         self.game_frame.pack(fill=tk.BOTH, expand=True, pady=10)
 
         # ── Top: show other players with their moolah and current bet ──
-        round_label = tk.Label(self.game_frame, text="Round: " + str(self.game_state.game_round) + "/5")
-        round_label.pack(side=tk.TOP, pady=(0,10))
+        round_label = tk.Label(
+            self.game_frame, text="Round: " + str(self.game_state.game_round) + "/5"
+        )
+        round_label.pack(side=tk.TOP, pady=(0, 10))
         opponents_frame = tk.Frame(self.game_frame)
-        opponents_frame.pack(side=tk.TOP, pady=(0,10))
+        opponents_frame.pack(side=tk.TOP, pady=(0, 10))
         for idx, uname in enumerate(self.game_state.players):
             if uname == self.credentials:
                 continue
@@ -918,24 +929,26 @@ class ClientUI:
             b = self.game_state.bets[idx]
             slot = tk.Frame(opponents_frame, bd=1, relief=tk.RIDGE, padx=5, pady=5)
             slot.pack(side=tk.LEFT, padx=10)
-            tk.Label(slot, text=f"{uname}\nMoolah: {m}\nBet: {b}", width=15, height=3).pack()
+            tk.Label(
+                slot, text=f"{uname}\nMoolah: {m}\nBet: {b}", width=15, height=3
+            ).pack()
 
         if self.game_state.game_type == lobby_pb2.TEXAS:
             # ── Middle: community cards (the “river”) ──
             river_frame = tk.Frame(self.game_frame)
-            river_frame.pack(side=tk.TOP, pady=(0,10))
+            river_frame.pack(side=tk.TOP, pady=(0, 10))
             tk.Label(river_frame, text="Community Cards:").pack()
             cards = " ".join(self.game_state.river_cards)
             tk.Label(river_frame, text=cards).pack()
 
         # ── Pot ──
         pot_frame = tk.Frame(self.game_frame)
-        pot_frame.pack(side=tk.TOP, pady=(0,10))
+        pot_frame.pack(side=tk.TOP, pady=(0, 10))
         tk.Label(pot_frame, text=f"Pot: {self.game_state.pot}").pack()
 
         # ── Your cards ──
         hand_frame = tk.Frame(self.game_frame)
-        hand_frame.pack(side=tk.TOP, pady=(0,10))
+        hand_frame.pack(side=tk.TOP, pady=(0, 10))
         tk.Label(hand_frame, text="Your Cards:").pack()
         # self.index was set to your player index in SHOW_GAME handling
         current_cards = self.game_state.hand_cards[self.index]
@@ -945,40 +958,71 @@ class ClientUI:
             curr_cards = [current_cards.card1, current_cards.card2]
         else:
             # show all cards, 5 card draw
-            curr_cards = [current_cards.card1, current_cards.card2, current_cards.card3, 
-                     current_cards.card4, current_cards.card5]
+            curr_cards = [
+                current_cards.card1,
+                current_cards.card2,
+                current_cards.card3,
+                current_cards.card4,
+                current_cards.card5,
+            ]
 
         cards = " ".join(curr_cards)
         tk.Label(hand_frame, text=cards).pack()
         # show the current bet
-        tk.Label(hand_frame, text=f"Your Bet: {self.game_state.bets[self.index]}").pack()
+        tk.Label(
+            hand_frame, text=f"Your Bet: {self.game_state.bets[self.index]}"
+        ).pack()
 
         # show money left
-        tk.Label(hand_frame, text=f"Money Left: {self.game_state.money[self.index]}").pack()
+        tk.Label(
+            hand_frame, text=f"Money Left: {self.game_state.money[self.index]}"
+        ).pack()
 
         # ── Bottom: action buttons, only if it's your turn ──
         # if it is your turn, the game_type is five hand, AND you can exchange, instead show 5 check boxes
-        if self.game_state.current_player == self.credentials and self.game_state.game_type == lobby_pb2.FIVE_HAND and self.game_state.can_exchange[self.index]:
+        if (
+            self.game_state.current_player == self.credentials
+            and self.game_state.game_type == lobby_pb2.FIVE_HAND
+            and self.game_state.can_exchange[self.index]
+        ):
             exchange_frame = tk.Frame(self.game_frame)
-            exchange_frame.pack(side=tk.TOP, pady=(0,10))
+            exchange_frame.pack(side=tk.TOP, pady=(0, 10))
             tk.Label(exchange_frame, text="Exchange Cards:").pack()
             # create 5 checkboxes for each card
             self.check_vars = []
             for i in range(5):
                 var = tk.IntVar()
                 self.check_vars.append(var)
-                tk.Checkbutton(exchange_frame, text=f"Card {i+1}", variable=var).pack(side=tk.LEFT)
-            tk.Button(exchange_frame, text="Exchange",
-                  command=lambda: self.send_game_action(lobby_pb2.EXCHANGE, indicies = self.check_vars)).pack(side=tk.LEFT, padx=5)
+                tk.Checkbutton(exchange_frame, text=f"Card {i+1}", variable=var).pack(
+                    side=tk.LEFT
+                )
+            tk.Button(
+                exchange_frame,
+                text="Exchange",
+                command=lambda: self.send_game_action(
+                    lobby_pb2.EXCHANGE, indicies=self.check_vars
+                ),
+            ).pack(side=tk.LEFT, padx=5)
         elif self.game_state.current_player == self.credentials:
             actions_frame = tk.Frame(self.game_frame)
-            actions_frame.pack(side=tk.TOP, pady=(0,10))
-            tk.Button(actions_frame, text="Fold",
-                  command=lambda: self.send_game_action(lobby_pb2.FOLD)).pack(side=tk.LEFT, padx=5)
-            tk.Button(actions_frame, text="Check/Call",
-                  command=lambda: self.send_game_action(lobby_pb2.CHECK_CALL)).pack(side=tk.LEFT, padx=5)
-            tk.Button(actions_frame, text="Raise",
-                  command=lambda: self.send_game_action(lobby_pb2.RAISE, self.raise_amount.get())).pack(side=tk.LEFT, padx=5)
+            actions_frame.pack(side=tk.TOP, pady=(0, 10))
+            tk.Button(
+                actions_frame,
+                text="Fold",
+                command=lambda: self.send_game_action(lobby_pb2.FOLD),
+            ).pack(side=tk.LEFT, padx=5)
+            tk.Button(
+                actions_frame,
+                text="Check/Call",
+                command=lambda: self.send_game_action(lobby_pb2.CHECK_CALL),
+            ).pack(side=tk.LEFT, padx=5)
+            tk.Button(
+                actions_frame,
+                text="Raise",
+                command=lambda: self.send_game_action(
+                    lobby_pb2.RAISE, self.raise_amount.get()
+                ),
+            ).pack(side=tk.LEFT, padx=5)
             # add number box to raise
             self.raise_amount = tk.Entry(actions_frame)
             self.raise_amount.pack(side=tk.LEFT, padx=5)
@@ -1001,9 +1045,7 @@ class ClientUI:
         self.game_over_frame = tk.Frame(self.root)
         self.game_over_frame.pack()
 
-        self.game_over_label = tk.Label(
-            self.game_over_frame, text="Game Over"
-        )
+        self.game_over_label = tk.Label(self.game_over_frame, text="Game Over")
         self.game_over_label.pack()
 
         self.back_button_game_over = tk.Button(
@@ -1018,7 +1060,7 @@ class ClientUI:
         Destroy the game over screen.
         """
         self.game_over_frame.destroy()
-    
+
     def destroy_lobby_found(self):
         """
         Destroy lobby found frame
@@ -1034,9 +1076,6 @@ class ClientUI:
             self.main_frame, text=f"Your Moolah: {self.moolah}"
         )
         self.moolah_label.pack(side=tk.BOTTOM)
-
-
-
 
 
 """

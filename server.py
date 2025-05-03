@@ -21,9 +21,9 @@ import json
 import traceback
 from replica_helpers import replicate_action
 
-'''
+"""
 Making sure the server is started with the correct arguments.
-'''
+"""
 num_servers = 5
 num_lobbies = 2
 
@@ -98,6 +98,7 @@ num_servers = len(all_servers) + 1
 timer = random.randint(1, 5)
 commit = 0
 
+
 class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
     """
     MainServiceServicer class for MainServiceServicer
@@ -131,7 +132,7 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
             nonlocal username, connected_to_lobby
             try:
                 for req in request_iterator:
-                    # print size of req in bytes
+                    # log size of req in bytes
                     logging.info(f"[MAIN] Size of request: {sys.getsizeof(req)} bytes")
                     # create a copy of req with different memory
                     log_copy = raft_pb2.LogEntry(
@@ -140,11 +141,11 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         passhash=req.passhash,
                         money_to_add=req.money_to_add,
                         game_history=raft_pb2.GameHistoryEntry(
-                            game_type = req.game_history.game_type,
-                            money_won = req.game_history.money_won,
-                            player = req.game_history.player,
+                            game_type=req.game_history.game_type,
+                            money_won=req.game_history.money_won,
+                            player=req.game_history.player,
                         ),
-                        term=current_term
+                        term=current_term,
                     )
                     log.append(log_copy)
 
@@ -240,9 +241,7 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                             )
                             sqlcon.commit()
                             response = main_pb2.MainResponse(
-                                action=main_pb2.REGISTER,
-                                result=True,
-                                moolah = 500
+                                action=main_pb2.REGISTER, result=True, moolah=500
                             )
 
                             client_queue.put(response)
@@ -309,21 +308,20 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
                     elif req.action == main_pb2.CONNECT_LOBBY:
+                        # connect lobby to the main server
                         logging.info(f"[MAIN] Lobby {req.username} connected.")
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
                             connected_to_lobby = True
                     elif req.action == main_pb2.SAVE_GAME:
+                        # save game to data base
                         player_name = req.game_history.player
                         game_type = req.game_history.game_type
                         money_won = req.game_history.money_won
 
-                        game_type = "TEXAS HOLD EM" if game_type == main_pb2.TEXAS else "5 CARD"
-
-                        print("Saving game...")
-                        print(f"Player: {player_name}")
-                        print(f"Game Type: {game_type}")
-                        print(f"Money Won: {money_won}")
+                        game_type = (
+                            "TEXAS HOLD EM" if game_type == main_pb2.TEXAS else "5 CARD"
+                        )
 
                         # save game to database
                         sqlcon = sqlite3.connect(db_path)
@@ -333,21 +331,15 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         )
                         player_id = sqlcur.fetchone()[0]
 
-                        print(f"Player ID: {player_id}")
-
                         # add game to game history
                         sqlcur.execute(
                             "INSERT INTO game_history (player_id, game_type, money_won) VALUES (?, ?, ?)",
                             (player_id, game_type, money_won),
                         )
 
-                        print(f"Game saved to database.")
-
                         curr_money = sqlcur.execute(
                             "SELECT moolah FROM users WHERE username=?", (player_name,)
                         ).fetchone()[0]
-
-                        print("old moolah: ", curr_money)
 
                         # update moolah in users table
                         sqlcur.execute(
@@ -363,8 +355,8 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         sqlcon.commit()
                         sqlcon.close()
 
-                        print("new moolah: ", moolah)
                     elif req.action == main_pb2.GET_USER_INFO:
+                        # update user on how much money they have
                         username = req.username
                         sqlcon = sqlite3.connect(db_path)
                         sqlcur = sqlcon.cursor()
@@ -394,11 +386,11 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                             )
 
                     elif req.action == main_pb2.JOIN_LOBBY:
+                        # allow user to find available lobbies
                         game_type = req.game_type
                         # check if lobby is open
                         sent_lobby = False
                         for idx, lobby in enumerate(all_lobbies):
-                            print("Trying lobby at address: ", lobby)
                             try:
                                 channel = grpc.insecure_channel(lobby)
                                 stub = lobby_pb2_grpc.LobbyServiceStub(channel)
@@ -408,8 +400,11 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                                     )
                                 )
 
-                                print(f"Got response from lobby, which has active status: {response.active} and game type: {response.game_type}, number of players: {response.num_players}")
-                                if (not response.active) and (response.game_type == game_type) and (response.num_players < 4):
+                                if (
+                                    (not response.active)
+                                    and (response.game_type == game_type)
+                                    and (response.num_players < 4)
+                                ):
                                     # tell user it can join lobby
                                     client_queue.put(
                                         main_pb2.MainResponse(
@@ -421,7 +416,6 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                                     sent_lobby = True
                                     break
                             except Exception as e:
-                                print("error connecting to lobby: ", e)
                                 logging.error(f"[MAIN] Error joining lobby: {e}")
                         if not sent_lobby:
                             client_queue.put(
@@ -433,14 +427,13 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
 
                     else:
                         logging.error(f"[MAIN] Invalid action: {req.action}")
-                    
+
             except Exception as e:
                 tb = traceback.extract_tb(e.__traceback__)
                 line_number = tb[-1].lineno if tb else "unknown"
                 logging.error(
                     f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}"
                 )
-                print(f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}")
             finally:
                 if username in clients:
                     del clients[username]
@@ -532,7 +525,7 @@ class RaftServiceServicer(raft_pb2_grpc.RaftServiceServicer):
         if len(log) - 1 == request.most_recent_log_idx:
             response = raft_pb2.AppendEntriesResponse(term=current_term, success=True)
             return response
-        
+
         # log all new entries and replicate action
         new_entries = request.entries[request.leader_commit + 1 :]
         for entry in new_entries:
@@ -544,17 +537,18 @@ class RaftServiceServicer(raft_pb2_grpc.RaftServiceServicer):
         return response
 
     def GetLeader(self, request, context):
-        '''
+        """
         Returns the leader address.
 
         Used by clients to determine the leader.
-        '''
+        """
         global leader_address
         return raft_pb2.GetLeaderResponse(leader_address=leader_address)
 
+
 # act defines how each server should act
 def act():
-    '''
+    """
     This is where all the action of RAFT takes place.
 
     This function is called in a loop by the server to check the state of the server and
@@ -570,7 +564,7 @@ def act():
     If leader:
     - Send heartbeats to all other servers.
     - If majority of servers do not respond, step down as leader.
-    '''
+    """
     global raft_state, current_term, voted_for, log, leader_address, timer, rec_votes, commit
     current_time = time.time()
 

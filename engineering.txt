@@ -48,3 +48,5 @@ Now, we work on "lobby.py" which has all the game logic. We need to make sure th
   - We will worry about game logic later.
 
 This will requier a new "poker.proto" file. It's going to have a lot, which is unfortunate, but we will start out small.
+
+ENGINEERING NOTEBOOK NOW MOVED TO OVERLEAF

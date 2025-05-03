@@ -67,11 +67,6 @@ def replicate_action(req, db_path):
 
         game_type = "TEXAS HOLD EM" if game_type == raft_pb2.TEXAS else "5 CARD"
 
-        print("Saving game...")
-        print(f"Player: {player_name}")
-        print(f"Game Type: {game_type}")
-        print(f"Money Won: {money_won}")
-
         # save game to database
         sqlcon = sqlite3.connect(db_path)
         sqlcur = sqlcon.cursor()
@@ -80,21 +75,15 @@ def replicate_action(req, db_path):
         )
         player_id = sqlcur.fetchone()[0]
 
-        print(f"Player ID: {player_id}")
-
         # add game to game history
         sqlcur.execute(
             "INSERT INTO game_history (player_id, game_type, money_won) VALUES (?, ?, ?)",
             (player_id, game_type, money_won),
         )
 
-        print(f"Game saved to database.")
-
         curr_money = sqlcur.execute(
             "SELECT moolah FROM users WHERE username=?", (player_name,)
         ).fetchone()[0]
-
-        print("old moolah: ", curr_money)
 
         # update moolah in users table
         sqlcur.execute(
@@ -109,5 +98,3 @@ def replicate_action(req, db_path):
 
         sqlcon.commit()
         sqlcon.close()
-
-        print("new moolah: ", moolah)
