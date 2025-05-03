@@ -99,6 +99,8 @@ class ClientUI:
         self.leader_address = None
         self.stop_main_event = threading.Event()
         self.stop_lobby_event = threading.Event()
+        self.players = []
+        self.voted = False
 
         self.check_for_leader()
 
@@ -179,9 +181,27 @@ class ClientUI:
                     # if successful, set up lobby
                     if resp.result:
                         self.destroy_main()
-                        self.setup_game()
+                        self.setup_lobby()
                     else:
                         pass
+                elif action == lobby_pb2.SHOW_LOBBY:
+                    self.players = resp.user_info
+                    self.destroy_lobby()
+                    self.setup_lobby()
+                elif action == lobby_pb2.SEND_VOTE:
+                    print('got a send_vote response')
+                    # if successful, set up lobby
+                    if resp.result:
+                        self.voted = True
+                        self.destroy_lobby()
+                        self.setup_lobby()
+                    else:
+                        pass
+                elif action == lobby_pb2.SHOW_GAME:
+                    # if successful, set up lobby
+                    if resp.result:
+                        self.destroy_lobby()
+                        self.setup_game()
         except grpc.RpcError as e:
             logging.error(f"Error receiving response: {e}")
             if not self.stop_main_event.is_set():
@@ -303,7 +323,7 @@ class ClientUI:
         self.stop_lobby_event.clear()
 
         self.check_for_leader()
-        self.destroy_game()
+        self.destroy_lobby()
         self.setup_main()
 
     """
@@ -378,6 +398,18 @@ class ClientUI:
         )
 
         outgoing_queue.put(request)
+    
+    def send_lobby_vote_request(self, vote):
+        """
+        Send a request to vote for the game to start.
+        """
+        request = lobby_pb2.LobbyRequest(
+            action=lobby_pb2.SEND_VOTE,
+            username=self.credentials,
+            vote=vote,
+        )
+
+        lobby_queue.put(request)
 
     """
     Functions starting with "setup_" are used to set up the state of the tkinter window.
@@ -595,7 +627,10 @@ class ClientUI:
         """
         self.main_frame.destroy()
 
-    def setup_game(self):
+    def setup_lobby(self):
+        print("SETTING UP LOBBY")
+        print("CREDENTIALS: ", self.credentials)
+        print("PLAYERS: ", self.players)
         """
         Set up the lobby 1 screen.
 
@@ -609,6 +644,43 @@ class ClientUI:
         self.game_label = tk.Label(self.game_frame, text="Lobby 1")
         self.game_label.pack()
 
+        # create four player slots in a row
+        self.player_frames = []
+        self.player_labels = []
+
+        for i in range(4):
+            slot_frame = tk.Frame(self.game_frame)
+            slot_frame.pack(side=tk.LEFT, padx=10)
+
+            # decide what text to show
+            if i == 0:
+                text = f"{self.credentials}\n{self.moolah}"
+            elif i >= 1 and i <= len(self.players):
+                text = f"{self.players[i-1].username}\n{self.players[i-1].moolah}"
+                voted = "Ready" if self.players[i-1].voted_yes else "Not Ready"
+            else:
+                text = "waiting for player..."
+                voted = ""
+
+            lbl = tk.Label(slot_frame, text=text, width=15, height=2, relief=tk.RIDGE)
+            lbl.pack()
+            self.player_frames.append(slot_frame)
+            self.player_labels.append(lbl)
+
+            # add vote button under the first label
+            if i == 0 and not self.voted:
+                btn = tk.Button(slot_frame, text="Vote to Start", command=lambda: self.send_lobby_vote_request(True))
+                btn.pack(pady=(5, 0))
+            elif i == 0 and self.voted:
+                # should now have label
+                lbl = tk.Label(slot_frame, text="Voted to Start")
+                lbl.pack(pady=(5, 0))
+
+            # add text below lables of other players
+            if i > 0:
+                voted_label = tk.Label(slot_frame, text=voted)
+                voted_label.pack(pady=(5, 0))
+
         self.back_button_game = tk.Button(
             self.game_frame,
             text="Back",
@@ -616,7 +688,7 @@ class ClientUI:
         )
         self.back_button_game.pack()
 
-    def destroy_game(self):
+    def destroy_lobby(self):
         """
         Destroy the lobby 1 screen.
         """
@@ -705,6 +777,19 @@ class ClientUI:
         Destroy the deleted screen.
         """
         self.deleted_frame.destroy()
+
+    def setup_game(self):
+        # just have a label that says "Game started" for now
+        self.game_frame = tk.Frame(self.root)
+        self.game_frame.pack()
+        self.game_label = tk.Label(self.game_frame, text="Game started")
+        self.game_label.pack()
+        self.back_button_game = tk.Button(
+            self.game_frame,
+            text="Back",
+            command=lambda: self.reconnect_to_server(),
+        )
+        self.back_button_game.pack()
 
 
 """

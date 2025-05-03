@@ -203,3 +203,475 @@
 2025-05-02 14:28:12 - INFO - Checking for leader...
 2025-05-02 14:28:17 - INFO - Leader found: 127.0.0.1:50001
 2025-05-02 14:28:17 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 16:37:02 - INFO - Checking for leader...
+2025-05-02 16:37:07 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 16:37:07 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 16:37:14 - INFO - Size of response: 80
+2025-05-02 16:37:17 - INFO - Size of response: 80
+2025-05-02 16:37:19 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 16:37:19 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-02T16:37:19.194266-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"}"
+>
+2025-05-02 16:37:21 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-02T16:37:21.581067-04:00"}"
+>
+2025-05-02 16:37:22 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-02T16:37:22.589779-04:00"}"
+>
+2025-05-02 16:37:23 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-02T16:37:23.595255-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"}"
+>
+2025-05-02 16:37:24 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-02T16:37:24.950699-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:60000: Failed to connect to remote host: connect: Connection refused (61)"}"
+>
+2025-05-02 16:38:11 - INFO - Checking for leader...
+2025-05-02 16:38:16 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 16:38:16 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 16:38:20 - INFO - Size of response: 80
+2025-05-02 16:38:23 - INFO - Size of response: 80
+2025-05-02 16:38:24 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 16:38:25 - INFO - Size of response: 80
+2025-05-02 16:38:33 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 16:38:33 - INFO - Checking for leader...
+2025-05-02 16:38:38 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 16:38:38 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:06:53 - INFO - Checking for leader...
+2025-05-02 17:06:58 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:06:58 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:07:05 - INFO - Size of response: 80
+2025-05-02 17:07:08 - INFO - Size of response: 80
+2025-05-02 17:07:09 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:07:10 - INFO - Size of response: 80
+2025-05-02 17:07:17 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:07:17 - INFO - Checking for leader...
+2025-05-02 17:07:22 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:07:22 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:10:15 - INFO - Checking for leader...
+2025-05-02 17:10:20 - INFO - Leader found: 127.0.0.1:50001
+2025-05-02 17:10:20 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:10:26 - INFO - Size of response: 80
+2025-05-02 17:10:29 - INFO - Size of response: 80
+2025-05-02 17:10:29 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:10:30 - INFO - Size of response: 80
+2025-05-02 17:10:44 - INFO - Checking for leader...
+2025-05-02 17:10:49 - INFO - Leader found: 127.0.0.1:50001
+2025-05-02 17:10:49 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:10:56 - INFO - Size of response: 80
+2025-05-02 17:10:59 - INFO - Size of response: 80
+2025-05-02 17:10:59 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:11:00 - INFO - Size of response: 80
+2025-05-02 17:15:40 - INFO - Checking for leader...
+2025-05-02 17:15:42 - INFO - Checking for leader...
+2025-05-02 17:15:45 - INFO - Leader found: 127.0.0.1:50001
+2025-05-02 17:15:45 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:15:47 - INFO - Leader found: 127.0.0.1:50001
+2025-05-02 17:15:47 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:16:00 - INFO - Size of response: 80
+2025-05-02 17:16:02 - INFO - Size of response: 80
+2025-05-02 17:16:04 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:16:05 - INFO - Size of response: 80
+2025-05-02 17:16:07 - INFO - Size of response: 80
+2025-05-02 17:16:10 - INFO - Size of response: 80
+2025-05-02 17:16:13 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:16:14 - INFO - Size of response: 80
+2025-05-02 17:17:16 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B::1%5D:60000 {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-02T17:17:16.900727-04:00"}"
+>
+2025-05-02 17:17:16 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B::1%5D:60000 {created_time:"2025-05-02T17:17:16.900732-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
+>
+2025-05-02 17:17:25 - INFO - Checking for leader...
+2025-05-02 17:17:26 - INFO - Checking for leader...
+2025-05-02 17:17:30 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:17:30 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:17:31 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:17:31 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:17:40 - INFO - Size of response: 80
+2025-05-02 17:17:45 - INFO - Size of response: 80
+2025-05-02 17:17:46 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:17:47 - INFO - Size of response: 80
+2025-05-02 17:17:47 - INFO - Size of response: 80
+2025-05-02 17:17:48 - INFO - Size of response: 80
+2025-05-02 17:17:52 - INFO - Size of response: 80
+2025-05-02 17:17:53 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:17:54 - INFO - Size of response: 80
+2025-05-02 17:17:54 - INFO - Size of response: 80
+2025-05-02 17:17:54 - INFO - Size of response: 80
+2025-05-02 17:18:54 - INFO - Checking for leader...
+2025-05-02 17:18:55 - INFO - Checking for leader...
+2025-05-02 17:18:59 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:18:59 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:19:00 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:19:00 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:19:12 - INFO - Size of response: 80
+2025-05-02 17:19:14 - INFO - Size of response: 80
+2025-05-02 17:19:15 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:19:16 - INFO - Size of response: 80
+2025-05-02 17:19:16 - INFO - Size of response: 80
+2025-05-02 17:19:19 - INFO - Size of response: 80
+2025-05-02 17:19:21 - INFO - Size of response: 80
+2025-05-02 17:19:22 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:19:23 - INFO - Size of response: 80
+2025-05-02 17:19:23 - INFO - Size of response: 80
+2025-05-02 17:19:23 - INFO - Size of response: 80
+2025-05-02 17:20:29 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer ipv6:%5B::1%5D:60000 {created_time:"2025-05-02T17:20:29.020398-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
+>
+2025-05-02 17:20:39 - INFO - Checking for leader...
+2025-05-02 17:20:40 - INFO - Checking for leader...
+2025-05-02 17:20:44 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:20:44 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:20:45 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:20:45 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:20:57 - INFO - Size of response: 80
+2025-05-02 17:21:00 - INFO - Size of response: 80
+2025-05-02 17:21:01 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:21:02 - INFO - Size of response: 80
+2025-05-02 17:21:02 - INFO - Size of response: 80
+2025-05-02 17:21:04 - INFO - Size of response: 80
+2025-05-02 17:21:11 - INFO - Size of response: 80
+2025-05-02 17:21:11 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:21:12 - INFO - Size of response: 80
+2025-05-02 17:21:12 - INFO - Size of response: 80
+2025-05-02 17:21:12 - INFO - Size of response: 80
+2025-05-02 17:23:41 - INFO - Checking for leader...
+2025-05-02 17:23:43 - INFO - Checking for leader...
+2025-05-02 17:23:46 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:23:46 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:23:48 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:23:48 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:23:52 - INFO - Size of response: 80
+2025-05-02 17:23:55 - INFO - Size of response: 80
+2025-05-02 17:23:57 - INFO - Size of response: 80
+2025-05-02 17:24:00 - INFO - Size of response: 80
+2025-05-02 17:24:01 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:24:02 - INFO - Size of response: 80
+2025-05-02 17:24:02 - INFO - Size of response: 80
+2025-05-02 17:24:04 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:24:05 - INFO - Size of response: 80
+2025-05-02 17:24:05 - INFO - Size of response: 80
+2025-05-02 17:24:05 - INFO - Size of response: 80
+2025-05-02 17:24:29 - INFO - Checking for leader...
+2025-05-02 17:24:30 - INFO - Checking for leader...
+2025-05-02 17:24:34 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:24:34 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:24:35 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:24:35 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:24:40 - INFO - Size of response: 80
+2025-05-02 17:24:43 - INFO - Size of response: 80
+2025-05-02 17:24:44 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:24:45 - INFO - Size of response: 80
+2025-05-02 17:24:45 - INFO - Size of response: 80
+2025-05-02 17:24:47 - INFO - Size of response: 80
+2025-05-02 17:24:50 - INFO - Size of response: 80
+2025-05-02 17:24:51 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:24:52 - INFO - Size of response: 80
+2025-05-02 17:24:52 - INFO - Size of response: 80
+2025-05-02 17:24:52 - INFO - Size of response: 80
+2025-05-02 17:26:04 - INFO - Checking for leader...
+2025-05-02 17:26:05 - INFO - Checking for leader...
+2025-05-02 17:26:09 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:26:09 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:26:10 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:26:10 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:26:14 - INFO - Size of response: 80
+2025-05-02 17:26:17 - INFO - Size of response: 80
+2025-05-02 17:26:17 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:26:18 - INFO - Size of response: 80
+2025-05-02 17:26:18 - INFO - Size of response: 80
+2025-05-02 17:26:20 - INFO - Size of response: 80
+2025-05-02 17:26:23 - INFO - Size of response: 80
+2025-05-02 17:26:24 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:26:25 - INFO - Size of response: 80
+2025-05-02 17:26:25 - INFO - Size of response: 80
+2025-05-02 17:26:25 - INFO - Size of response: 80
+2025-05-02 17:33:30 - INFO - Checking for leader...
+2025-05-02 17:33:35 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:33:35 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:33:56 - INFO - Checking for leader...
+2025-05-02 17:34:00 - INFO - Size of response: 80
+2025-05-02 17:34:01 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:34:01 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:34:03 - INFO - Size of response: 80
+2025-05-02 17:34:04 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:34:05 - INFO - Size of response: 80
+2025-05-02 17:34:05 - INFO - Size of response: 80
+2025-05-02 17:34:08 - INFO - Size of response: 80
+2025-05-02 17:34:11 - INFO - Size of response: 80
+2025-05-02 17:34:12 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:34:13 - INFO - Size of response: 80
+2025-05-02 17:34:13 - INFO - Size of response: 80
+2025-05-02 17:34:13 - INFO - Size of response: 80
+2025-05-02 17:34:48 - INFO - Size of response: 80
+2025-05-02 17:34:50 - INFO - Checking for leader...
+2025-05-02 17:34:51 - INFO - Checking for leader...
+2025-05-02 17:34:55 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:34:55 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:34:56 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:34:56 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:35:03 - INFO - Size of response: 80
+2025-05-02 17:35:06 - INFO - Size of response: 80
+2025-05-02 17:35:06 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:35:07 - INFO - Size of response: 80
+2025-05-02 17:35:07 - INFO - Size of response: 80
+2025-05-02 17:35:09 - INFO - Size of response: 80
+2025-05-02 17:35:12 - INFO - Size of response: 80
+2025-05-02 17:35:13 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:35:14 - INFO - Size of response: 80
+2025-05-02 17:35:14 - INFO - Size of response: 80
+2025-05-02 17:35:14 - INFO - Size of response: 80
+2025-05-02 17:35:16 - INFO - Size of response: 80
+2025-05-02 17:35:54 - INFO - Checking for leader...
+2025-05-02 17:35:55 - INFO - Checking for leader...
+2025-05-02 17:35:59 - INFO - Leader found: 127.0.0.1:50001
+2025-05-02 17:35:59 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:36:00 - INFO - Leader found: 127.0.0.1:50001
+2025-05-02 17:36:00 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:36:04 - INFO - Size of response: 80
+2025-05-02 17:36:08 - INFO - Size of response: 80
+2025-05-02 17:36:08 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:36:09 - INFO - Size of response: 80
+2025-05-02 17:36:09 - INFO - Size of response: 80
+2025-05-02 17:36:12 - INFO - Size of response: 80
+2025-05-02 17:36:15 - INFO - Size of response: 80
+2025-05-02 17:36:16 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:36:17 - INFO - Size of response: 80
+2025-05-02 17:36:17 - INFO - Size of response: 80
+2025-05-02 17:36:17 - INFO - Size of response: 80
+2025-05-02 17:36:18 - INFO - Size of response: 80
+2025-05-02 17:36:18 - INFO - Size of response: 80
+2025-05-02 17:36:20 - INFO - Size of response: 80
+2025-05-02 17:36:20 - INFO - Size of response: 80
+2025-05-02 17:36:21 - INFO - Size of response: 80
+2025-05-02 17:36:21 - INFO - Size of response: 80
+2025-05-02 17:36:23 - INFO - Size of response: 80
+2025-05-02 17:36:23 - INFO - Size of response: 80
+2025-05-02 17:36:24 - INFO - Size of response: 80
+2025-05-02 17:36:24 - INFO - Size of response: 80
+2025-05-02 17:36:25 - INFO - Size of response: 80
+2025-05-02 17:37:02 - INFO - Checking for leader...
+2025-05-02 17:37:03 - INFO - Checking for leader...
+2025-05-02 17:37:07 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:37:07 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:37:08 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:37:08 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:37:12 - INFO - Size of response: 80
+2025-05-02 17:37:15 - INFO - Size of response: 80
+2025-05-02 17:37:15 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:37:16 - INFO - Size of response: 80
+2025-05-02 17:37:16 - INFO - Size of response: 80
+2025-05-02 17:37:19 - INFO - Size of response: 80
+2025-05-02 17:37:22 - INFO - Size of response: 80
+2025-05-02 17:37:23 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:37:24 - INFO - Size of response: 80
+2025-05-02 17:37:24 - INFO - Size of response: 80
+2025-05-02 17:37:24 - INFO - Size of response: 80
+2025-05-02 17:37:25 - INFO - Size of response: 80
+2025-05-02 17:37:25 - INFO - Size of response: 80
+2025-05-02 17:37:27 - INFO - Size of response: 80
+2025-05-02 17:37:27 - INFO - Size of response: 80
+2025-05-02 17:37:29 - INFO - Size of response: 80
+2025-05-02 17:38:02 - INFO - Checking for leader...
+2025-05-02 17:38:07 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:38:07 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:38:12 - INFO - Size of response: 80
+2025-05-02 17:38:17 - INFO - Size of response: 80
+2025-05-02 17:38:20 - INFO - Size of response: 80
+2025-05-02 17:38:20 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:38:22 - INFO - Size of response: 80
+2025-05-02 17:38:22 - INFO - Size of response: 80
+2025-05-02 17:38:27 - INFO - Size of response: 80
+2025-05-02 17:38:28 - INFO - Size of response: 80
+2025-05-02 17:38:28 - INFO - Size of response: 80
+2025-05-02 17:39:44 - INFO - Checking for leader...
+2025-05-02 17:39:49 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 17:39:49 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 17:39:55 - INFO - Size of response: 80
+2025-05-02 17:39:58 - INFO - Size of response: 80
+2025-05-02 17:39:59 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 17:40:00 - INFO - Size of response: 80
+2025-05-02 17:40:00 - INFO - Size of response: 80
+2025-05-02 17:40:01 - INFO - Size of response: 80
+2025-05-02 17:40:01 - INFO - Size of response: 80
+2025-05-02 20:45:45 - INFO - Checking for leader...
+2025-05-02 20:45:48 - INFO - Checking for leader...
+2025-05-02 20:45:50 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 20:45:50 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 20:45:53 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 20:45:53 - INFO - Info came from: 127.0.0.1:50000
+2025-05-02 20:46:01 - INFO - Size of response: 80
+2025-05-02 20:46:04 - INFO - Size of response: 80
+2025-05-02 20:46:06 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 20:46:07 - INFO - Size of response: 80
+2025-05-02 20:46:07 - INFO - Size of response: 80
+2025-05-02 20:46:09 - INFO - Size of response: 80
+2025-05-02 20:46:12 - INFO - Size of response: 80
+2025-05-02 20:46:12 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 20:46:13 - INFO - Size of response: 80
+2025-05-02 20:46:13 - INFO - Size of response: 80
+2025-05-02 20:46:13 - INFO - Size of response: 80
+2025-05-02 20:46:14 - INFO - Size of response: 80
+2025-05-02 20:46:14 - INFO - Size of response: 80
+2025-05-02 20:46:14 - INFO - Size of response: 80
+2025-05-02 20:46:15 - INFO - Size of response: 80
+2025-05-02 20:46:15 - INFO - Size of response: 80
+2025-05-02 20:46:15 - INFO - Size of response: 80
+2025-05-02 20:46:15 - INFO - Size of response: 80
+2025-05-02 20:46:15 - INFO - Size of response: 80
+2025-05-02 20:46:17 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.CANCELLED
+	details = "Locally cancelled by application!"
+	debug_error_string = "None"
+>
+2025-05-02 20:46:17 - INFO - Checking for leader...
+2025-05-02 20:46:17 - INFO - Size of response: 80
+2025-05-02 20:46:22 - INFO - Leader found: 127.0.0.1:50000
+2025-05-02 20:46:22 - INFO - Info came from: 127.0.0.1:50000

@@ -15,6 +15,8 @@ import main_pb2_grpc
 import main_pb2
 import raft_pb2_grpc
 import raft_pb2
+import lobby_pb2_grpc
+import lobby_pb2
 import json
 import traceback
 from replica_helpers import replicate_action
@@ -89,7 +91,6 @@ num_servers = len(all_servers) + 1
 # timer for election timeout
 timer = random.randint(1, 5)
 commit = 0
-
 
 class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
     """
@@ -418,7 +419,6 @@ class RaftServiceServicer(raft_pb2_grpc.RaftServiceServicer):
         '''
         global leader_address
         return raft_pb2.GetLeaderResponse(leader_address=leader_address)
-
 
 # act defines how each server should act
 def act():

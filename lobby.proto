@@ -5,6 +5,9 @@ package lobby;
 enum LobbyAction {
   UNKNOWN = 0;
   JOIN_LOBBY = 1;
+  SHOW_LOBBY = 2;
+  SEND_VOTE = 3;
+  SHOW_GAME = 4;
 }
 
 enum GameType {
@@ -21,6 +24,13 @@ message GameHistoryEntry {
   int32 money_won = 4;
 }
 
+// Define Commands for voting
+message UserInformation {
+  string username = 1;
+  bool voted_yes = 2;
+  int32 moolah = 3;
+}
+
 
 message LobbyRequest {
   // FOR CLIENT USE
@@ -35,6 +45,34 @@ message LobbyRequest {
 
   int32 money_to_add = 4;
   int32 game_type = 5;
+
+  bool vote = 6; // for voting
+}
+
+message HandCards {
+  string card1 = 1;
+  string card2 = 2;
+  string card3 = 3;
+  string card4 = 4;
+  string card5 = 5;
+}
+
+message GameState {
+  repeated string players = 1;
+  repeated int32 money = 2;
+  repeated int32 bets = 3;
+
+  repeated string river_cards = 4;
+
+  string current_player = 5;
+
+  repeated string hand_cards = 6;
+
+  int32 pot = 7;
+
+  int32 big_blind = 8;
+  int32 small_blind = 9;
+  int32 game_round = 10;
 }
 
 message LobbyResponse {
@@ -50,9 +88,30 @@ message LobbyResponse {
   repeated GameHistoryEntry game_history = 4;
 
   int32 moolah = 5;
+
+  // get game history
+  repeated UserInformation user_info = 6;
+
+  GameState game_state = 7;
+}
+
+
+message ServerRequest {
+  // FOR SERVER USE
+  // Define the action from enum
+  string useless = 1;
+}
+
+message ServerResponse {
+  // FOR SERVER USE
+
+  bool active = 1;
+
+  int32 num_players = 2;
 }
 
 service LobbyService {
   // A single bidirectional stream for all lobby operations
   rpc Lobby(stream LobbyRequest) returns (stream LobbyResponse);
+  rpc GetLobbyInfo(ServerRequest) returns (ServerResponse);
 }

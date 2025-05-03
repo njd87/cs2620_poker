@@ -65,8 +65,148 @@ The following are parameters that the server
 needs to keep consistent for Raft
 """
 # map of clients to queues for sending responses
-clients = {}
+players = {}
 
+
+# params for lobby
+SUITS = ['\u2660', '\u2665', '\u2666', '\u2663']  # Spades, Hearts, Diamonds, Clubs
+RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+RANK_VALUE = {r: i + 2 for i, r in enumerate(RANKS)}
+game_started = False
+game_type = lobby_pb2.TEXAS  # default game type
+
+class Deck:
+    """Standard 52‑card deck"""
+
+    def __init__(self):
+        self.cards = [f'{rank}{suit}' for suit in SUITS for rank in RANKS]
+        random.shuffle(self.cards)
+
+    def deal(self, n=1):
+        return [self.cards.pop() for _ in range(n)]
+    
+    def shuffle(self):
+        random.shuffle(self.cards)
+
+    def reshuffle(self):
+        self.cards = [f'{rank}{suit}' for suit in SUITS for rank in RANKS]
+        random.shuffle(self.cards)
+
+
+class Player:
+    """
+    Player class for the lobby server.
+
+    This class represents a player in the lobby server.
+    """
+
+    def __init__(self, username, user_queue):
+        # buyin is 100 chips
+        self.money = 100
+        self.username = username
+        self.queue = user_queue
+
+        # for starting the game
+        self.voted_yes = False
+
+        # for playing the game
+        self.hand = []
+        self.folded = False
+        self.current_bet = 0
+
+    def send_message(self, message):
+        self.queue.put(message)
+
+    def reset_for_round(self):
+        self.hand = []
+        self.folded = False
+        self.current_bet = 0
+        self.voted_yes = False
+
+    def get_user_information(self):
+        return lobby_pb2.UserInformation(
+            username=self.username,
+            voted_yes=self.voted_yes,
+            moolah=self.money,
+        )
+    
+    def send_game_state(self, game_state):
+        self.queue.put(
+            lobby_pb2.LobbyResponse(
+                action=lobby_pb2.SHOW_GAME,
+                result=True,
+                game_state=game_state
+            )
+        )
+    
+
+class Game:
+    """
+    Game class for the lobby server.
+
+    This class represents a game in the lobby server.
+    """
+
+    def __init__(self):
+        self.deck = Deck()
+        self.players = []
+        self.bets = []
+        self.money = []
+        self.round = 0
+        self.big_blind = 0
+        self.small_blind = 1
+        self.pot = 0
+
+    def load_players(self, players):
+        for player in players.values():
+            self.players.append(player)
+            self.money.append(100)
+
+    def reset_for_round(self):
+        self.round += 1
+        if self.round >= 8:
+            self.end()
+
+        self.deck.reshuffle()
+        for player in self.players:
+            player.reset_for_round()
+        
+        self.big_blind = (self.big_blind + 1) % len(self.players)
+        self.small_blind = (self.small_blind + 1) % len(self.players)
+
+    def get_game_state(self):
+        return lobby_pb2.GameState(
+            players = [
+                player.username for player in self.players
+            ],
+            money = [
+                player.money for player in self.players
+            ],
+            bets = [
+                player.current_bet for player in self.players
+            ],
+        )
+
+    def start(self):
+        global game_started
+        self.load_players(players)
+        self.reset_for_round()
+        # make big blind bet 2, small blind bet 1
+        self.players[self.big_blind].current_bet = 2
+        self.players[self.small_blind].current_bet = 1
+        self.pot = 3
+
+        game_started = True
+        for player in self.players:
+            # give all players the current game state
+            player.send_game_state(
+                self.get_game_state()
+            )
+
+    def end(self):
+        global game_started
+        game_started = False
+        
 
 class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
     """
@@ -75,6 +215,7 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
     This class handles the main chat functionality of the server, sending responses via queues.
     All log messages in this service begin with [MAIN].
     """
+    global game_started, game_type
 
     def Lobby(self, request_iterator, context):
         """
@@ -104,14 +245,57 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
 
                     if req.action == lobby_pb2.JOIN_LOBBY:
                         logging.info(f"[MAIN] {req.username} connected.")
-                        if (req.username != "") and (req.username not in clients):
-                            clients[req.username] = client_queue
+                        new_player = Player(req.username, client_queue)
+                        if (req.username != "") and (req.username not in players):
+                            players[new_player.username] = new_player
                             username = req.username
                         client_queue.put(
                             lobby_pb2.LobbyResponse(
                                 action=lobby_pb2.JOIN_LOBBY, result=True
                             )
                         )
+                        for player in players.values():
+                            other_users = [
+                                p.get_user_information() for p in players.values() if p.username != player.username
+                            ]
+
+                            player.send_message(
+                                lobby_pb2.LobbyResponse(
+                                    action=lobby_pb2.SHOW_LOBBY,
+                                    result=True,
+                                    user_info=other_users,
+                                )
+                            )
+                    elif req.action == lobby_pb2.SEND_VOTE:
+                        if username in players:
+                            player = players[username]
+                            player.voted_yes = req.vote
+
+                            player.send_message(
+                                lobby_pb2.LobbyResponse(
+                                    action=lobby_pb2.SEND_VOTE,
+                                    result=True
+                                )
+                            )
+
+                            # update all players
+                            for player in players.values():
+                                other_users = [
+                                    p.get_user_information() for p in players.values() if p.username != player.username
+                                ]
+                                player.send_message(
+                                    lobby_pb2.LobbyResponse(
+                                        action=lobby_pb2.SHOW_LOBBY,
+                                        result=True,
+                                        user_info=other_users,
+                                    )
+                                )
+                            if all(p.voted_yes for p in players.values()) and len(players) >= 2:
+                                # start the game
+                                game = Game()
+                                game.start()
+
+
                     else:
                         logging.error(f"[MAIN] Invalid action: {req.action}")
             except Exception as e:
@@ -122,8 +306,20 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
                 )
                 print(f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}")
             finally:
-                if username in clients:
-                    del clients[username]
+                if username in players:
+                    del players[username]
+                    # update all players
+                    for player in players.values():
+                        other_users = [
+                            p.get_user_information() for p in players.values() if p.username != player.username
+                        ]
+                        player.send_message(
+                            lobby_pb2.LobbyResponse(
+                                action=lobby_pb2.SHOW_LOBBY,
+                                result=True,
+                                user_info=other_users,
+                            )
+                        )
                     logging.info(f"[MAIN] {username} disconnected.")
 
         # run request handling in a separate thread.
@@ -136,6 +332,13 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
                 yield response
             except Exception as e:
                 break
+    
+    def GetLobbyInfo(self, request, context):
+        return lobby_pb2.ServerResponse(
+            active = game_started,
+            num_players = len(players),
+            game_type = game_type,
+        )
 
 def serve():
     """

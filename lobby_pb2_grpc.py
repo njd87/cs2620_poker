@@ -39,6 +39,11 @@ class LobbyServiceStub(object):
                 request_serializer=lobby__pb2.LobbyRequest.SerializeToString,
                 response_deserializer=lobby__pb2.LobbyResponse.FromString,
                 _registered_method=True)
+        self.GetLobbyInfo = channel.unary_unary(
+                '/lobby.LobbyService/GetLobbyInfo',
+                request_serializer=lobby__pb2.ServerRequest.SerializeToString,
+                response_deserializer=lobby__pb2.ServerResponse.FromString,
+                _registered_method=True)
 
 
 class LobbyServiceServicer(object):
@@ -51,6 +56,12 @@ class LobbyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetLobbyInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_LobbyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -58,6 +69,11 @@ def add_LobbyServiceServicer_to_server(servicer, server):
                     servicer.Lobby,
                     request_deserializer=lobby__pb2.LobbyRequest.FromString,
                     response_serializer=lobby__pb2.LobbyResponse.SerializeToString,
+            ),
+            'GetLobbyInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLobbyInfo,
+                    request_deserializer=lobby__pb2.ServerRequest.FromString,
+                    response_serializer=lobby__pb2.ServerResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -87,6 +103,33 @@ class LobbyService(object):
             '/lobby.LobbyService/Lobby',
             lobby__pb2.LobbyRequest.SerializeToString,
             lobby__pb2.LobbyResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetLobbyInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/lobby.LobbyService/GetLobbyInfo',
+            lobby__pb2.ServerRequest.SerializeToString,
+            lobby__pb2.ServerResponse.FromString,
             options,
             channel_credentials,
             insecure,
