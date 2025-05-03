@@ -45,11 +45,9 @@ def structure_tables(data_path="data/messenger.db") -> None:
             """
             CREATE TABLE game_history (
                 game_id INTEGER PRIMARY KEY,
-                player1_id INTEGER NOT NULL,
-                player2_id INTEGER NOT NULL,
-                player3_id INTEGER NOT NULL,
-                player4_id INTEGER NOT NULL,
-                winner_id INTEGER NOT NULL,
+                player_id INTEGER NOT NULL,
+                money_won INTEGER DEFAULT 0,
+                game_type TEXT NOT NULL,
                 game_date DATETIME DEFAULT CURRENT_TIMESTAMP
             );
         """

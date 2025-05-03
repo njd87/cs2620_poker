@@ -25,6 +25,7 @@ from replica_helpers import replicate_action
 Making sure the server is started with the correct arguments.
 '''
 num_servers = 2
+num_lobbies = 2
 
 if len(sys.argv) != 2:
     logging.error("Usage: python server.py <server_index>")
@@ -80,6 +81,11 @@ all_servers = [
     if i != idx
 ]
 
+all_lobbies = [
+    f"{config['lobbies']['lobby_hosts'][i]}:{config['lobbies']['lobby_ports'][i]}"
+    for i in range(num_lobbies)
+]
+
 # raft params
 raft_state = "FOLLOWER"
 current_term = 0
@@ -133,8 +139,12 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         username=req.username,
                         passhash=req.passhash,
                         money_to_add=req.money_to_add,
-                        game_type=req.game_type,
-                        term=current_term,
+                        game_history=raft_pb2.GameHistoryEntry(
+                            game_type = req.game_history.game_type,
+                            money_won = req.game_history.money_won,
+                            player = req.game_history.player,
+                        ),
+                        term=current_term
                     )
                     log.append(log_copy)
 
@@ -298,22 +308,132 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                         logging.info(f"[MAIN] {req.username} connected.")
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
-                    elif req.action == main_pb2.JOIN_LOBBY:
-                        # disconnect from current server
-                        logging.info(f"[MAIN] {req.username} joining lobby.")
-                        # KG: can add logic to return open lobby
-                        client_queue.put(
-                            main_pb2.MainResponse(
-                                action=main_pb2.JOIN_LOBBY, result=True
-                            )
-                        )
                     elif req.action == main_pb2.CONNECT_LOBBY:
                         logging.info(f"[MAIN] Lobby {req.username} connected.")
                         if (req.username != "") and (req.username not in clients):
                             clients[req.username] = client_queue
                             connected_to_lobby = True
+                    elif req.action == main_pb2.SAVE_GAME:
+                        player_name = req.game_history.player
+                        game_type = req.game_history.game_type
+                        money_won = req.game_history.money_won
+
+                        game_type = "TEXAS HOLD EM" if game_type == main_pb2.TEXAS else "5 CARD"
+
+                        print("Saving game...")
+                        print(f"Player: {player_name}")
+                        print(f"Game Type: {game_type}")
+                        print(f"Money Won: {money_won}")
+
+                        # save game to database
+                        sqlcon = sqlite3.connect(db_path)
+                        sqlcur = sqlcon.cursor()
+                        sqlcur.execute(
+                            "SELECT user_id FROM users WHERE username=?", (player_name,)
+                        )
+                        player_id = sqlcur.fetchone()[0]
+
+                        print(f"Player ID: {player_id}")
+
+                        # add game to game history
+                        sqlcur.execute(
+                            "INSERT INTO game_history (player_id, game_type, money_won) VALUES (?, ?, ?)",
+                            (player_id, game_type, money_won),
+                        )
+
+                        print(f"Game saved to database.")
+
+                        curr_money = sqlcur.execute(
+                            "SELECT moolah FROM users WHERE username=?", (player_name,)
+                        ).fetchone()[0]
+
+                        print("old moolah: ", curr_money)
+
+                        # update moolah in users table
+                        sqlcur.execute(
+                            "UPDATE users SET moolah=? WHERE username=?",
+                            (curr_money + money_won, player_name),
+                        )
+                        sqlcur.execute(
+                            "SELECT moolah FROM users WHERE username=?", (player_name,)
+                        )
+
+                        moolah = sqlcur.fetchone()[0]
+
+                        sqlcon.commit()
+                        sqlcon.close()
+
+                        print("new moolah: ", moolah)
+                    elif req.action == main_pb2.GET_USER_INFO:
+                        username = req.username
+                        sqlcon = sqlite3.connect(db_path)
+                        sqlcur = sqlcon.cursor()
+
+                        # check if user exists
+                        sqlcur.execute(
+                            "SELECT * FROM users WHERE username=?", (username,)
+                        )
+                        if not sqlcur.fetchone():
+                            client_queue.put(
+                                main_pb2.MainResponse(
+                                    action=main_pb2.GET_USER_INFO, result=False
+                                )
+                            )
+                        else:
+                            sqlcur.execute(
+                                "SELECT moolah FROM users WHERE username=?", (username,)
+                            )
+                            moolah = sqlcur.fetchone()[0]
+
+                            clients[req.username].put(
+                                main_pb2.MainResponse(
+                                    action=main_pb2.GET_USER_INFO,
+                                    result=True,
+                                    moolah=moolah,
+                                )
+                            )
+
+                    elif req.action == main_pb2.JOIN_LOBBY:
+                        game_type = req.game_type
+                        # check if lobby is open
+                        sent_lobby = False
+                        for idx, lobby in enumerate(all_lobbies):
+                            print("Trying lobby at address: ", lobby)
+                            try:
+                                channel = grpc.insecure_channel(lobby)
+                                stub = lobby_pb2_grpc.LobbyServiceStub(channel)
+                                response = stub.GetLobbyInfo(
+                                    lobby_pb2.ServerRequest(
+                                        useless="",
+                                    )
+                                )
+
+                                print(f"Got response from lobby, which has active status: {response.active} and game type: {response.game_type}, number of players: {response.num_players}")
+                                if (not response.active) and (response.game_type == game_type) and (response.num_players < 4):
+                                    # tell user it can join lobby
+                                    client_queue.put(
+                                        main_pb2.MainResponse(
+                                            action=main_pb2.JOIN_LOBBY,
+                                            result=True,
+                                            game_lobby=idx,
+                                        )
+                                    )
+                                    sent_lobby = True
+                                    break
+                            except Exception as e:
+                                print("error connecting to lobby: ", e)
+                                logging.error(f"[MAIN] Error joining lobby: {e}")
+                        if not sent_lobby:
+                            client_queue.put(
+                                main_pb2.MainResponse(
+                                    action=main_pb2.JOIN_LOBBY,
+                                    result=False,
+                                )
+                            )
+
                     else:
                         logging.error(f"[MAIN] Invalid action: {req.action}")
+                    
             except Exception as e:
                 tb = traceback.extract_tb(e.__traceback__)
                 line_number = tb[-1].lineno if tb else "unknown"

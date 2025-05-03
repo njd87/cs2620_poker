@@ -20,9 +20,10 @@ enum GameType {
 
 // Define the structure of a game history entry
 message GameHistoryEntry {
-  string game_type = 1;
+  GameType game_type = 1;
   string date = 2;
-  int32 money_won = 3;
+  string player = 3;
+  int32 money_won = 4;
 }
 
 // Define Commands for voting
@@ -123,6 +124,8 @@ message ServerResponse {
   bool active = 1;
 
   int32 num_players = 2;
+
+  GameType game_type = 3;
 }
 
 service LobbyService {

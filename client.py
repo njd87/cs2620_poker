@@ -18,6 +18,7 @@ import lobby_pb2_grpc
 import lobby_pb2
 
 num_servers = 2
+num_lobbies = 2
 
 # log to a file
 log_file = "logs/client.log"
@@ -45,7 +46,7 @@ all_servers = [
 
 # get names of all lobbies
 all_lobbies = [
-    f"{config['lobbies']['lobby_hosts'][i]}:{config['lobbies']['lobby_ports'][i]}" for i in range(3)
+    f"{config['lobbies']['lobby_hosts'][i]}:{config['lobbies']['lobby_ports'][i]}" for i in range(num_lobbies)
 ]
 
 # A thread-safe queue for outgoing MainRequests.
@@ -102,6 +103,7 @@ class ClientUI:
         self.stop_lobby_event = threading.Event()
         self.players = []
         self.voted = False
+        self.lobby_idx = 0
 
         self.check_for_leader()
 
@@ -162,9 +164,21 @@ class ClientUI:
                     else:
                         self.destroy_settings()
                         self.setup_settings(failed=True)
-                # elif action == main_pb2.JOIN_LOBBY:
-                #     if resp.result:
-                #         raise Exception
+                elif action == main_pb2.GET_USER_INFO:
+                    print("GOT USER INFO")
+                    if resp.result:
+                        print("GOT RESULT")
+                        print("MOOLAH IS NOW: ", resp.moolah)
+                        self.moolah = resp.moolah
+                        self.rerender_main()
+                elif action == main_pb2.JOIN_LOBBY:
+                    # if successful, set up lobby
+                    if resp.result:
+                        self.lobby_idx = resp.game_lobby
+                        self.destroy_main()
+                        self.setup_lobby_found()
+                    else:
+                        pass
         except grpc.RpcError as e:
             logging.error(f"Error receiving response: {e}")
             if not self.stop_main_event.is_set():
@@ -181,7 +195,7 @@ class ClientUI:
                 if action == lobby_pb2.JOIN_LOBBY:
                     # if successful, set up lobby
                     if resp.result:
-                        self.destroy_main()
+                        self.destroy_lobby_found()
                         self.setup_lobby()
                     else:
                         pass
@@ -270,6 +284,7 @@ class ClientUI:
             # this NEEDS to happen twice due to multiple threads
             self.send_connect_request()
             self.send_connect_request()
+            self.send_user_info_request()
 
     def send_connect_request(self):
         """
@@ -457,6 +472,28 @@ class ClientUI:
             return
         
         lobby_queue.put(request)
+    
+    def send_user_info_request(self):
+        """
+        Send a request to get the user info.
+        """
+        request = main_pb2.MainRequest(
+            action=main_pb2.GET_USER_INFO,
+            username=self.credentials,
+        )
+
+        outgoing_queue.put(request)
+    
+    def send_join_lobby_request(self, game_type=lobby_pb2.TEXAS):
+        """
+        Send a request to join the lobby.
+        """
+        request = main_pb2.MainRequest(
+            action=main_pb2.JOIN_LOBBY,
+            game_type=game_type,
+        )
+
+        outgoing_queue.put(request)
 
     """
     Functions starting with "setup_" are used to set up the state of the tkinter window.
@@ -663,10 +700,18 @@ class ClientUI:
         # add button for connecting to lobby 1
         self.lobby1_button = tk.Button(
             self.main_frame,
-            text="Connect to Lobby",
-            command=lambda: self.connect_to_lobby(),
+            text="Connect to Texas Hold Em Lobby",
+            command = lambda: self.send_join_lobby_request(main_pb2.TEXAS),
         )
         self.lobby1_button.pack(side=tk.BOTTOM)
+        # add button for connecting to lobby 2
+        self.lobby2_button = tk.Button(
+            self.main_frame,
+            text="Connect to 5 Card Draw Lobby",
+            command = lambda: self.send_join_lobby_request(main_pb2.FIVE_HAND),
+        )
+        self.lobby2_button.pack(side=tk.BOTTOM)
+
 
     def destroy_main(self):
         """
@@ -825,6 +870,27 @@ class ClientUI:
         """
         self.deleted_frame.destroy()
 
+    def setup_lobby_found(self):
+        """
+        Set up the screen that shows the lobby has been found.
+        """
+        self.lobby_found_frame = tk.Frame(self.root)
+        self.lobby_found_frame.pack()
+
+        self.lobby_found_label = tk.Label(
+            self.lobby_found_frame, text="Lobby found."
+        )
+        self.lobby_found_label.pack()
+
+        # join lobby button
+        self.join_lobby_button = tk.Button(
+            self.lobby_found_frame,
+            text="Join Lobby",
+            command=lambda: [self.connect_to_lobby(self.lobby_idx)],
+        )
+
+        self.join_lobby_button.pack()
+
     def setup_game(self):
         # create a fresh frame for the game
         self.game_frame = tk.Frame(self.root)
@@ -929,6 +995,23 @@ class ClientUI:
         Destroy the game over screen.
         """
         self.game_over_frame.destroy()
+    
+    def destroy_lobby_found(self):
+        """
+        Destroy lobby found frame
+        """
+        self.lobby_found_frame.destroy()
+
+    def rerender_main(self):
+        """
+        Rerender the main screen with the new moolah.
+        """
+        self.moolah_label.destroy()
+        self.moolah_label = tk.Label(
+            self.main_frame, text=f"Your Moolah: {self.moolah}"
+        )
+        self.moolah_label.pack(side=tk.BOTTOM)
+
 
 
 

@@ -57,6 +57,8 @@ all_servers = [
 
 credentials = None
 leader_address = None
+channel = None
+stub = None
 
 # setup logging
 if not os.path.exists(log_path):
@@ -90,7 +92,12 @@ SUITS = ['\u2660', '\u2665', '\u2666', '\u2663']  # Spades, Hearts, Diamonds, Cl
 RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 RANK_VALUE = {r: i + 2 for i, r in enumerate(RANKS)}
 game_started = False
-game_type = lobby_pb2.TEXAS  # default game type
+game_type = None
+game_type_string = config["lobbies"]["game_types"][idx]
+if game_type_string == "TEXAS":
+    game_type = lobby_pb2.TEXAS
+else:
+    game_type = lobby_pb2.FIVE_HAND
 game = None
 
 class Deck:
@@ -299,7 +306,7 @@ class TexasHoldem:
 
     def reset_for_round(self):
         self.round += 1
-        if self.round > 1:
+        if self.round > 1 or any(player.money <= 0 for player in self.players):
             self.end()
             return
 
@@ -476,19 +483,34 @@ class TexasHoldem:
         self.tell_all_players()
 
     def end(self):
-        global game_started
+        global game_started, outgoing_queue, game_type
         game_started = False
         # close connections to all players
         for player in self.players:
+            print('sending game state to player', player.username, 'from end')
             player.send_message(
                 lobby_pb2.LobbyResponse(
                     action=lobby_pb2.KICK_PLAYER,
                     result=True,
                     )
                 )
+            outgoing_queue.put(
+                main_pb2.MainRequest(
+                    action=main_pb2.SAVE_GAME,
+                    game_history=main_pb2.GameHistoryEntry(
+                        game_type=game_type,
+                        player=player.username,
+                        money_won = player.money - 100,
+                    )
+                )
+            )
 
         global players
         players = {}
+        '''
+        send game result to main server
+        '''
+        
         self.reset_params()
 
         
@@ -577,8 +599,10 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
                                 )
                             if all(p.voted_yes for p in players.values()) and len(players) >= 2:
                                 # start the game
-                                game = TexasHoldem()
-                                game.start()
+                                global game_type
+                                if game_type == lobby_pb2.TEXAS:
+                                    game = TexasHoldem()
+                                    game.start()
                     elif req.action == lobby_pb2.PLAY_MOVE:
                         game.play_next(req)
 
@@ -665,7 +689,7 @@ def check_for_leader(retries=6):
     Check for the leader of the servers.
     Retries 6 times by default.
     '''
-    global leader_address
+    global channel, stub, leader_address
     if retries <= 0:
         logging.error("Could not find leader.")
         sys.exit(1)

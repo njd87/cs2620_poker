@@ -35,15 +35,16 @@ def replicate_action(req, db_path):
                 (req.username, new_passhash),
             )
             sqlcon.commit()
+
         sqlcon.close()
     elif req.action == raft_pb2.DELETE_ACCOUNT:
+        # delete account if params match
         sqlcon = sqlite3.connect(db_path)
         sqlcur = sqlcon.cursor()
 
         username = req.username
         passhash = req.passhash
 
-        # check if user exists
         passhash = hashlib.sha256(passhash.encode()).hexdigest()
         sqlcur.execute(
             "SELECT passhash FROM users WHERE username=?", (username,)
@@ -59,7 +60,54 @@ def replicate_action(req, db_path):
                 sqlcon.commit()
 
         sqlcon.close()
-    elif req.action == raft_pb2.CONNECT:
-        # a new leader was chosen, client connected to new leader
-        # add the user to the clients if they are signed in
-        pass
+    elif req.action == raft_pb2.SAVE_GAME:
+        player_name = req.game_history.player
+        game_type = req.game_history.game_type
+        money_won = req.game_history.money_won
+
+        game_type = "TEXAS HOLD EM" if game_type == raft_pb2.TEXAS else "5 CARD"
+
+        print("Saving game...")
+        print(f"Player: {player_name}")
+        print(f"Game Type: {game_type}")
+        print(f"Money Won: {money_won}")
+
+        # save game to database
+        sqlcon = sqlite3.connect(db_path)
+        sqlcur = sqlcon.cursor()
+        sqlcur.execute(
+            "SELECT user_id FROM users WHERE username=?", (player_name,)
+        )
+        player_id = sqlcur.fetchone()[0]
+
+        print(f"Player ID: {player_id}")
+
+        # add game to game history
+        sqlcur.execute(
+            "INSERT INTO game_history (player_id, game_type, money_won) VALUES (?, ?, ?)",
+            (player_id, game_type, money_won),
+        )
+
+        print(f"Game saved to database.")
+
+        curr_money = sqlcur.execute(
+            "SELECT moolah FROM users WHERE username=?", (player_name,)
+        ).fetchone()[0]
+
+        print("old moolah: ", curr_money)
+
+        # update moolah in users table
+        sqlcur.execute(
+            "UPDATE users SET moolah=? WHERE username=?",
+            (curr_money + money_won, player_name),
+        )
+        sqlcur.execute(
+            "SELECT moolah FROM users WHERE username=?", (player_name,)
+        )
+
+        moolah = sqlcur.fetchone()[0]
+
+        sqlcon.commit()
+        sqlcon.close()
+
+        print("new moolah: ", moolah)

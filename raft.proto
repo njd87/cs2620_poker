@@ -53,6 +53,8 @@ enum Action {
     CONNECT = 8;
     JOIN_LOBBY = 9;
     CONNECT_LOBBY = 10;
+    SAVE_GAME = 11;
+    GET_USER_INFO = 12;
   }
   
   enum GameType {
@@ -61,6 +63,13 @@ enum Action {
     FIVE_HAND = 2;
   }
 
+// Define the structure of a game history entry
+message GameHistoryEntry {
+    GameType game_type = 1;
+    string date = 2;
+    string player = 3;
+    int32 money_won = 4;
+  }
 // commands from chat.proto
 message LogEntry {
 // Define the action from enum
@@ -71,7 +80,8 @@ string username = 2;
 string passhash = 3;
 int32 money_to_add = 4;
 int32 game_type = 5;
-int32 term = 6;
+GameHistoryEntry game_history = 6;
+int32 term = 7;
 }
 
 // for clients, get leader

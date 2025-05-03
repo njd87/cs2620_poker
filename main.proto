@@ -14,6 +14,8 @@ enum Action {
   CONNECT = 8;
   JOIN_LOBBY = 9;
   CONNECT_LOBBY = 10;
+  SAVE_GAME = 11;
+  GET_USER_INFO = 12;
 }
 
 enum GameType {
@@ -24,12 +26,11 @@ enum GameType {
 
 // Define the structure of a game history entry
 message GameHistoryEntry {
-  int32 game_id = 1;
-  string game_type = 2;
-  string date = 3;
+  GameType game_type = 1;
+  string date = 2;
+  string player = 3;
   int32 money_won = 4;
 }
-
 
 message MainRequest {
   // FOR CLIENT USE
@@ -44,6 +45,7 @@ message MainRequest {
 
   int32 money_to_add = 4;
   int32 game_type = 5;
+  GameHistoryEntry game_history = 6;
 }
 
 message MainResponse {
@@ -53,7 +55,7 @@ message MainResponse {
   bool result = 2;
 
   // get lobby to join
-  string game_lobby = 3;
+  int32 game_lobby = 3;
 
   // get game history
   repeated GameHistoryEntry game_history = 4;
