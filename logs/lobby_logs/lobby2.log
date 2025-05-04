@@ -396,3 +396,187 @@ grpc.RpcError
 	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-03T19:14:43.903192-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
 >
 2025-05-03 19:14:43 - INFO - Checking for leader...
+2025-05-04 00:50:11 - INFO - Checking for leader...
+2025-05-04 00:50:11 - INFO - [SETUP] Lobby server started on port 60001
+2025-05-04 00:50:16 - INFO - Leader found: 127.0.0.1:50001
+2025-05-04 00:50:16 - INFO - Info came from: 127.0.0.1:50000
+2025-05-04 00:52:22 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-04T00:52:22.878572-04:00"}"
+>
+2025-05-04 00:52:22 - INFO - Checking for leader...
+2025-05-04 00:52:27 - INFO - Leader found: 127.0.0.1:50004
+2025-05-04 00:52:27 - INFO - Info came from: 127.0.0.1:50000
+2025-05-04 00:53:20 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:20 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick"
+
+2025-05-04 00:53:20 - INFO - [MAIN] nick connected.
+2025-05-04 00:53:21 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:21 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "nick2"
+
+2025-05-04 00:53:21 - INFO - [MAIN] nick2 connected.
+2025-05-04 00:53:22 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:22 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-04 00:53:23 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:23 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick2"
+vote: true
+
+2025-05-04 00:53:24 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:24 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-04 00:53:25 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:25 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "nick"
+vote: true
+
+2025-05-04 00:53:28 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:28 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:29 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:29 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:29 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:29 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:32 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:32 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: EXCHANGE
+card_exchange_idx: 0
+card_exchange_idx: 0
+card_exchange_idx: 1
+card_exchange_idx: 1
+card_exchange_idx: 0
+
+2025-05-04 00:53:33 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:33 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: EXCHANGE
+card_exchange_idx: 0
+card_exchange_idx: 0
+card_exchange_idx: 1
+card_exchange_idx: 1
+card_exchange_idx: 0
+
+2025-05-04 00:53:34 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:34 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:35 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:35 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:36 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:36 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:37 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:37 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:37 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:37 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 00:53:39 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:39 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: EXCHANGE
+card_exchange_idx: 0
+card_exchange_idx: 0
+card_exchange_idx: 0
+card_exchange_idx: 1
+card_exchange_idx: 1
+
+2025-05-04 00:53:40 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:40 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: EXCHANGE
+card_exchange_idx: 0
+card_exchange_idx: 1
+card_exchange_idx: 0
+card_exchange_idx: 1
+card_exchange_idx: 0
+
+2025-05-04 00:53:41 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:41 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: FOLD
+
+2025-05-04 00:53:42 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:42 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: FOLD
+
+2025-05-04 00:53:43 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:43 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: FOLD
+
+2025-05-04 00:53:44 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 00:53:44 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: FOLD
+
+2025-05-04 00:53:45 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
+    new_player = Player(req.username, client_queue)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-04 00:53:46 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
+    new_player = Player(req.username, client_queue)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-04 00:53:54 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
+    new_player = Player(req.username, client_queue)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-04 00:53:55 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
+    new_player = Player(req.username, client_queue)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
+    return self._next()
+           ^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
+    request = self._look_for_request()
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
+    _raise_rpc_error(self._state)
+  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
+    raise rpc_error
+grpc.RpcError
+
+2025-05-04 00:53:58 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "Cancelling all calls"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-04T00:53:58.740309-04:00"}"
+>
+2025-05-04 00:53:58 - INFO - Checking for leader...

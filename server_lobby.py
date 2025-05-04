@@ -438,7 +438,6 @@ class TexasHoldem:
     def tell_all_players(self):
         # send game state to all players
         for player in self.players:
-            print('sending game state to player', player.username, 'from tell_all_players')
             player.send_game_state(
                 self.get_game_state()
             )
@@ -496,7 +495,6 @@ class TexasHoldem:
         game_started = False
         # close connections to all players
         for player in self.players:
-            print('sending game state to player', player.username, 'from end')
             player.send_message(
                 lobby_pb2.LobbyResponse(
                     action=lobby_pb2.KICK_PLAYER,
@@ -728,7 +726,6 @@ class FiveCardDraw:
                 card5=cards[4]
             )
         for player in self.players:
-            print('sending game state to player', player.username, 'from start_round')
             # give all players the current game state
             player.send_game_state(
                 self.get_game_state()
@@ -744,7 +741,6 @@ class FiveCardDraw:
         elif self.phase == 1:
             # determine winner
             self.phase = 2
-            print('Evaluating winner...')
             # evaluate the winner
             active_players = [player for player in self.players if not player.folded]
             best_hand = 0
@@ -780,7 +776,6 @@ class FiveCardDraw:
     def tell_all_players(self):
         # send game state to all players
         for player in self.players:
-            print('sending game state to player', player.username, 'from tell_all_players')
             player.send_game_state(
                 self.get_game_state()
             )
@@ -824,8 +819,6 @@ class FiveCardDraw:
         # while the player pointer points to a folded player, move to the next player
         while self.players[self.player_pointer].folded:
             self.player_pointer = (self.player_pointer + 1) % len(self.players)
-
-        print('Current check count:', self.check_count)
         
         # check if all active players have the same current bet
         if self.active_players == 1:
@@ -850,7 +843,6 @@ class FiveCardDraw:
         game_started = False
         # close connections to all players
         for player in self.players:
-            print('sending game state to player', player.username, 'from end')
             player.send_message(
                 lobby_pb2.LobbyResponse(
                     action=lobby_pb2.KICK_PLAYER,
@@ -981,7 +973,6 @@ class LobbyServiceServicer(lobby_pb2_grpc.LobbyServiceServicer):
                 logging.error(
                     f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}"
                 )
-                print(f"[MAIN] Error handling requests at line {line_number}: {traceback.format_exc()}")
             finally:
                 if username in players:
                     del players[username]
