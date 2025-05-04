@@ -1,522 +1,84 @@
-2025-05-03 18:40:55 - INFO - Checking for leader...
-2025-05-03 18:40:55 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-03 18:41:00 - INFO - Leader found: 127.0.0.1:50000
-2025-05-03 18:41:00 - INFO - Info came from: 127.0.0.1:50000
-2025-05-03 18:41:07 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:41:07 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+2025-05-04 17:23:30 - INFO - Checking for leader...
+2025-05-04 17:23:30 - INFO - [SETUP] Lobby server started on port 60001
+2025-05-04 17:23:35 - INFO - Leader found: 127.0.0.1:50001
+2025-05-04 17:23:35 - INFO - Info came from: 127.0.0.1:50000
+2025-05-04 17:24:06 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:06 - INFO - [MAIN] Received request: action: JOIN_LOBBY
 username: "nick"
 
-2025-05-03 18:41:07 - INFO - [MAIN] nick connected.
-2025-05-03 18:41:09 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:41:09 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick2"
+2025-05-04 17:24:06 - INFO - [MAIN] nick connected.
+2025-05-04 17:24:07 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:07 - INFO - [MAIN] Received request: action: JOIN_LOBBY
+username: "kenny"
 
-2025-05-03 18:41:09 - INFO - [MAIN] nick2 connected.
-2025-05-03 18:41:10 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:41:10 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick"
+2025-05-04 17:24:07 - INFO - [MAIN] kenny connected.
+2025-05-04 17:24:09 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:09 - INFO - [MAIN] Received request: action: SEND_VOTE
+username: "kenny"
 vote: true
 
-2025-05-03 18:41:11 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:41:11 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick2"
-vote: true
-
-2025-05-03 18:41:26 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 912, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:41:26 - INFO - [MAIN] nick disconnected.
-2025-05-03 18:41:29 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 912, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:41:29 - INFO - [MAIN] nick2 disconnected.
-2025-05-03 18:41:32 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-03T18:41:32.217047-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-03 18:41:32 - INFO - Checking for leader...
-2025-05-03 18:43:24 - INFO - Checking for leader...
-2025-05-03 18:43:24 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-03 18:43:29 - INFO - Leader found: 127.0.0.1:50001
-2025-05-03 18:43:29 - INFO - Info came from: 127.0.0.1:50000
-2025-05-03 18:43:43 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:43 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick"
-
-2025-05-03 18:43:43 - INFO - [MAIN] nick connected.
-2025-05-03 18:43:49 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:49 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick2"
-
-2025-05-03 18:43:49 - INFO - [MAIN] nick2 connected.
-2025-05-03 18:43:50 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:50 - INFO - [MAIN] Received request: action: SEND_VOTE
+2025-05-04 17:24:10 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:10 - INFO - [MAIN] Received request: action: SEND_VOTE
 username: "nick"
 vote: true
 
-2025-05-03 18:43:51 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:51 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick2"
-vote: true
+2025-05-04 17:24:17 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:17 - INFO - [MAIN] Received request: action: PLAY_MOVE
 
-2025-05-03 18:43:53 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:53 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:18 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:18 - INFO - [MAIN] Received request: action: PLAY_MOVE
 
-2025-05-03 18:43:54 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:54 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:18 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:18 - INFO - [MAIN] Received request: action: PLAY_MOVE
 
-2025-05-03 18:43:55 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:55 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:43:57 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:43:57 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-card_exchange_idx: 0
-card_exchange_idx: 0
-
-2025-05-03 18:44:11 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:11 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 1
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 0
-card_exchange_idx: 0
-
-2025-05-03 18:44:15 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:15 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:16 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:16 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:17 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:17 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:18 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:18 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:19 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:19 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:20 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:20 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:21 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:21 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:22 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:22 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:22 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:22 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:23 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:23 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:24 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:44:24 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:44:25 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 912, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:44:25 - INFO - [MAIN] nick disconnected.
-2025-05-03 18:44:26 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 912, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:44:26 - INFO - [MAIN] nick2 disconnected.
-2025-05-03 18:46:45 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-03T18:46:45.122247-04:00"}"
->
-2025-05-03 18:46:45 - INFO - Checking for leader...
-2025-05-03 18:47:06 - INFO - Checking for leader...
-2025-05-03 18:47:06 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-03 18:47:11 - INFO - Leader found: 127.0.0.1:50000
-2025-05-03 18:47:11 - INFO - Info came from: 127.0.0.1:50000
-2025-05-03 18:47:28 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:28 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick"
-
-2025-05-03 18:47:28 - INFO - [MAIN] nick connected.
-2025-05-03 18:47:33 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:33 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick2"
-
-2025-05-03 18:47:33 - INFO - [MAIN] nick2 connected.
-2025-05-03 18:47:34 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:34 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick2"
-vote: true
-
-2025-05-03 18:47:34 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:34 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick"
-vote: true
-
-2025-05-03 18:47:35 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:35 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:36 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:36 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:36 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:36 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:40 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:40 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 1
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 0
-
-2025-05-03 18:47:43 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:43 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-
-2025-05-03 18:47:44 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:44 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:45 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:45 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:46 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:46 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:47 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:47 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:56 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:56 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:58 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:58 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:47:59 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:47:59 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:48:00 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:48:00 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:48:18 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 907, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:48:18 - INFO - [MAIN] nick disconnected.
-2025-05-03 18:48:20 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 907, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:48:20 - INFO - [MAIN] nick2 disconnected.
-2025-05-03 18:48:23 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-03T18:48:23.01782-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-03 18:48:23 - INFO - Checking for leader...
-2025-05-03 18:48:32 - INFO - Checking for leader...
-2025-05-03 18:48:32 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-03 18:48:37 - INFO - Leader found: 127.0.0.1:50000
-2025-05-03 18:48:37 - INFO - Info came from: 127.0.0.1:50000
-2025-05-03 18:48:50 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:48:50 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick"
-
-2025-05-03 18:48:50 - INFO - [MAIN] nick connected.
-2025-05-03 18:48:56 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:48:56 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick2"
-
-2025-05-03 18:48:56 - INFO - [MAIN] nick2 connected.
-2025-05-03 18:48:57 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:48:57 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick"
-vote: true
-
-2025-05-03 18:48:58 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:48:58 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick2"
-vote: true
-
-2025-05-03 18:48:59 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:48:59 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:49:00 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:49:00 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:49:00 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:49:00 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:49:02 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:49:02 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-card_exchange_idx: 0
-card_exchange_idx: 0
-
-2025-05-03 18:49:03 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:49:03 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-
-2025-05-03 18:49:04 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:49:04 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:49:05 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-03 18:49:05 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-03 18:49:06 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 907, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:49:07 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 907, in handle_requests
-    for req in request_iterator:
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-03 18:51:03 - INFO - Checking for leader...
-2025-05-03 18:51:03 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-03 18:51:08 - INFO - Leader found: 127.0.0.1:50001
-2025-05-03 18:51:08 - INFO - Info came from: 127.0.0.1:50000
-2025-05-03 19:12:41 - INFO - Checking for leader...
-2025-05-03 19:12:41 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-03 19:12:46 - INFO - Leader found: 127.0.0.1:50004
-2025-05-03 19:12:46 - INFO - Info came from: 127.0.0.1:50000
-2025-05-03 19:14:43 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-03T19:14:43.903192-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-03 19:14:43 - INFO - Checking for leader...
-2025-05-04 00:50:11 - INFO - Checking for leader...
-2025-05-04 00:50:11 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-04 00:50:16 - INFO - Leader found: 127.0.0.1:50001
-2025-05-04 00:50:16 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 00:52:22 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-04T00:52:22.878572-04:00"}"
->
-2025-05-04 00:52:22 - INFO - Checking for leader...
-2025-05-04 00:52:27 - INFO - Leader found: 127.0.0.1:50004
-2025-05-04 00:52:27 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 00:53:20 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:20 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick"
-
-2025-05-04 00:53:20 - INFO - [MAIN] nick connected.
-2025-05-04 00:53:21 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:21 - INFO - [MAIN] Received request: action: JOIN_LOBBY
-username: "nick2"
-
-2025-05-04 00:53:21 - INFO - [MAIN] nick2 connected.
-2025-05-04 00:53:22 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:22 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick2"
-vote: true
-
-2025-05-04 00:53:23 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:23 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick2"
-vote: true
-
-2025-05-04 00:53:24 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:24 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick"
-vote: true
-
-2025-05-04 00:53:25 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:25 - INFO - [MAIN] Received request: action: SEND_VOTE
-username: "nick"
-vote: true
-
-2025-05-04 00:53:28 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:28 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:29 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:29 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:29 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:29 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:32 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:32 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-card_exchange_idx: 0
-
-2025-05-04 00:53:33 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:33 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-card_exchange_idx: 0
-
-2025-05-04 00:53:34 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:34 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:35 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:35 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:36 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:36 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:37 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:37 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:37 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:37 - INFO - [MAIN] Received request: action: PLAY_MOVE
-
-2025-05-04 00:53:39 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:39 - INFO - [MAIN] Received request: action: PLAY_MOVE
-player_action: EXCHANGE
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 0
-card_exchange_idx: 1
-card_exchange_idx: 1
-
-2025-05-04 00:53:40 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:40 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:26 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:26 - INFO - [MAIN] Received request: action: PLAY_MOVE
 player_action: EXCHANGE
 card_exchange_idx: 0
 card_exchange_idx: 1
 card_exchange_idx: 0
+card_exchange_idx: 0
+card_exchange_idx: 0
+
+2025-05-04 17:24:36 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:36 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: EXCHANGE
+card_exchange_idx: 1
+card_exchange_idx: 1
+card_exchange_idx: 1
 card_exchange_idx: 1
 card_exchange_idx: 0
 
-2025-05-04 00:53:41 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:41 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:42 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:42 - INFO - [MAIN] Received request: action: PLAY_MOVE
+player_action: RAISE
+amount: 14
+
+2025-05-04 17:24:43 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:43 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 17:24:44 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:44 - INFO - [MAIN] Received request: action: PLAY_MOVE
+
+2025-05-04 17:24:47 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:47 - INFO - [MAIN] Received request: action: PLAY_MOVE
 player_action: FOLD
 
-2025-05-04 00:53:42 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:42 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:48 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:48 - INFO - [MAIN] Received request: action: PLAY_MOVE
 player_action: FOLD
 
-2025-05-04 00:53:43 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:43 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:49 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:49 - INFO - [MAIN] Received request: action: PLAY_MOVE
 player_action: FOLD
 
-2025-05-04 00:53:44 - INFO - [MAIN] Size of request: 80 bytes
-2025-05-04 00:53:44 - INFO - [MAIN] Received request: action: PLAY_MOVE
+2025-05-04 17:24:50 - INFO - [MAIN] Size of request: 80 bytes
+2025-05-04 17:24:50 - INFO - [MAIN] Received request: action: PLAY_MOVE
 player_action: FOLD
 
-2025-05-04 00:53:45 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
-    new_player = Player(req.username, client_queue)
+2025-05-04 17:24:52 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 902, in handle_requests
+    for req in request_iterator:
   File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
     return self._next()
            ^^^^^^^^^^^^
@@ -529,9 +91,9 @@ player_action: FOLD
     raise rpc_error
 grpc.RpcError
 
-2025-05-04 00:53:46 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
-    new_player = Player(req.username, client_queue)
+2025-05-04 17:24:53 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
+  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 902, in handle_requests
+    for req in request_iterator:
   File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
     return self._next()
            ^^^^^^^^^^^^
@@ -544,299 +106,3 @@ grpc.RpcError
     raise rpc_error
 grpc.RpcError
 
-2025-05-04 00:53:54 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
-    new_player = Player(req.username, client_queue)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-04 00:53:55 - ERROR - [MAIN] Error handling requests at line 217: Traceback (most recent call last):
-  File "/Users/nickydtricky/Desktop/Harvard/Senior Year/Semester 2/CS2620/cs2620_poker/server_lobby.py", line 910, in handle_requests
-    new_player = Player(req.username, client_queue)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 543, in __next__
-    return self._next()
-           ^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 535, in _next
-    request = self._look_for_request()
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 517, in _look_for_request
-    _raise_rpc_error(self._state)
-  File "/Users/nickydtricky/miniforge3/envs/manim-use/lib/python3.11/site-packages/grpc/_server.py", line 217, in _raise_rpc_error
-    raise rpc_error
-grpc.RpcError
-
-2025-05-04 00:53:58 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-04T00:53:58.740309-04:00"}"
->
-2025-05-04 00:53:58 - INFO - Checking for leader...
-2025-05-04 14:18:00 - INFO - Checking for leader...
-2025-05-04 14:18:00 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-04 14:18:05 - INFO - Leader found: 127.0.0.1:50001
-2025-05-04 14:18:05 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:19:47 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-04T14:19:47.239301-04:00"}"
->
-2025-05-04 14:19:47 - INFO - Checking for leader...
-2025-05-04 14:20:00 - INFO - Checking for leader...
-2025-05-04 14:20:00 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-04 14:20:05 - INFO - Leader found: 127.0.0.1:50001
-2025-05-04 14:20:05 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:20:55 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:20:55.919471-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-04 14:20:55 - INFO - Checking for leader...
-2025-05-04 14:21:06 - INFO - Checking for leader...
-2025-05-04 14:21:06 - INFO - [SETUP] Lobby server started on port 60001
-2025-05-04 14:21:11 - INFO - Leader found: 127.0.0.1:50003
-2025-05-04 14:21:11 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:22:08 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:22:08.235546-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-04 14:22:08 - INFO - Checking for leader...
-2025-05-04 14:22:13 - ERROR - Error connecting to 127.0.0.1:50000: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:22:13.240667-04:00"}"
->
-2025-05-04 14:22:13 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:22:13.241167-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:22:13 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:22:13.241637-04:00"}"
->
-2025-05-04 14:22:13 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:22:13.242072-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:22:13 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:22:13.242425-04:00"}"
->
-2025-05-04 14:22:13 - INFO - Checking for leader...
-2025-05-04 14:22:18 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:22:18.24655-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:22:18 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:22:18.24727-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:22:18 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:22:18.247988-04:00"}"
->
-2025-05-04 14:22:18 - INFO - Checking for leader...
-2025-05-04 14:22:23 - INFO - Checking for leader...
-2025-05-04 14:22:28 - INFO - Leader found: 127.0.0.1:50000
-2025-05-04 14:22:28 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:23:19 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:19.020692-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-04 14:23:19 - INFO - Checking for leader...
-2025-05-04 14:23:24 - ERROR - Error connecting to 127.0.0.1:50000: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:24.026556-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:23:24 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:24.02695-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:23:24 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:23:24.027322-04:00"}"
->
-2025-05-04 14:23:24 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:24.027844-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:23:24 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:23:24.02846-04:00"}"
->
-2025-05-04 14:23:24 - INFO - Checking for leader...
-2025-05-04 14:23:29 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:29.03507-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:23:29 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:29.035627-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:23:29 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:23:29.036071-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:23:29 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:23:29.036484-04:00"}"
->
-2025-05-04 14:23:29 - INFO - Checking for leader...
-2025-05-04 14:23:34 - INFO - Leader found: 127.0.0.1:50001
-2025-05-04 14:23:34 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:24:41 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"Cancelling all calls", grpc_status:14, created_time:"2025-05-04T14:24:41.918552-04:00"}"
->
-2025-05-04 14:24:41 - INFO - Checking for leader...
-2025-05-04 14:24:46 - ERROR - Error connecting to 127.0.0.1:50000: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:24:46.924511-04:00"}"
->
-2025-05-04 14:24:46 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:24:46.924964-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:24:46 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:24:46.925301-04:00"}"
->
-2025-05-04 14:24:46 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:24:46.925625-04:00"}"
->
-2025-05-04 14:24:46 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:24:46.925914-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:24:46 - INFO - Checking for leader...
-2025-05-04 14:24:51 - INFO - Checking for leader...
-2025-05-04 14:24:56 - INFO - Leader found: 127.0.0.1:50000
-2025-05-04 14:24:56 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:26:13 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:26:13.138668-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-04 14:26:13 - INFO - Checking for leader...
-2025-05-04 14:26:18 - ERROR - Error connecting to 127.0.0.1:50000: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:26:18.151237-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:26:18 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:26:18.15183-04:00"}"
->
-2025-05-04 14:26:18 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:26:18.152298-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:26:18 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:26:18.152884-04:00"}"
->
-2025-05-04 14:26:18 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:26:18.153307-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:26:18 - INFO - Checking for leader...
-2025-05-04 14:26:23 - INFO - Checking for leader...
-2025-05-04 14:26:28 - INFO - Leader found: 127.0.0.1:50002
-2025-05-04 14:26:28 - INFO - Info came from: 127.0.0.1:50000
-2025-05-04 14:27:08 - ERROR - Error receiving response: <_MultiThreadedRendezvous of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "Cancelling all calls"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:08.927513-04:00", grpc_status:14, grpc_message:"Cancelling all calls"}"
->
-2025-05-04 14:27:08 - INFO - Checking for leader...
-2025-05-04 14:27:13 - ERROR - Error connecting to 127.0.0.1:50000: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:13.9321-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:13 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:13.933206-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:13 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:13.93388-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:13 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:27:13.934966-04:00"}"
->
-2025-05-04 14:27:13 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:13.93561-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:13 - INFO - Checking for leader...
-2025-05-04 14:27:18 - ERROR - Error connecting to 127.0.0.1:50000: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:18.936516-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50000: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:18 - ERROR - Error connecting to 127.0.0.1:50001: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:18.937024-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50001: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:18 - ERROR - Error connecting to 127.0.0.1:50002: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50002: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:27:18.937395-04:00"}"
->
-2025-05-04 14:27:18 - ERROR - Error connecting to 127.0.0.1:50003: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50003: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-05-04T14:27:18.937805-04:00"}"
->
-2025-05-04 14:27:18 - ERROR - Error connecting to 127.0.0.1:50004: <_InactiveRpcError of RPC that terminated with:
-	status = StatusCode.UNAVAILABLE
-	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"
-	debug_error_string = "UNKNOWN:Error received from peer  {created_time:"2025-05-04T14:27:18.938198-04:00", grpc_status:14, grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50004: Failed to connect to remote host: connect: Connection refused (61)"}"
->
-2025-05-04 14:27:18 - INFO - Checking for leader...
-2025-05-04 14:27:23 - INFO - Leader found: 127.0.0.1:50002
-2025-05-04 14:27:23 - INFO - Info came from: 127.0.0.1:50000
