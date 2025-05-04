@@ -425,6 +425,42 @@ class MainServiceServicer(main_pb2_grpc.MainServiceServicer):
                                 )
                             )
 
+
+                    elif req.action == main_pb2.VIEW_HISTORY:
+                        # send history back to client
+                        curr_username = req.username
+                        sqlcon = sqlite3.connect(db_path)
+                        sqlcur = sqlcon.cursor()
+                        sqlcur.execute(
+                            "SELECT user_id FROM users WHERE username=?", (curr_username,)
+                        )
+                        player_id = sqlcur.fetchone()[0]
+
+                        sqlcur.execute(
+                            "SELECT game_type, money_won FROM game_history WHERE player_id=? ORDER BY game_date DESC",
+                            (player_id,),
+                        )
+
+                        game_history = sqlcur.fetchall()
+
+                        games = []
+                        for i in range(len(game_history)):
+                            game = main_pb2.GameHistoryEntry(
+                                game_type=main_pb2.TEXAS if game_history[i][0] == "TEXAS HOLD EM" else main_pb2.FIVE_HAND,
+                                money_won=game_history[i][1],
+                                player=curr_username,
+                            )
+                            games.append(game)
+                        
+                        client_queue.put(
+                            main_pb2.MainResponse(
+                                action=main_pb2.VIEW_HISTORY,
+                                result=True,
+                                game_history=games,
+                            )
+                        )
+                        sqlcon.close()
+
                     else:
                         logging.error(f"[MAIN] Invalid action: {req.action}")
 

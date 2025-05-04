@@ -181,6 +181,12 @@ class ClientUI:
                         self.setup_lobby_found()
                     else:
                         pass
+                elif action == main_pb2.VIEW_HISTORY:
+                    # if successful, show history
+                    if resp.result:
+                        self.history = resp.game_history
+                        self.destroy_main()
+                        self.setup_history()
         except grpc.RpcError as e:
             logging.error(f"Error receiving response: {e}")
             if not self.stop_main_event.is_set():
@@ -509,6 +515,18 @@ class ClientUI:
         )
 
         outgoing_queue.put(request)
+    
+    def send_view_history_request(self):
+        """
+        Send a request to view the history of the user.
+        """
+        request = main_pb2.MainRequest(
+            action=main_pb2.VIEW_HISTORY,
+            username=self.credentials,
+        )
+
+        outgoing_queue.put(request)
+
 
     """
     Functions starting with "setup_" are used to set up the state of the tkinter window.
@@ -693,6 +711,14 @@ class ClientUI:
             command=lambda: [self.destroy_main(), self.setup_settings()],
         )
         self.settings_button.pack(side=tk.BOTTOM)
+
+        # add "View History" button
+        self.history_button = tk.Button(
+            self.main_frame,
+            text="View History",
+            command=lambda: self.send_view_history_request(),
+        )
+        self.history_button.pack(side=tk.BOTTOM)
 
         # add label for moolah
         self.moolah_label = tk.Label(
@@ -1066,6 +1092,48 @@ class ClientUI:
         Destroy lobby found frame
         """
         self.lobby_found_frame.destroy()
+    
+
+    def setup_history(self):
+        """
+        Set up the history screen.
+
+        Has:
+        - A label that says "History"
+        - A button that says "Back" to go back to the main screen.
+        """
+        self.history_frame = tk.Frame(self.root)
+        self.history_frame.pack()
+
+        self.history_label = tk.Label(self.history_frame, text="History")
+        self.history_label.pack()
+
+        # show history
+        for game in self.history:
+            game_type = game.game_type
+            money_won = game.money_won
+            # setup label
+            game_label = tk.Label(
+                self.history_frame,
+                text=f"Game Type: {'TEXAS HOLD EM' if game_type == lobby_pb2.TEXAS else '5 CARD'}\nMoney Won: {money_won}",
+            )
+            game_label.pack()
+            # setup line
+            line = tk.Label(self.history_frame, text="---------------------")
+            line.pack()
+
+        self.back_button_history = tk.Button(
+            self.history_frame,
+            text="Back",
+            command=lambda: [self.destroy_history(), self.setup_main()],
+        )
+        self.back_button_history.pack()
+
+    def destroy_history(self):
+        """
+        Destroy the history screen.
+        """
+        self.history_frame.destroy()
 
     def rerender_main(self):
         """
