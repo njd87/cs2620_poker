@@ -1106,7 +1106,7 @@ def send_connect_request():
     """
     # create a request
     request = main_pb2.MainRequest(
-        action=main_pb2.CONNECT_LOBBY, username=str(idx) # KG: prevent users from signing up with the same username
+        action=main_pb2.CONNECT_LOBBY, username=str(idx)
     )
 
     outgoing_queue.put(request)

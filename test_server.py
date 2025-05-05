@@ -1,8 +1,31 @@
-import sqlite3
-import chat_pb2
-import raft_pb2
 import hashlib
+import os
+import random
+import sqlite3
+import sys
+import grpc
+from concurrent import futures
+import time
+import queue
+import threading
+import json
+import logging
+
+import main_pb2_grpc
+import main_pb2
+import raft_pb2_grpc
+import raft_pb2
+import lobby_pb2_grpc
+import lobby_pb2
+import json
+import traceback
 from replica_helpers import replicate_action
+
+"""
+Making sure the server is started with the correct arguments.
+"""
+num_servers = 5
+num_lobbies = 2
 
 
 class TestServer:
@@ -27,7 +50,7 @@ class TestServer:
         if self.voted_for is not None or not self.online:
             return raft_pb2.VoteResponse(term=1, vote_granted=False)
         return raft_pb2.VoteResponse(term=1, vote_granted=True)
-
+    
     def AppendEntries(self, req):
         if not self.online:
             return raft_pb2.AppendEntriesResponse(term=1, success=False)
@@ -69,26 +92,39 @@ class TestServer:
         if votes >= total_servers // 2 + 1:
             self.leader = self.name
             return True
+        
 
 
-def handle_requests(req, db_path, username=None):
-    if req.action == chat_pb2.CHECK_USERNAME:
+def handle_requests(req, db_path, all_lobbies=None, username=None):
+    client_queue = queue.Queue()
+    clients = {}
+    if req.action == main_pb2.CHECK_USERNAME:
         # check if username is already in use
         sqlcon = sqlite3.connect(db_path)
         sqlcur = sqlcon.cursor()
 
-        sqlcur.execute("SELECT * FROM users WHERE username=?", (req.username,))
+        sqlcur.execute(
+            "SELECT * FROM users WHERE username=?", (req.username,)
+        )
 
-        # if username is already in use, send response with result=False
-        # otherwise, send response with result=True
+        # if username is already in use, send response with success=False
+        # otherwise, send response with success=True
         if sqlcur.fetchone():
-            sqlcon.close()
-            return chat_pb2.ChatResponse(action=chat_pb2.CHECK_USERNAME, result=False)
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.CHECK_USERNAME, result=False
+                )
+            )
         else:
-            sqlcon.close()
-            return chat_pb2.ChatResponse(action=chat_pb2.CHECK_USERNAME, result=True)
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.CHECK_USERNAME, result=True
+                )
+            )
+        sqlcon.close()
 
-    elif req.action == chat_pb2.LOGIN:
+    elif req.action == main_pb2.LOGIN:
+        # check if username and password match
         sqlcon = sqlite3.connect(db_path)
         sqlcur = sqlcon.cursor()
 
@@ -99,204 +135,74 @@ def handle_requests(req, db_path, username=None):
             (req.username, new_passhash),
         )
 
-        # if username and password match, send response with result=True
-        # otherwise, send response with result=False
+        # if username and password match, send response with success=True
+        # otherwise, send response with success=False
         if sqlcur.fetchone():
+
             sqlcur.execute(
-                "SELECT COUNT(*) FROM messages WHERE recipient=? AND delivered=0",
+                "SELECT moolah FROM users WHERE username=?",
                 (req.username,),
             )
 
-            n_undelivered = sqlcur.fetchone()[0]
+            moolah = sqlcur.fetchone()[0]
 
-            response = chat_pb2.ChatResponse(
-                action=chat_pb2.LOGIN,
+            response = main_pb2.MainResponse(
+                action=main_pb2.LOGIN,
                 result=True,
-                users=[
-                    s[0]
-                    for s in sqlcur.execute(
-                        "SELECT username FROM users WHERE username != ?",
-                        (req.username,),
-                    ).fetchall()
-                ],
-                n_undelivered=n_undelivered,
+                moolah=moolah,
             )
-            sqlcon.close()
 
-            return response
+            client_queue.put(response)
+
+            # add user to clients
+            username = req.username
+            clients[username] = client_queue
         else:
-            sqlcon.close()
-            return chat_pb2.ChatResponse(action=chat_pb2.LOGIN, result=False)
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.LOGIN, result=False
+                )
+            )
+        sqlcon.close()
 
-    elif req.action == chat_pb2.REGISTER:
+    elif req.action == main_pb2.REGISTER:
         sqlcon = sqlite3.connect(db_path)
         sqlcur = sqlcon.cursor()
 
         # check to make sure username is not already in use
-        sqlcur.execute("SELECT * FROM users WHERE username=?", (req.username,))
+        sqlcur.execute(
+            "SELECT * FROM users WHERE username=?", (req.username,)
+        )
         if sqlcur.fetchone():
-            sqlcon.close()
-            return chat_pb2.ChatResponse(action=chat_pb2.REGISTER, result=False)
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.REGISTER, result=False
+                )
+            )
         else:
             # add new user to database
-            new_passhash = hashlib.sha256(req.passhash.encode()).hexdigest()
+            new_passhash = hashlib.sha256(
+                req.passhash.encode()
+            ).hexdigest()
             sqlcur.execute(
                 "INSERT INTO users (username, passhash) VALUES (?, ?)",
                 (req.username, new_passhash),
             )
             sqlcon.commit()
-            response = chat_pb2.ChatResponse(
-                action=chat_pb2.REGISTER,
-                result=True,
-                users=[
-                    s[0]
-                    for s in sqlcur.execute(
-                        "SELECT username FROM users WHERE username != ?",
-                        (req.username,),
-                    ).fetchall()
-                ],
+            response = main_pb2.MainResponse(
+                action=main_pb2.REGISTER, result=True, moolah=500
             )
-            sqlcon.close()
 
-            return response
+            client_queue.put(response)
 
-    elif req.action == chat_pb2.LOAD_CHAT:
-        sqlcon = sqlite3.connect(db_path)
-        sqlcur = sqlcon.cursor()
+        sqlcon.close()
 
+        # add user to clients
         username = req.username
-        user2 = req.user2
-        try:
-            sqlcur.execute(
-                "SELECT sender, recipient, message, message_id FROM messages WHERE (sender=? AND recipient=?) OR (sender=? AND recipient=?) ORDER BY time",
-                (username, user2, user2, username),
-            )
-            result = sqlcur.fetchall()
-        except Exception as e:
-            result = []
+        clients[username] = client_queue
 
-        formatted_messages = []
-        for sender, recipient, message, message_id in result:
-            formatted_messages.append(
-                chat_pb2.ChatMessage(
-                    sender=sender,
-                    recipient=recipient,
-                    message=message,
-                    message_id=message_id,
-                )
-            )
-        sqlcon.close()
-        return chat_pb2.ChatResponse(
-            action=chat_pb2.LOAD_CHAT, messages=formatted_messages
-        )
-
-    elif req.action == chat_pb2.SEND_MESSAGE:
-        sender = req.sender
-        recipient = req.recipient
-        message = req.message
-        sqlcon = sqlite3.connect(db_path)
-        sqlcur = sqlcon.cursor()
-
-        try:
-            sqlcur.execute(
-                "INSERT INTO messages (sender, recipient, message) VALUES (?, ?, ?)",
-                (sender, recipient, message),
-            )
-            sqlcon.commit()
-
-            # get the message_id
-            sqlcur.execute(
-                "SELECT message_id FROM messages WHERE sender=? AND recipient=? AND message=? ORDER BY time DESC LIMIT 1",
-                (sender, recipient, message),
-            )
-            message_id = sqlcur.fetchone()[0]
-
-            response = chat_pb2.ChatResponse(
-                action=chat_pb2.SEND_MESSAGE, message_id=message_id
-            )
-
-            sqlcon.close()
-            return response
-
-        except Exception as e:
-            sqlcon.close()
-            return None
-
-    elif req.action == chat_pb2.PING:
-        action = req.action
-        sender = req.sender
-        sent_message = req.sent_message
-        message_id = req.message_id
-
-        response = chat_pb2.ChatResponse(
-            action=action,
-            sender=sender,
-            sent_message=sent_message,
-            message_id=message_id,
-        )
-
-        # update the message status to delivered in the database
-        sqlcon = sqlite3.connect(db_path)
-        sqlcur = sqlcon.cursor()
-        sqlcur.execute(
-            "UPDATE messages SET delivered=1 WHERE message_id=?",
-            (message_id,),
-        )
-        sqlcon.commit()
-        sqlcon.close()
-
-        return response
-
-    elif req.action == chat_pb2.VIEW_UNDELIVERED:
-        sqlcon = sqlite3.connect(db_path)
-        sqlcur = sqlcon.cursor()
-
-        username = req.username
-        n_messages = req.n_messages
-
-        sqlcur.execute(
-            "SELECT sender, recipient, message, message_id FROM messages WHERE recipient=? AND delivered=0 ORDER BY time DESC LIMIT ?",
-            (username, n_messages),
-        )
-        result = sqlcur.fetchall()
-
-        messages_formatted = []
-        for sender, recipient, message, message_id in result:
-            messages_formatted.append(
-                chat_pb2.ChatMessage(
-                    sender=sender,
-                    recipient=recipient,
-                    message=message,
-                    message_id=message_id,
-                )
-            )
-
-        sqlcur.execute(
-            "UPDATE messages SET delivered=1 WHERE recipient=?",
-            (username,),
-        )
-        sqlcon.commit()
-        sqlcon.close()
-        return chat_pb2.ChatResponse(
-            action=chat_pb2.VIEW_UNDELIVERED, messages=messages_formatted
-        )
-
-    elif req.action == chat_pb2.DELETE_MESSAGE:
-        sqlcon = sqlite3.connect(db_path)
-        sqlcur = sqlcon.cursor()
-
-        message_id = req.message_id
-        sqlcur.execute("DELETE FROM messages WHERE message_id=?", (message_id,))
-        sqlcon.commit()
-        sqlcon.close()
-
-        response = chat_pb2.ChatResponse(
-            action=chat_pb2.DELETE_MESSAGE, message_id=message_id
-        )
-
-        return response
-
-    elif req.action == chat_pb2.DELETE_ACCOUNT:
+    elif req.action == main_pb2.DELETE_ACCOUNT:
+        # delete account if params match
         sqlcon = sqlite3.connect(db_path)
         sqlcur = sqlcon.cursor()
 
@@ -304,38 +210,193 @@ def handle_requests(req, db_path, username=None):
         passhash = req.passhash
 
         passhash = hashlib.sha256(passhash.encode()).hexdigest()
-        sqlcur.execute("SELECT passhash FROM users WHERE username=?", (username,))
+        sqlcur.execute(
+            "SELECT passhash FROM users WHERE username=?", (username,)
+        )
 
         result = sqlcur.fetchone()
         if result:
             # username exists and passhash matches
             if result[0] == passhash:
-                sqlcur.execute("DELETE FROM users WHERE username=?", (username,))
                 sqlcur.execute(
-                    "DELETE FROM messages WHERE sender=? OR recipient=?",
-                    (username, username),
+                    "DELETE FROM users WHERE username=?", (username,)
                 )
                 sqlcon.commit()
 
-                response = chat_pb2.ChatResponse(
-                    action=chat_pb2.DELETE_ACCOUNT, result=True
+                client_queue.put(
+                    main_pb2.MainResponse(
+                        action=main_pb2.DELETE_ACCOUNT, result=True
+                    )
                 )
+                # tell server to ping users to update their chat, remove from connected users
 
-                sqlcon.close()
-                return response
+                # delete user from clients
+                if username in clients:
+                    del clients[username]
+
+            # username exists but passhash is wrong
             else:
-                sqlcon.close()
-                return chat_pb2.ChatResponse(
-                    action=chat_pb2.DELETE_ACCOUNT, result=False
+                client_queue.put(
+                    main_pb2.MainResponse(
+                        action=main_pb2.DELETE_ACCOUNT, result=False
+                    )
                 )
         else:
-            sqlcon.close()
-            return chat_pb2.ChatResponse(action=chat_pb2.DELETE_ACCOUNT, result=False)
+            # username doesn't exist
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.DELETE_ACCOUNT, result=False
+                )
+            )
 
-    elif req.action == chat_pb2.PING_USER:
-        action = req.action
-        ping_user = req.ping_user
-        return chat_pb2.ChatResponse(action=action, ping_user=ping_user)
+        sqlcon.close()
+    elif req.action == main_pb2.CONNECT:
+        # a new leader was chosen, client connected to new leader
+        # add the user to the clients if they are signed in
+        logging.info(f"[MAIN] {req.username} connected.")
+        if (req.username != "") and (req.username not in clients):
+            clients[req.username] = client_queue
+    elif req.action == main_pb2.CONNECT_LOBBY:
+        # connect lobby to the main server
+        logging.info(f"[MAIN] Lobby {req.username} connected.")
+        if (req.username != "") and (req.username not in clients):
+            clients[req.username] = client_queue
+            connected_to_lobby = True
+    elif req.action == main_pb2.SAVE_GAME:
+        # save game to data base
+        player_name = req.game_history.player
+        game_type = req.game_history.game_type
+        money_won = req.game_history.money_won
 
-    else:
-        return None
+        game_type = (
+            "TEXAS HOLD EM" if game_type == main_pb2.TEXAS else "5 CARD"
+        )
+
+        # save game to database
+        sqlcon = sqlite3.connect(db_path)
+        sqlcur = sqlcon.cursor()
+        sqlcur.execute(
+            "SELECT user_id FROM users WHERE username=?", (player_name,)
+        )
+        player_id = sqlcur.fetchone()[0]
+
+        # add game to game history
+        sqlcur.execute(
+            "INSERT INTO game_history (player_id, game_type, money_won) VALUES (?, ?, ?)",
+            (player_id, game_type, money_won),
+        )
+
+        curr_money = sqlcur.execute(
+            "SELECT moolah FROM users WHERE username=?", (player_name,)
+        ).fetchone()[0]
+
+        # update moolah in users table
+        sqlcur.execute(
+            "UPDATE users SET moolah=? WHERE username=?",
+            (curr_money + money_won, player_name),
+        )
+        sqlcur.execute(
+            "SELECT moolah FROM users WHERE username=?", (player_name,)
+        )
+
+        moolah = sqlcur.fetchone()[0]
+
+        sqlcon.commit()
+        sqlcon.close()
+        return
+
+    elif req.action == main_pb2.GET_USER_INFO:
+        # update user on how much money they have
+        username = req.username
+        sqlcon = sqlite3.connect(db_path)
+        sqlcur = sqlcon.cursor()
+
+        # check if user exists
+        sqlcur.execute(
+            "SELECT * FROM users WHERE username=?", (username,)
+        )
+        if not sqlcur.fetchone():
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.GET_USER_INFO, result=False
+                )
+            )
+        else:
+            sqlcur.execute(
+                "SELECT moolah FROM users WHERE username=?", (username,)
+            )
+            moolah = sqlcur.fetchone()[0]
+
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.GET_USER_INFO,
+                    result=True,
+                    moolah=moolah,
+                )
+            )
+
+    elif req.action == main_pb2.JOIN_LOBBY:
+        # allow user to find available lobbies
+        game_type = req.game_type
+        # check if lobby is open
+        sent_lobby = False
+        for idx,_ in enumerate(all_lobbies):
+            if (
+                (not all_lobbies[idx]["active"])
+                and (all_lobbies[idx]["game_type"] == game_type)
+                and (all_lobbies[idx]["num_players"] < 4)
+            ):
+                # tell user it can join lobby
+                client_queue.put(
+                    main_pb2.MainResponse(
+                        action=main_pb2.JOIN_LOBBY,
+                        result=True,
+                        game_lobby=idx,
+                    )
+                )
+                sent_lobby = True
+                break
+        if not sent_lobby:
+            client_queue.put(
+                main_pb2.MainResponse(
+                    action=main_pb2.JOIN_LOBBY,
+                    result=False,
+                )
+            )
+
+
+    elif req.action == main_pb2.VIEW_HISTORY:
+        # send history back to client
+        curr_username = req.username
+        sqlcon = sqlite3.connect(db_path)
+        sqlcur = sqlcon.cursor()
+        sqlcur.execute(
+            "SELECT user_id FROM users WHERE username=?", (curr_username,)
+        )
+        player_id = sqlcur.fetchone()[0]
+
+        sqlcur.execute(
+            "SELECT game_type, money_won FROM game_history WHERE player_id=? ORDER BY game_date DESC",
+            (player_id,),
+        )
+
+        game_history = sqlcur.fetchall()
+
+        games = []
+        for i in range(len(game_history)):
+            game = main_pb2.GameHistoryEntry(
+                game_type=main_pb2.TEXAS if game_history[i][0] == "TEXAS HOLD EM" else main_pb2.FIVE_HAND,
+                money_won=game_history[i][1],
+                player=curr_username,
+            )
+            games.append(game)
+        
+        client_queue.put(
+            main_pb2.MainResponse(
+                action=main_pb2.VIEW_HISTORY,
+                result=True,
+                game_history=games,
+            )
+        )
+        sqlcon.close()
+    return client_queue.get()
